@@ -61,7 +61,7 @@ themeConfig:
           items:
             - text: Forum
               link: https://forum.mesg.com
-            - text: Chat
+            - text: Discord
               link: https://discord.gg/SaZ5HcE
         - text: Tools
           items:
