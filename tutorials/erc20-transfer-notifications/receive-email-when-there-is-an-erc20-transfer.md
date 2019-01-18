@@ -13,7 +13,7 @@ Today we'll learn how to create a JavaScript application that connects the two p
 * [Tutorial: Transfer notifications from an ERC20 transfer](./listen-for-transfers-of-an-ethereum-erc20-token.md)
 * [Tutorial: Sending emails through SendGrid](./send-emails-with-sendgrid.md)
 
-You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/core/tree/master/docs/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer).
+You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer).
 
 ::: tip
 MESG Core should already be installed on your computer. If it isn't yet, [install it here](../../guide/start-here/installation.html).
@@ -136,5 +136,5 @@ Be careful, ERC20 tokens have a lot of activity so it is possible to have thousa
 
 ### Final version of the source code
 
-<card-link url="https://github.com/mesg-foundation/core/tree/master/docs/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer"></card-link>
+<card-link url="https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer"></card-link>
 

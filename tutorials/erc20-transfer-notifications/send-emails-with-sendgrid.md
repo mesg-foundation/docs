@@ -12,7 +12,7 @@ Today we will learn how to create and use our first service.
 
 We'll start with the example of an email provider where we will send emails through a MESG service.
 
-You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/core/tree/master/docs/tutorials/erc20-transfer-notifications/send-email-with-sendgrid).
+You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/send-email-with-sendgrid).
 
 You can find a more advanced and maintained version of this service here: [Service Email SendGrid](https://github.com/mesg-foundation/service-email-sendgrid).
 
@@ -260,4 +260,4 @@ Get some rest now, you've done a good job creating your first Service with MESG.
 
 ## Final version of the source code
 
-<card-link url="https://github.com/mesg-foundation/core/tree/master/docs/tutorials/erc20-transfer-notifications/send-email-with-sendgrid"></card-link>
+<card-link url="https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/send-email-with-sendgrid"></card-link>

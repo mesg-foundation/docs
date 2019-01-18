@@ -1,26 +1,28 @@
 const MESG = require('mesg-js').application()
 
-// Event we need to listen
-const erc20Transfer = {
+// Listen for the event.
+MESG.listenEvent({
   serviceID: '__ERC20_SERVICE_ID__', // The serviceID of the ERC20 service deployed
-  eventKey: 'transfer' // The event we want to listen
-}
+  eventFilter: 'transfer' // The event we want to listen
+})
+  .on('data', (event) => {
+    const transfer = JSON.parse(event.eventData)
 
-// Task to execute
-const sendEmail = {
-  serviceID: '__SENDGRID_SERVICE_ID__', // The serviceID of the service to send emails
-  taskKey: 'send', // The task we want to execute
-  inputs: (eventKey, eventData) => { // This function returns the inputs for of task send based on the data of the event
-    console.log('New ERC20 transfer received. will send an email. Transaction hash:', eventData.transactionHash)
-    return {
-      apiKey: '__SENDGRID_API_KEY__',
-      from: 'test@erc20notification.com',
-      to: '__REPLACE_WITH_YOUR_EMAIL__',
-      subject: 'New ERC20 transfer',
-      text: `Transfer from ${eventData.from} to ${eventData.to} of ${eventData.value} tokens -> ${eventData.transactionHash}`
-    }
-  }
-}
+    console.log('New ERC20 transfer received. will send an email. Transaction hash:', transfer.transactionHash)
 
-MESG.whenEvent(erc20Transfer, sendEmail)
+    // Execute task.
+    MESG.executeTask({
+      serviceID: '__SENDGRID_SERVICE_ID__', // The serviceID of the service to send emails
+      taskKey: 'send', // The task we want to execute
+      inputData: JSON.stringify({ // The input data that task needs
+        apiKey: '__SENDGRID_API_KEY__',
+        from: 'test@erc20notification.com',
+        to: '__REPLACE_WITH_YOUR_EMAIL__',
+        subject: 'New ERC20 transfer',
+        text: `Transfer from ${transfer.from} to ${transfer.to} of ${transfer.value} tokens -> ${transfer.transactionHash}`
+      })
+    }).catch((err) => console.log(err.message))
+  })
+  .on('error', (err) => console.log(err.message))
+
 console.log('Listening ERC20 transfer...')
