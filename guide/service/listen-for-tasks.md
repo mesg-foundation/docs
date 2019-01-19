@@ -20,7 +20,7 @@ The first step is to declare the tasks that the service will be able to execute 
 | --- | --- | --- | --- | --- | --- |
 | **name** | `id` | `String` | If the name of the task is not set, the name will be the ID of the task. |
 | **description** | `""` | `String` | Description of the task: what the task is doing and why it is useful. |
-| **inputs** | `{}` | `map<id,`[`Input`](listen-for-tasks.md#input-and-output-parameter)`>` | Map of inputs that the task needs in order to be executed. |
+| **inputs** | `{}` | `map<id,`[`Parameter`](listen-for-tasks.md#parameter-input-output)`>` | Map of inputs that the task needs in order to be executed. |
 | **outputs** | `{}` | `map<id,`[`Outputs`](listen-for-tasks.md#outputs)`>` | Map of outputs that the task will emit. The task can declare multiple outputs but can only submit one output per execution. |
 
 ### Outputs
@@ -29,15 +29,16 @@ The first step is to declare the tasks that the service will be able to execute 
 | --- | --- | --- | --- |
 | **name** | `id` | `String` | Name of the output. The default is the ID. |
 | **description** | `""` | `String` | A description of the output: what kind of output, and how is it useful. |
-| **data** | `{}` | `map<id,`[`Output`](listen-for-tasks.md#input-and-output-parameter)`>` | Map of the data  the output will return. |
+| **data** | `{}` | `map<id,`[`Parameter`](listen-for-tasks.md#parameter-input-output)`>` | Map of the data  the output will return. |
 
-### Input and Output parameter
+### Parameter (Input/Output)
 
 | **Attribute** | **Default value** | **Type** | **Description** |
 | --- | --- | --- | --- | --- |
 | **name** | `id` | `String` | Name or the parameter. The default is the ID. |
 | **description** | `""` | `String` | Description of the parameter. |
 | **type** | `String` | [`Type`](listen-for-tasks.md#type-of-your-data) | Type of the parameter. |
+| **object** | `{}` | [`Parameter`](listen-for-tasks.md#parameter-input-output) | Nested parameters. Parameters can contain child parameters. It can only be defined when `type` is `Object`. |
 | **optional** | `false` | `Boolean` | If true, this parameter is considered as optional and might remain empty. |
 | **repeated** | `false` | `Boolean` | Define this parameter as an array of the type selected |
 
@@ -48,6 +49,7 @@ The parameter can be one of the following:
 * `String`
 * `Boolean`
 * `Number`
+* `Object`
 * `Any`
 
 ### Example

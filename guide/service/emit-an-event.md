@@ -19,7 +19,7 @@ To create an event, the first step is to update the Service's [`mesg.yml`](servi
 | --- | --- | --- | --- |
 | **name** | `id` | `String` | Name of the event. If the name is not set, it will be the same as the ID you choose for the event. |
 | **description** | `""` | `String` | Describe the event, what's its purpose is and why users would want to use it. |
-| **data** | `{}` | `map<id,`[`Data`](emit-an-event.md#data-of-your-event)`>` | The structure of the event's data. |
+| **data** | `{}` | `map<id,`[`Data`](emit-an-event.md#event-s-data)`>` | The structure of the event's data. |
 
 ### Event's data
 
@@ -28,6 +28,7 @@ To create an event, the first step is to update the Service's [`mesg.yml`](servi
 | **name** | `id` | `String` | Name of the data |
 | **description** | `""` | `String` | Description of the data |
 | **type** | `String` | [`Type`](emit-an-event.md#type-of-your-data) | Type of data |
+| **object** | `{}` | [`Data`](emit-an-event.md#event-s-data) | Nested data. Data can contain child data. It can only be defined when `type` is `Object` |
 | **optional** | `false` | `boolean` | Mark the data as optional |
 | **repeated** | `false` | `boolean` | Define this data as an array of the type selected |
 
@@ -38,6 +39,7 @@ The data type can be one of the following:
 * `String`
 * `Boolean`
 * `Number`
+* `Object`
 * `Any`
 
 ### Example
