@@ -78,7 +78,7 @@ For the simplicity of this tutorial, we will use only a small part of the ABI th
 
 Create the file `erc20-abi.json` in the Service folder and copy/paste the following ABI:
 
-<<< @/docs/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/erc20-abi.json
+<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/erc20-abi.json
 
 Now, let's come back to `index.js` and initialize the contract with the ABI and the address. Add:
 
@@ -221,11 +221,11 @@ console.log('Listening ERC20 transfer...')
 
 Let's update the `Dockerfile` to make our Service compatible with Docker. Because it is a Node.JS app, it's pretty simple:
 
-<<< @/docs/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/Dockerfile
+<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/Dockerfile
 
 Let's also create a `.dockerignore` file to ignore the `node_modules` from the build of the Service.
 
-<<< @/docs/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/.dockerignore
+<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/.dockerignore
 
 ### Test the Service
 
@@ -240,7 +240,7 @@ mesg-core start
 Let's actually test the service! Run:
 
 ```bash
-mesg-core service test
+mesg-core service dev
 ```
 
 After the building and deployment steps, you should see that the Service has started:
