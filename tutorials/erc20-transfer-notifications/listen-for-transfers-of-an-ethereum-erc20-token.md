@@ -34,23 +34,27 @@ mesg-core service init
 Then, answer the prompts with the following information:
 
 ```text
-Name: service-ethereum-erc20
-Description: Listen to transfers of an ERC20
+? Enter the output directory: service-ethereum-erc20
+? Select a template to use Javascript (https://github.com/mesg-foundation/template-service-javascript)
 ```
 
-The command should have created a `service-ethereum-erc20` folder containing `mesg.yml` and `Dockerfile` files.  
+The command should have created a `service-ethereum-erc20` folder containing `mesg.yml`, `Dockerfile` files and a boilerplate for the service.  
 Leave these files intact; we'll return to them a bit later in this tutorial.
 
-## Create a Node app
-
-Let's initialize our node app.
+### Before starting...
+Let's remove some code related with the service boilerplate for now to create a usual node.js app for demonstration.
 
 First, make sure your terminal is pointed towards the newly-created `service-ethereum-erc20` folder.  
-Then, run:
 
-```bash
-npm init -y
-```
+Clean all the code inside `index.js`. And remove the `tasks` folder since we're not going to use it for this service.
+
+And install the dependencies:
+
+ ```bash	
+npm install
+```	
+
+### Initialize Web3 with Infura
 
 Let's install [Web3.js](https://web3js.readthedocs.io/en/1.0/):
 
@@ -58,11 +62,7 @@ Let's install [Web3.js](https://web3js.readthedocs.io/en/1.0/):
 npm install --save web3
 ```
 
-Then, create the `index.js` file in the Service folder.
-
-### Initialize Web3 with Infura
-
-The first step is to load Web3 and initialize it with Infura.  
+The first step is to load Web3 and initialize it with Infura.
 Add the following code to the top of `index.js` :
 
 ```javascript
@@ -86,7 +86,7 @@ Now, let's come back to `index.js` and initialize the contract with the ABI and 
 const contract = new web3.eth.Contract(require('./erc20-abi.json'), '0xe41d2489571d322189246dafa5ebde1f4699f498')
 ```
 
-### Listen for transfer events
+### Listen for transfer events on ERC20 network
 
 We're finally ready to listen for transfers!
 
@@ -159,7 +159,7 @@ Now, it's time to transform this node app to a fully-compatible MESG Service.
 
 Let's add the event we want to emit to MESG Core to the `mesg.yml` file.
 
-Now, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. It should look like this:
+First, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. It should look like this:
 
 ```yaml
 name: service-ethereum-erc20-tuto
@@ -186,27 +186,23 @@ events:
 
 This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](../../guide/service/service-file.md) for more information about the `mesg.yml` file.
 
-### Add mesg-js lib
+### Require MESG service client
 
-Let's install the `mesg-js` lib:
-
-```bash
-npm install --save mesg-js
-```
-
-Let's transform the file `index.js` to use the lib. Add at the top of the file:
+Add the following code to the top of `index.js` :
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 ```
 
-Replace `console.log` by `MESG.emitEvent`, like so:
+### Emit `transfer` service event to MESG Core
+
+Replace `console.log` by `mesg.emitEvent`, like so:
 
 ```javascript
 contract.events.Transfer({fromBlock: 'latest'})
 .on('data', event => {
   console.log('New ERC20 transfer received with hash:', event.transactionHash)
-  MESG.emitEvent('transfer', {
+  mesg.emitEvent('transfer', {
     blockNumber: event.blockNumber,
     transactionHash: event.transactionHash,
     from: event.returnValues.from,
@@ -216,16 +212,6 @@ contract.events.Transfer({fromBlock: 'latest'})
 })
 console.log('Listening ERC20 transfer...')
 ```
-
-### Dockerize it
-
-Let's update the `Dockerfile` to make our Service compatible with Docker. Because it is a Node.JS app, it's pretty simple:
-
-<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/Dockerfile
-
-Let's also create a `.dockerignore` file to ignore the `node_modules` from the build of the Service.
-
-<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/.dockerignore
 
 ### Test the Service
 
