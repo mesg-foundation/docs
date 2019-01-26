@@ -42,8 +42,8 @@ themeConfig:
   repo: mesg-foundation/
   repoLabel: GitHub
   docsRepo: mesg-foundation/docs
-  docsDir: docs
-  docsBranch: dev
+  docsDir: ./
+  docsBranch: master
   editLinks: true
   editLinkText: Help us improve this page!
   # serviceWorker:
