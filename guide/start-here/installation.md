@@ -59,4 +59,4 @@ docker service create --network core --env MESG_CORE_PATH=/mesg --mount source=/
 ```
 
 ::: tip Get Help
-You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+You need help? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
