@@ -94,7 +94,7 @@ tasks:
 
 ## Listen for task executions
 
-To listen for task to execute, the Service needs to open a stream with Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](listen-for-tasks.md#submit-outputs-of-your-execution) back to Core.
+To listen for task to execute, the Service needs to open a stream with Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to Core.
 
 ::: tip
 Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, you should wait for this synchronization before listening for tasks.
@@ -142,12 +142,28 @@ Consider listening for tasks when your service is ready. If your service needs t
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 
-MESG.listenTask({
-// task      inputs           outputs
-  taskX: ({ inputX, inputY }, { outputX, outputY }) => outputX({ foo: "super result", bar: true })
+mesg.listenTask({
+  __TASK_1_KEY__: (inputs, outputs) => {
+    // Function of the task 1
+    outputs.outputX({
+      foo: inputs.foo + 1,
+      bar: true
+    })
+  }, 
+  __TASK_2_KEY__: (inputs, outputs) => {
+    // Function of the task 2
+    outputs.outputY({
+      foo: inputs.foo + 1,
+      bar: true
+    })
+  },
+  ...
 })
+  .on('error', (error) => {
+    console.error(error)
+  })
 ```
 
 </tab>
