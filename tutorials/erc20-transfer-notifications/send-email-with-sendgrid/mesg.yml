@@ -1,5 +1,6 @@
-name: sendgrid-email
-description: Send and receive email through Sendgrid API
+name: Send Email with SendGrid Tutorial
+sid: send-email-with-sendgrid-tuto
+description: Listen for email send requests and send emails via SendGrid
 tasks: 
   send:
     inputs:

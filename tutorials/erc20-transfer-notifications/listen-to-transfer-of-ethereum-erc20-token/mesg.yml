@@ -1,4 +1,5 @@
-name: service-ethereum-erc20-tuto
+name: Ethereum ERC20 Service Tutorial
+sid: service-ethereum-erc20-tuto
 description: Listen to transfers of an ERC20
 events:
   transfer:

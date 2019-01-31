@@ -14,12 +14,14 @@ We'll start with the example of an email provider where we will send emails thro
 
 You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/send-email-with-sendgrid).
 
-You can find a more advanced and maintained version of this service here: [Service Email SendGrid](https://github.com/mesg-foundation/service-email-sendgrid).
+You can find a more advanced and maintained version of this service here: [Service Email SendGrid](https://github.com/mesg-foundation/service-email-sendgrid)
 
 ::: tip
 If you haven't installed **MESG Core** yet, you can do so by running the command:
 
 `bash <(curl -fsSL https://mesg.com/install)`
+
+You can also install it manually by following [this guide](./installation.md#manual-installation).
 :::
 
 MESG services are composed of two different parts:
@@ -29,24 +31,47 @@ MESG services are composed of two different parts:
 
 For this tutorial, we will only focus on tasks, and will create a service that sends an email as a task.
 
-To create a service with MESG, you need to create the base of the service. Run the command:
+## Create the MESG service
+
+It's time to create our MESG Service. First, open a terminal in your development folder and run the following command:
 
 ```bash
 mesg-core service init
 ```
 
-You should have a new folder with the name of your service that is composed of two different files:
+Then, answer the prompts with the following information:
 
-* **Dockerfile:** A file that describes your Docker container and configures the environment for your service. We'll come back to this part in the [Dockerize your Service](send-emails-with-sendgrid.md#dockerize-your-service) section.
+```text
+? Enter the output directory: send-email-with-sendgrid
+? Select a template to use Javascript (https://github.com/mesg-foundation/template-service-javascript)
+```
+
+The command should have created a `send-email-with-sendgrid` folder containing `mesg.yml`, `Dockerfile` files and a boilerplate for the service.  
+Leave these files intact; we'll return to them a bit later in this tutorial.
+
+::: tip
+You should see a **mesg.yml** and a **Dockerfile** in your service folder which are the fundamental parts of every MESG service.
+
 * **mesg.yml:** A file that contains all of the metadata of your Service. It gives some global descriptions but also includes the tasks and events that the Service can provide.
-
-Let's add our first task.
+  
+* **Dockerfile:** A file that describes your Docker container and configures the environment for your service to run inside.
+:::
 
 ## Send emails through MESG tasks
 
 ### Configure your task
 
-Open the `mesg.yml` file and add a new task called `send` responsible for sending an email based on the following inputs:
+Let's add the task we want to serve for MESG Core to the `mesg.yml` file.
+
+First, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. And declare a `sid` for the service. It should look like this:
+
+```yaml
+name: Send Email with SendGrid Tutorial
+sid: send-email-with-sendgrid-tuto
+description: Listen for email send requests and send emails via SendGrid
+```
+
+And add a new task called `send` to `tasks` section which will be responsible for sending an email based on the following inputs:
 
 * **from**: the account to send the email from
 * **to**: the recipient of the email
@@ -84,66 +109,37 @@ tasks:
 ```
 
 ::: warning
-You might need to delete the **configuration: null** if it's present in your **mesg.yml** file
+You might need to delete the **configuration: null** if it's present in your **mesg.yml** file.
 :::
 
 ### Code your task
 
 The next step is to code your Service. To do this, you can use any language that you want. For this tutorial we will use **Javascript**.
 
-Let's initialize our code for the Service. Run the following commands in the folder of your Service:
+Open `index.js` and replace `taskX` words to `send` and remove `emitEvent` line since it'll not be used in this tutorial.
 
-```bash
-npm init -y                  # to initialize your project
-npm install --save mesg-js   # to install the MESG library
-```
-
-When this is done, create and open a new file `index.js`
-
-_Let's code !!!_
-
-First we include and initialize the library to build a MESG Service.
+Your `index.js` should look similar to this:
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
+
+mesg.listenTask({
+  send: require('./tasks/send')
+})
+  .on('error', (error) => {
+    console.error(error)
+  })
 ```
 
-Secondly we'll need to create the different tasks defined in the `mesg.yml` as functions.
+With this code, service will start listening execution requests for `send` task from **MESG Core** and execute the handler to create and submit a result.
+
+To create a handler for the `send` task, rename `tasks/taskX.js` to `tasks/send.js` and replace its content with the following code:
 
 ```javascript
-const sendHandler = async (inputs, outputs) => {
+module.exports = async (inputs, outputs) => {
   console.log('New send task received')
   // TODO later
 }
-```
-
-For this task, the function will take all the inputs as a first parameter and all the outputs as a second parameter.
-
-The last step is to start listening for tasks from **MESG Core**, then react to those events.
-
-```javascript
-MESG.listenTask({
-  send: sendHandler
-})
-console.log('Listening tasks...')
-```
-
-Here we say that when there is the task `send` coming from MESG Core, we will execute the method `sendHandler` defined earlier.
-
-The full file should look like this:
-
-```javascript
-const MESG = require('mesg-js').service()​
-
-const sendHandler = async (inputs, outputs) => {
-  console.log('New send task received')
-  // TODO later
-}
-
-​MESG.listenTask({
-  send: sendHandler
-})
-console.log('Listening tasks...')
 ```
 
 This is a basic skeleton for a Service, but now we need to actually code the emails with Sendgrid. For this, we will use the Sendgrid library.
@@ -158,10 +154,10 @@ Then require it in our file the same way we required it the `mesg-js` library.
 const sendgrid = require('@sendgrid/mail')
 ```
 
-We had a `TODO` in our `sendHandler` function, let's code the business logic using the Sendgrid library we just imported.
+We had a `TODO` in our handler for `send` task, let's code the business logic using the Sendgrid library we just imported.
 
 ```javascript
-const sendHandler = async (inputs, outputs) => {
+module.exports = async (inputs, outputs) => {
   try {
     console.log('New send task received')
     // Configure SendGrid
@@ -192,21 +188,19 @@ If an error occurs, it returns the output `failure` with the error's message.
 
 Now your final Service code should look like this:
 
+`index.js`
+
 <<< @/tutorials/erc20-transfer-notifications/send-email-with-sendgrid/index.js
+
+`tasks/send.js`
+
+<<< @/tutorials/erc20-transfer-notifications/send-email-with-sendgrid/tasks/send.js
 
 ::: warning
 Don't forget to change the `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` with your own private Sendgrid API key that you can create here: [https://app.sendgrid.com/settings/api\_keys](https://app.sendgrid.com/settings/api_keys)​.
 :::
 
 Your Service is now ready for the second step.
-
-## Dockerize your Service
-
-This step is quite short and may not be necessary in the future. We need to edit the `Dockerfile` to make your Service compatible with Docker. In the case of a Javascript Service, the file will look like this:
-
-<<< @/tutorials/erc20-transfer-notifications/send-email-with-sendgrid/Dockerfile
-
-With this file, your Service can now run in Docker, but don't worry, MESG will manage all this for you.
 
 ## Testing
 
@@ -216,7 +210,7 @@ The first step of testing is to make sure that the Service is valid by running:
 mesg-core service validate
 ```
 
-Your should have a message with `Service is valid`, if not, check the previous steps again; you probably missed something 🤔
+You should have a message with `Service is valid`, if not, check the previous steps again; you probably missed something 🤔
 
 Now that your Service is valid, let's create a test file to test your task. Create a `test.json` file is with all the inputs needed for your task.
 
@@ -238,10 +232,10 @@ Don't worry, the first time you do this, it will take a bit of time because MESG
 
 Wait for the service to start and then copy the service ID.
 
-In an other terminal, execute the following command (replace `__SERVICE_ID__` by the previously copied service ID):
+In an other terminal, execute the following command:
 
 ```bash
-mesg-core service execute __SERVICE_ID__ --task send --json test.json
+mesg-core service execute send-email-with-sendgrid-tuto --task send --json test.json
 ```
 
 The `send` task will be executed and you should have the result in the console and your precious email in your mailbox.
