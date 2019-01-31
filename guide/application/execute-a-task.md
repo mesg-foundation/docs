@@ -21,7 +21,7 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 
 ```javascript
 {
-  "serviceID": "v1_fe25be776e1e256400c77067a1cb7666",
+  "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskKey": "taskX",
   "inputData": "{\"inputX\":\"input value\"}"
 }
@@ -50,16 +50,18 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.api.ExecuteTask({
-  serviceID: "v1_fe25be776e1e256400c77067a1cb7666",
+mesg.executeTask({
+  serviceID: SERVICE_TASK_ID,
   taskKey: "taskX",
   inputData: JSON.stringify({
     inputX: "input value"
   })
-}, (err, reply) => {
-  // handle response if needed
+}).then((reply) => {
+  console.log(reply.executionID)
+}).catch((err) => {
+  console.error(err)
 })
 ```
 
@@ -83,7 +85,7 @@ func main() {
     connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
     cli := core.NewCoreClient(connection)
     res, _ := cli.ExecuteTask(context.Background(), &core.ExecuteTaskRequest{
-        ServiceID:  "v1_fe25be776e1e256400c77067a1cb7666",
+        ServiceID:  "f4923d9de32f211a1e3fbd54399752c305e2db72",
         TaskKey:  "taskX",
         InputData: "{\"inputX\":\"input value\"}",
     })

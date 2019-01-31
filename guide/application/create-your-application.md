@@ -6,31 +6,45 @@ Now that you have your different Services ready and deployed, you need to connec
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
 // When SERVICE_EVENT_ID emits event "eventX"
 // then execute "taskX" from SERVICE_TASK_ID 
-MESG.listenEvent({ serviceID: SERVICE_EVENT_ID, eventFilter: 'eventX' })
+mesg.listenEvent({
+  serviceID: SERVICE_EVENT_ID,
+  eventFilter: 'eventX'
+})
   .on('data', (event) => {
-    MESG.executeTask({
+    mesg.executeTask({
       serviceID: SERVICE_TASK_ID,
       taskKey: 'taskX',
       inputData: JSON.stringify({ foo: 'bar' })
-    }).catch((err) => console.log(err.message))
+    }).catch((err) => {
+      console.error(err.message)
+    })
   })
-  .on('error', (err) => console.log(err.message))
+  .on('error', (err) => {
+    console.error(err.message)
+  })
 
 // When SERVICE_TASK_ID send the result of taskX
 // then execute "taskB" from SERVICE_TASK2_ID
-MESG.listenResult({ serviceID: SERVICE_TASK_ID, taskFilter: 'taskX' })
-  .on('data', (event) => {
-    MESG.executeTask({
+mesg.listenResult({
+  serviceID: SERVICE_TASK_ID,
+  taskFilter: 'taskX'
+})
+  .on('data', (result) => {
+    mesg.executeTask({
       serviceID: SERVICE_TASK2_ID,
       taskKey: 'taskB',
       inputData: JSON.stringify({ hello: "world" })
-    }).catch((err) => console.log(err.message))
+    }).catch((err) => {
+      console.error(err.message)
+    })
   })
-  .on('error', (err) => console.log(err.message))
+  .on('error', (err) => {
+    console.error(err.message)
+  })
 ```
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#application)
