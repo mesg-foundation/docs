@@ -145,21 +145,13 @@ Consider listening for tasks when your service is ready. If your service needs t
 const mesg = require('mesg-js').service()
 
 mesg.listenTask({
-  __TASK_1_KEY__: (inputs, outputs) => {
+  taskX: (inputs, outputs) => {
     // Function of the task 1
     outputs.outputX({
-      foo: inputs.foo + 1,
-      bar: true
-    })
-  }, 
-  __TASK_2_KEY__: (inputs, outputs) => {
-    // Function of the task 2
-    outputs.outputY({
-      foo: inputs.foo + 1,
+      foo: inputs.inputX,
       bar: true
     })
   },
-  ...
 })
   .on('error', (error) => {
     console.error(error)
