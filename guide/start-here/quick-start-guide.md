@@ -50,7 +50,7 @@ The application is using [NodeJS](https://nodejs.org) and [NPM](https://www.npmj
 
 Let's init the app and install the [MESG JS library](https://www.npmjs.com/package/mesg-js).
 
-Create and move your terminal to a folder that will contain the application. The run:
+Create and move your terminal to a folder that will contain the application. Then run:
 
 ```bash
 npm init && npm install --save mesg-js
