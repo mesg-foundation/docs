@@ -22,7 +22,7 @@ MESG Core runs as a daemon. To start it, execute:
 mesg-core start
 ```
 
-## 3. Deploy and start the services
+## 3. Deploy the services
 
 You need to deploy every service your application is using.
 
