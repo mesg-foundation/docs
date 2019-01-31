@@ -69,7 +69,7 @@ mesg.listenEvent({
   eventFilter: 'request'
 })
   .on('data', async (event) => {
-    console.log('event webhook received')
+    console.log('webhook event received')
     try {
       const result = await mesg.executeTaskAndWaitResult({
         serviceID: 'discord-invitation',
@@ -77,16 +77,17 @@ mesg.listenEvent({
         inputData: JSON.stringify({ email, sendgridAPIKey })
       })
       if (result.outputKey !== 'success') {
-        console.error('An error occurred during the sending of the invitation')
+        const message = JSON.parse(result.outputData).message
+        console.error('an error occurred while sending the invitation: ', message)
         return
       }
-      console.log('discord invitation send to ', email)
+      console.log('discord invitation send to:', email)
     } catch (error) {
-      console.error(error.message)
+      console.error('an error occurred while executing the send task:', error.message)
     }
   })
   .on('error', (error) => {
-    console.error(error.message)
+    console.error('an error occurred while listening the request events:', error.message)
   })
 
 console.log('application is running and listening for events')
