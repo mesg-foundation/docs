@@ -98,13 +98,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 
 <tab title="Reply" vp-markdown>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-
-
-```javascript
-{}
-```
+Reply of EmitEvent API doesn't contain any data.
 
 </tab>
 </tabs>
@@ -115,9 +109,9 @@ Consider emitting event when the service is ready. If the service needs to synch
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 
-MESG.emitEvent("eventX", {
+await mesg.emitEvent("eventX", {
   foo: "hello",
   bar: false,
 })
