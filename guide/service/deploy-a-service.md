@@ -8,7 +8,7 @@ To deploy the service you can run the command:
 mesg-core service deploy PATH_OF_THE_SERVICE
 ```
 
-This will generate a Service ID. You have to use this Service ID when you want to use the service.
+This will give the id of your service. You need to use this id whenever you want to use the service.
 
 ### List deployed services
 

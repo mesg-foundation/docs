@@ -111,9 +111,11 @@ Reply of EmitEvent API doesn't contain any data.
 ```javascript
 const mesg = require('mesg-js').service()
 
-await mesg.emitEvent("eventX", {
+mesg.emitEvent("eventX", {
   foo: "hello",
   bar: false,
+}).catch((err) => {
+  console.error(err)
 })
 ```
 
