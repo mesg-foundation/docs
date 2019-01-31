@@ -18,7 +18,7 @@ This API is only accessible through [gRPC](https://grpc.io/).
 
 Applications must not use this API, but rather use the [Core API](./core.md).
 
-The source file of this API is hosted on [GitHub](https://github.com/mesg-foundation/core/blob/master/api/service/api.proto).
+The source file of this API is hosted on [GitHub](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto).
 
 [[toc]]
 
