@@ -77,15 +77,16 @@ mesg.listenEvent({
         inputData: JSON.stringify({ email, sendgridAPIKey })
       })
       if (result.outputKey !== 'success') {
-        throw new Error('An error occurred during the sending of the invitation')
+        console.error('An error occurred during the sending of the invitation')
+        return
       }
       console.log('discord invitation send to ', email)
     } catch (error) {
       console.error(error.message)
     }
   })
-  .on('error', (err) => {
-    console.error(err.message)
+  .on('error', (error) => {
+    console.error(error.message)
   })
 
 console.log('application is running and listening for events')
