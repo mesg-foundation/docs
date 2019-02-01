@@ -6,7 +6,7 @@ Applications can execute a Service's task, allowing you to reuse the maximum num
 
 ## Execute a Service's task
 
-To execute a task, Applications need to connect to Core through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). Core will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](execute-a-task.md#listen-for-execution-outputs)
+To execute a task, Applications need to connect to Core through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). Core will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
 
 <tabs>
 <tab title="Request" vp-markdown>
