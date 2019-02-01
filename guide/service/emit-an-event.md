@@ -57,13 +57,10 @@ events:
                 name: "Foo"
                 description: "Foo is a string"
                 type: String
-                optional: false
             bar:
                 name: "Bar"
                 description: "Bar is an optional array of boolean"
                 type: Boolean
-                optional: true
-                repeated: true
 ...
 ```
 

@@ -54,7 +54,7 @@ The parameter can be one of the following:
 
 ### Example
 
-Example of a task definition in a [`mesg.yml`](../service/service-file.md) file :
+Example of a task definition in a [`mesg.yml`](../service/service-file.md) file:
 
 ```yaml
 ...
@@ -67,13 +67,10 @@ tasks:
                 name: "Input x"
                 description: "Foo is a string"
                 type: String
-                optional: false
             inputY:
                 name: "Input y"
                 description: "Bar is an optional array of boolean"
                 type: Boolean
-                optional: true
-                repeated: true
         outputs:
             outputX:
                 name: "OutputX"
