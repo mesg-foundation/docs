@@ -24,7 +24,7 @@ If you haven't installed **MESG Core** yet, you can do so by running the command
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
-You can also install it manually by following [this guide](./installation.md#manual-installation).
+You can also install it manually by following [this guide](../../guide/start-here/quick-start-guide.md#manual-installation).
 :::
 
 ## Create the MESG service
