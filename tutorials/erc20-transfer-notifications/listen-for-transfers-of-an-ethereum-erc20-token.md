@@ -24,7 +24,7 @@ If you haven't installed **MESG Core** yet, you can do so by running the command
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
-You can also install it manually by following [this guide](../../guide/start-here/quick-start-guide.md#manual-installation).
+You can also install it manually by following [this guide](../../guide/start-here/installation.md#manual-installation).
 :::
 
 ## Create the MESG service
@@ -179,7 +179,7 @@ Now, it's time to transform this node app to a fully-compatible MESG Service.
 
 Let's add the event we want to emit to MESG Core to the `mesg.yml` file.
 
-First, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. And declare a `sid` for the service. It should look like this:
+First, clean the `mesg.yml` file, keeping only the keys: `name`, `sid` and `description`. Change their value to look like this:
 
 ```yaml
 name: Ethereum ERC20 Service Tutorial

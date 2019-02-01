@@ -21,7 +21,7 @@ If you haven't installed **MESG Core** yet, you can do so by running the command
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
-You can also install it manually by following [this guide](../../guide/start-here/quick-start-guide.md#manual-installation).
+You can also install it manually by following [this guide](../../guide/start-here/installation.md#manual-installation).
 :::
 
 MESG services are composed of two different parts:
@@ -63,7 +63,7 @@ You should see a **mesg.yml** and a **Dockerfile** in your service folder which 
 
 Let's add the task we want to serve for MESG Core to the `mesg.yml` file.
 
-First, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. And declare a `sid` for the service. It should look like this:
+First, clean the `mesg.yml` file, keeping only the keys: `name`, `sid` and `description`. Change their value to look like this:
 
 ```yaml
 name: Send Email with SendGrid Tutorial
@@ -83,7 +83,7 @@ Also this Service's task will return two different outputs:
 * **success**: when the email is successfully sent
 * **failure**: when an error occurs while trying to send the email \(this can be any kind of error, wrong email address, Sendgrid API down, etc.\)
 
-To add this information into your Service, you can replace the `tasks: {}` in your `mesg.yml` file with the following:
+To add this information into your Service, add the following definition in the `mesg.yml` file:
 
 ```yaml
 tasks: 
@@ -107,10 +107,6 @@ tasks:
           message:
             type: String
 ```
-
-::: warning
-You might need to delete the **configuration: null** if it's present in your **mesg.yml** file.
-:::
 
 ### Code your task
 
