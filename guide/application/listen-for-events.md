@@ -20,7 +20,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 
 ```javascript
 {
-  "serviceID": "v1_fe25be776e1e256400c77067a1cb7666",
+  "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "eventFilter": "eventIDToOnlyListenTo"
 }
 ```
@@ -50,17 +50,17 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.api.ListenEvent({
-  serviceID: "v1_fe25be776e1e256400c77067a1cb7666",
+mesg.listenEvent({
+  serviceID: SERVICE_EVENT_ID
 })
-.on('error', function(error) {
-  // An error has occurred and the stream has been closed.
-})
-.on('data', function(data) {
-  ...
-})
+  .on('data', (event) => {
+    console.log(event)
+  })
+  .on('error', (err) => {
+    console.error(err)
+  })
 ```
 
 </tab>
@@ -83,7 +83,7 @@ func main() {
     connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
     cli := core.NewCoreClient(connection)
     stream, _ := cli.ListenEvent(context.Background(), &core.ListenEventRequest{
-        ServiceID: "v1_fe25be776e1e256400c77067a1cb7666",
+        ServiceID: "f4923d9de32f211a1e3fbd54399752c305e2db72",
     })
     for {
         event, _ := stream.Recv()
@@ -117,7 +117,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 
 ```javascript
 {
-  "serviceID": "v1_fe25be776e1e256400c77067a1cb7666",
+  "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskFilter": "taskIDToOnlyListenTo",
   "outputFilter": "outputIDToOnlyListenTo"
 }
@@ -152,17 +152,17 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.api.ListenResult({
-  serviceID: "v1_31341hj33189yr13iugr13",
+mesg.listenResult({
+  serviceID: SERVICE_RESULT_ID
 })
-.on('error', function(error) {
-  // An error has occurred and the stream has been closed.
-})
-.on('data', function(data) {
-  ...
-})
+  .on('data', (result) => {
+    console.log(result)
+  })
+  .on('error', (err) => {
+    console.error(err)
+  })
 ```
 
 </tab>
@@ -185,7 +185,7 @@ func main() {
     connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
     cli := core.NewCoreClient(connection)
     stream, _ := cli.ListenResult(context.Background(), &core.ListenResultRequest{
-        ServiceID: "v1_fe25be776e1e256400c77067a1cb7666",
+        ServiceID: "f4923d9de32f211a1e3fbd54399752c305e2db72",
     })
     for {
         result, _ := stream.Recv()
