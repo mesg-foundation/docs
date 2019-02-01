@@ -119,6 +119,8 @@ mesg.emitEvent("eventX", {
 })
 ```
 
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#event)
+
 </tab>
 
 <tab title="Go" vp-markdown>

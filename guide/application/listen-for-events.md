@@ -63,6 +63,8 @@ mesg.listenEvent({
   })
 ```
 
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-events)
+
 </tab>
 
 <tab title="Go" vp-markdown>
@@ -164,6 +166,8 @@ mesg.listenResult({
     console.error(err)
   })
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-results)
 
 </tab>
 

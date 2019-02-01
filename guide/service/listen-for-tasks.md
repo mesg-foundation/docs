@@ -158,6 +158,8 @@ mesg.listenTask({
   })
 ```
 
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#task)
+
 </tab>
 
 <tab title="Go" vp-markdown>
