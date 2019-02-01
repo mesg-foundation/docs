@@ -126,39 +126,25 @@ mesg.emitEvent("eventX", {
 package main
 
 import (
-    "context"
-    "encoding/json"
-    "io/ioutil"
-    "log"
-    "os"
-
-    api "github.com/mesg-foundation/core/api/service"
-    "google.golang.org/grpc"
-    yaml "gopkg.in/yaml.v2"
+	"github.com/mesg-foundation/core/client/service"
 )
 
 type EventX struct {
-    Foo string
-    Bar bool
+	Foo string `json:"foo"`
+	Bar bool   `json:"bar"`
 }
 
 func main() {
-    connection, _ := grpc.Dial(os.Getenv("MESG_ENDPOINT"), grpc.WithInsecure())
-    cli := api.NewServiceClient(connection)
+	s, _ := service.New()
 
-    eventX, _ := json.Marshal(EventX{
-        Foo: "hello",
-        Bar: false,
-    })
-
-    reply, _ := cli.EmitEvent(context.Background(), &api.EmitEventRequest{
-        Token:   os.Getenv("MESG_TOKEN"),
-        EventKey:  "eventX",
-        EventData: string(eventX),
-    })
-    log.Println(reply)
+	s.Emit("eventX", EventX{
+		Foo: "hello",
+		Bar: false,
+	})
 }
 ```
+
+[See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
 
 </tab>
 </tabs>
