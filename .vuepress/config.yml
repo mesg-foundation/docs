@@ -105,9 +105,9 @@ themeConfig:
         children:
           - /guide/application/what-is-an-application
           - /guide/application/use-cases
-          - /guide/application/create-your-application
           - /guide/application/listen-for-events
           - /guide/application/execute-a-task
+          - /guide/application/full-example
       - title: Service
         children:
           - /guide/service/what-is-a-service
