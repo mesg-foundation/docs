@@ -61,7 +61,7 @@ mesg.executeTask({
 }).then((reply) => {
   console.log(reply.executionID)
 }).catch((err) => {
-  console.error(err)
+  console.error('an error occurred while executing task:', err.message)
 })
 ```
 
@@ -75,25 +75,39 @@ mesg.executeTask({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    res, _ := cli.ExecuteTask(context.Background(), &core.ExecuteTaskRequest{
-        ServiceID:  "f4923d9de32f211a1e3fbd54399752c305e2db72",
-        TaskKey:  "taskX",
-        InputData: "{\"inputX\":\"input value\"}",
-    })
-    fmt.Println(res.ExecutionID)
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	client := coreapi.NewCoreClient(connection)
+
+  inputData, err := json.Marshal(map[string]string{"foo": "bar"})
+  if err != nil {
+    log.Panic(err)
+  }
+  reply, err := client.ExecuteTask(context.Background(), &coreapi.ExecuteTaskRequest{
+    ServiceID: "SERVICE_TASK_ID",
+    TaskKey:   "taskX",
+    InputData: string(inputData),
+  })
+  if err != nil {
+    log.Panic(err)
+  }
+  log.Println("execution reply", reply)
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>

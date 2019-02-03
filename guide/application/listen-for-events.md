@@ -56,11 +56,13 @@ mesg.listenEvent({
   serviceID: SERVICE_EVENT_ID
 })
   .on('data', (event) => {
-    console.log(event)
+    console.log('event received', event)
   })
   .on('error', (err) => {
-    console.error(err)
+    console.error('an error occurred while listening for events:', err.message)
   })
+
+console.log('application is running and listening for events')
 ```
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-events)
@@ -73,27 +75,51 @@ mesg.listenEvent({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"github.com/mesg-foundation/core/x/xsignal"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    stream, _ := cli.ListenEvent(context.Background(), &core.ListenEventRequest{
-        ServiceID: "f4923d9de32f211a1e3fbd54399752c305e2db72",
-    })
-    for {
-        event, _ := stream.Recv()
-        fmt.Println(event.EventKey, event.EventData)
-        // TODO process event
-    }
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	defer func() {
+		log.Println("closing connection...")
+		connection.Close()
+	}()
+	client := coreapi.NewCoreClient(connection)
+	log.Println("connected to core")
+
+	go func() {
+		stream, err := client.ListenEvent(context.Background(), &coreapi.ListenEventRequest{
+			ServiceID:   "SERVICE_EVENT_ID",
+			EventFilter: "eventX", // optional
+		})
+		if err != nil {
+			log.Panic(err)
+		}
+
+		for {
+			event, err := stream.Recv()
+			if err != nil {
+				log.Panic(err)
+			}
+			log.Println("event received", event)
+		}
+	}()
+
+	<-xsignal.WaitForInterrupt()
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>
@@ -160,11 +186,13 @@ mesg.listenResult({
   serviceID: SERVICE_RESULT_ID
 })
   .on('data', (result) => {
-    console.log(result)
+    console.log('result received', result)
   })
   .on('error', (err) => {
-    console.error(err)
+    console.error('an error occurred while listening for results:', err.message)
   })
+
+console.log('application is running and listening for results')
 ```
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-results)
@@ -177,26 +205,51 @@ mesg.listenResult({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"github.com/mesg-foundation/core/x/xsignal"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    stream, _ := cli.ListenResult(context.Background(), &core.ListenResultRequest{
-        ServiceID: "f4923d9de32f211a1e3fbd54399752c305e2db72",
-    })
-    for {
-        result, _ := stream.Recv()
-        fmt.Println(result.ExecutionID, result.OutputKey, result.OutputData)
-    }
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	defer func() {
+		log.Println("closing connection...")
+		connection.Close()
+	}()
+	client := coreapi.NewCoreClient(connection)
+	log.Println("connected to core")
+
+	go func() {
+		stream, err := client.ListenResult(context.Background(), &coreapi.ListenResultRequest{
+			ServiceID:  "SERVICE_TASK_ID",
+			TaskFilter: "taskX", // optional
+		})
+		if err != nil {
+			log.Panic(err)
+		}
+
+		for {
+			result, err := stream.Recv()
+			if err != nil {
+				log.Panic(err)
+			}
+			log.Println("result received", result)
+		}
+	}()
+
+	<-xsignal.WaitForInterrupt()
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>
