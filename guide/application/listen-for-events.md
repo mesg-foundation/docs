@@ -142,12 +142,14 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **serviceID** | `String` | Required | ID of the Service. |
 | **taskFilter** | `String` | Optional | Only listens for this given task ID. |
 | **outputFilter** | `String` | Optional | Only listens for this given output ID. If set, the attribute `taskFilter` should also be provided. |
+| **tagFilters** | `Array<String>` | Optional | The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
 
 ```javascript
 {
   "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskFilter": "taskIDToOnlyListenTo",
-  "outputFilter": "outputIDToOnlyListenTo"
+  "outputFilter": "outputIDToOnlyListenTo",
+  "tagFilters": ["tagX=1"]
 }
 ```
 

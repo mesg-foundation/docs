@@ -18,12 +18,14 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 | **serviceId** | `String` | Required | ID of the service. |
 | **taskKey** | `String` | Required | The task's key defined in the [service file](../service/service-file.md). |
 | **inputData** | `String` | Required | The task's inputs in JSON format. |
+| **executionTags** | `Array<String>` | Optional | The list of tags to associate with the execution. |
 
 ```javascript
 {
   "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskKey": "taskX",
-  "inputData": "{\"inputX\":\"input value\"}"
+  "inputData": "{\"inputX\":\"input value\"}",
+  "executionTags": ["tagX=1", "tagY"]
 }
 ```
 
