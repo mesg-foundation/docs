@@ -1,9 +1,5 @@
 # Listen for events
 
-## Why listen for events?
-
-Applications listen for events in real-time to execute actions or tasks when something relevant happens on a technology.
-
 ## Listening for events from Services
 
 To listen for events, the Application needs to open a stream with Core with [gRPC](https://grpc.io/) using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). When opening the stream, the Application listens to the Service. It can listen to many Services at the same time.
@@ -20,7 +16,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 
 ```javascript
 {
-  "serviceID": "v1_fe25be776e1e256400c77067a1cb7666",
+  "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "eventFilter": "eventIDToOnlyListenTo"
 }
 ```
@@ -53,7 +49,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 const MESG = require('mesg-js').application()
 
 MESG.api.ListenEvent({
-  serviceID: "v1_fe25be776e1e256400c77067a1cb7666",
+  serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
 })
 .on('error', function(error) {
   // An error has occurred and the stream has been closed.
@@ -83,7 +79,7 @@ func main() {
     connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
     cli := core.NewCoreClient(connection)
     stream, _ := cli.ListenEvent(context.Background(), &core.ListenEventRequest{
-        ServiceID: "v1_fe25be776e1e256400c77067a1cb7666",
+        ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
     })
     for {
         event, _ := stream.Recv()
@@ -117,7 +113,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 
 ```javascript
 {
-  "serviceID": "v1_fe25be776e1e256400c77067a1cb7666",
+  "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "taskFilter": "taskIDToOnlyListenTo",
   "outputFilter": "outputIDToOnlyListenTo"
 }
@@ -155,7 +151,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 const MESG = require('mesg-js').application()
 
 MESG.api.ListenResult({
-  serviceID: "v1_31341hj33189yr13iugr13",
+  serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
 })
 .on('error', function(error) {
   // An error has occurred and the stream has been closed.
@@ -185,7 +181,7 @@ func main() {
     connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
     cli := core.NewCoreClient(connection)
     stream, _ := cli.ListenResult(context.Background(), &core.ListenResultRequest{
-        ServiceID: "v1_fe25be776e1e256400c77067a1cb7666",
+        ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
     })
     for {
         result, _ := stream.Recv()
