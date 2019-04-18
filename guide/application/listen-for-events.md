@@ -48,14 +48,16 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 ```javascript
 const MESG = require('mesg-js').application()
 
-MESG.api.ListenEvent({
+MESG.listenEvent({
   serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
+})
+.on('data', function(data) {
+  // New event received 
+  console.log(data.eventKey)
+  console.log(JSON.parse(data.eventData))
 })
 .on('error', function(error) {
   // An error has occurred and the stream has been closed.
-})
-.on('data', function(data) {
-  ...
 })
 ```
 
@@ -82,7 +84,10 @@ func main() {
         ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
     })
     for {
-        event, _ := stream.Recv()
+        event, err := stream.Recv()
+        if err != nil {
+          panic(err)
+        }
         fmt.Println(event.EventKey, event.EventData)
         // TODO process event
     }
@@ -110,12 +115,14 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **serviceID** | `String` | Required | ID of the Service. |
 | **taskFilter** | `String` | Optional | Only listens for this given task ID. |
 | **outputFilter** | `String` | Optional | Only listens for this given output ID. If set, the attribute `taskFilter` should also be provided. |
+| **tagFilters** | `String[]` | Optional | Filter only results with one or multiple tags given during the execution |
 
 ```javascript
 {
   "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "taskFilter": "taskIDToOnlyListenTo",
-  "outputFilter": "outputIDToOnlyListenTo"
+  "outputFilter": "outputIDToOnlyListenTo",
+  "tagFilrters": ["foo"]
 }
 ```
 
@@ -129,6 +136,8 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **taskKey** | `String` | The key of the task as defined in the [service file](../service/service-file.md). |
 | **outputKey** | `String` | The key of the output of the task as defined in the [service file](../service/service-file.md). |
 | **outputData** | `String` | The data returned by the task serialized in JSON. |
+| **executionTags** | `String[]` | List of tags associated to this execution |
+| **error** | `String` | The execution's error if something went wrong |
 
 ```javascript
 {
@@ -136,6 +145,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
   "taskKey": "taskX",
   "outputKey": "outputX",
   "outputData": "{\"outputValX\": \"result of execution\"}",
+  "executionTags": ["foo", "bar"]
 }
 ```
 
@@ -150,14 +160,16 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 ```javascript
 const MESG = require('mesg-js').application()
 
-MESG.api.ListenResult({
+MESG.listenResult({
   serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
+})
+.on('data', function(data) {
+  // New result received 
+  console.log(data.outputKey)
+  console.log(JSON.parse(data.outputData))
 })
 .on('error', function(error) {
   // An error has occurred and the stream has been closed.
-})
-.on('data', function(data) {
-  ...
 })
 ```
 
@@ -184,7 +196,10 @@ func main() {
         ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
     })
     for {
-        result, _ := stream.Recv()
+        result, err := stream.Recv()
+        if err != nil {
+          panic(err)
+        }
         fmt.Println(result.ExecutionID, result.OutputKey, result.OutputData)
     }
 }
