@@ -8,6 +8,17 @@ Run the following command in a console:
 bash <(curl -fsSL https://mesg.com/install)
 ```
 
+<div class="page-nav">
+  <p class="inner">
+    <span class="next">
+      <router-link to="/guide/start-here/quick-start-guide.html">
+        Quick Start Guide
+      </router-link>
+      →
+    </span>
+  </p>
+</div>
+
 ## Manual installation
 
 ### Docker
@@ -26,28 +37,16 @@ docker swarm init --advertise-addr xxx.xxx.xxx.xxx
 
 * Download the binary from our [release page on GitHub](https://github.com/mesg-foundation/core/releases)
 * Rename the binary to `mesg-core`
-* Give it the execution permission
-```
+* Run the following commands
+
+```bash
+# Give it the execution permission
 chmod +x mesg-core
-```
-* Move it to your local bin folder
-```
+# Move it to your local bin folder
 mv ./mesg-core /usr/local/bin/mesg-core
-```
-<!-- * Clone the core repo to get system services
-```
-git clone https://github.com/mesg-foundation/core.git /tmp/mesg-core
-```-->
-* Create system services folder under your mesg path
-```
+# Create system services folder under your mesg path
 mkdir -p ~/.mesg/systemservices
-```
-<!-- * Copy system services from core repo
-```
-cp -a /tmp/mesg-core/systemservices/sources/. ~/.mesg/systemservices
-```-->
-* Start MESG Core with the command
-```
+# Start MESG Core with the command
 mesg-core start
 ```
 
@@ -55,18 +54,12 @@ mesg-core start
 
 If you don't want to use the CLI, you can start the Core by executing the following commands.
 
-* Download latest version
-```
+```bash
+# Download latest version
 docker pull mesg/core:latest
-```
-
-* Create the MESG network
-```
+# Create the MESG network
 docker network create core -d overlay --label com.docker.stack.namespace=core
-```
-
-* Start MESG Core
-```
+# Start MESG Core
 docker service create --network core --env MESG_CORE_PATH=/mesg --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind --mount source=$HOME/.mesg,destination=/mesg,type=bind --publish 50052:50052 --label com.docker.stack.namespace=core --name core mesg/core:latest
 ```
 
