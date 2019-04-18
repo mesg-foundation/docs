@@ -100,8 +100,6 @@ themeConfig:
       - /guide/start-here/quick-start-guide
       - title: Application
         children:
-          - /guide/application/what-is-an-application
-          - /guide/application/use-cases
           - /guide/application/create-your-application
           - /guide/application/listen-for-events
           - /guide/application/execute-a-task
