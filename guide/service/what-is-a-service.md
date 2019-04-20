@@ -1,10 +1,12 @@
 # What is a Service?
 
-A Service is a normalized bi-directional communication layer which acts a connection from any technology to Core.
+A Service is a normalized bi-directional communication layer used to channel communications between exterior technologies and Core.
 
-MESG depends heavily on Services. These Services are automatically built and ran inside Docker. You can connect anything you want, as long as it can run inside Docker \(as long as it can run on a computer\). If you need more details about how to connect dependencies to your service check out the [Dockerize the Service](dockerize-the-service.md) page.
+There are no limits to what you can connect with Services, as long as it can run inside Docker \(as long as it can run on a computer\). If you need more details about how to connect dependencies to your service check out the [Dockerize the Service](dockerize-the-service.md) page.
 
-A Service needs to implement two types of communications: receiving tasks and submitting events. 
+Services can be purchased or sold as Modules in the [MESG Marketplace](https://mesg.com/marketplace). The Marketplace connects those who want to save time or increase efficiency in development with those looking to earn MESG Tokens for creating useful Services. 
+
+Services use two types of communication: receiving tasks and submitting events. 
 
 ## Receiving Tasks
 
