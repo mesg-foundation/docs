@@ -1,22 +1,18 @@
 # What is an Application?
 
-Applications and business solutions are built on MESG by attaching an event on one [Service](../service/what-is-a-service.md) to a task on another Service. These can be configured in any order and you can easily create chain reactions or synchronicities of any kind.
+Applications on MESG are built to direct the interaction between [Services](../service/what-is-a-service.md) to execute tasks. These can be configured in any order to create chain reactions or synchronicities of any kind.
 
-Future versions of MESG will not require users to code. Instead, you'll send a configuration file to Core, which is like an order slip, listing all of the events and corresponding tasks you'd like the MESG Network to execute for you.   
-  
-As long as the [Services](../service/what-is-a-service.md) you want to use have already been connected to the MESG Infrastructure, you will be able to list them within the configuration file. If they haven't been connected to MESG yet, you can connect Services yourself with some coding.
+MESG Applications can enhance or even replace the back end of any application, allowing apps to become modular, thus easily expandable and maintainable. MESG Services are purchased and sold as Modules in the MESG Marketplace.
 
 Our software architecture is modeled on event-driven architecture \(EDA\). This will be used in future releases of MESG software. EDA is a software architecture pattern promoting the production, detection, consumption of, and reaction to events.
 
-Events are any new occurrences on a technology. \(e.g. receiving an email, a new deposit, a full battery, the first of the month, a delayed flight, etc.\) With the increased use of digital devices, web services and the internet of things, events are happening around us all the time.  
-  
-We recommend you build applications to react to events in order to create an application that's quite simple to build, easily-maintainable and compatible with future releases of Core. 
+Events are any new occurrences on a technology. \(e.g. receiving an email, a new deposit, a full battery, the first of the month, a delayed flight, etc.\) With the increased use of digital devices, web services and IoT devices, digital events are happening around us all the time. 
 
-Tasks in your Application are reactions to events \(send an email, notify me on my watch, put the car into standby mode, issue a refund, transfer funds, open a new account, turn on the lights, etc.\).
+Tasks in Applications are reactions to events \(send an email, notify me on my watch, put the car into standby mode, issue a refund, transfer funds, open a new account, turn on the lights, etc.\).
 
-This is how the configuration file \(like an order slip\) in future releases of MESG is laid out, with events and corresponding tasks. So if you want your application to be compatible with future releases of MESG, we recommend you build your Application based on event-driven architecture while we finish completing the infrastructure. 
+We recommend you build applications with tasks that react to events to keep them simple to build, easily-maintainable and compatible with future releases of Core.
 
-By creating an Application based in Event-Driven Architecture, you embrace the philosophy of MESG and make an Application that becomes really easy.
+By creating an Application based in Event-Driven Architecture, you embrace the philosophy of MESG and end up making Applications that are surprisingly easy.
 
 ### Source of events
 
@@ -35,7 +31,7 @@ The source of an event can come from two different parts of your service :
 The task is the **then** for your application
 :::
 
-When one event is coming then the only thing to do is to [execute a task](execute-a-task.md) of the service that you want.
+When one event occurs, then the only thing to do is to [execute a task](execute-a-task.md) from your chosen Service.
 
 You can find some examples on the [use cases](use-cases.md) page.
 
