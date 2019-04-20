@@ -4,7 +4,7 @@ A Service is a normalized bi-directional communication layer used to channel com
 
 There are no limits to what you can connect with Services, as long as it can run inside Docker \(as long as it can run on a computer\). If you need more details about how to connect dependencies to your service check out the [Dockerize the Service](dockerize-the-service.md) page.
 
-Services can be purchased or sold as Modules in the [MESG Marketplace](https://mesg.com/marketplace). The Marketplace connects those who want to save time or increase efficiency in development with those looking to earn MESG Tokens for creating useful Services. 
+Services can be purchased or sold as Modules in the [MESG Marketplace](https://mesg.com/marketplace). The Marketplace connects developers wanting to streamline development with others looking to earn MESG Tokens for creating useful Services. 
 
 Services use two types of communication: receiving tasks and submitting events. 
 
