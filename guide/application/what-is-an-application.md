@@ -2,7 +2,7 @@
 
 Applications on MESG are built to direct the interaction between [Services](../service/what-is-a-service.md) to execute tasks. These can be configured in any order to create chain reactions or synchronicities of any kind.
 
-MESG Applications can enhance or even replace the back end of any application, allowing apps to become modular, thus easily expandable and maintainable. MESG Services are purchased and sold as Modules in the MESG Marketplace.
+MESG Applications can enhance or even replace the back end of any application, allowing apps to become modular, thus easily expandable and maintainable. MESG Services are purchased and sold as Modules in the [MESG Marketplace](https://mesg.com/marketplace).
 
 Our software architecture is modeled on event-driven architecture \(EDA\). This will be used in future releases of MESG software. EDA is a software architecture pattern promoting the production, detection, consumption of, and reaction to events.
 
