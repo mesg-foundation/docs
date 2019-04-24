@@ -1,6 +1,6 @@
-# Create your application
+# Create an application
 
-Your application connects your various services and defines the buisness logic of your product. Your application should be a list of tasks to execute and events to listen to.
+An application connects various [services](/guide/service/create-a-service.md) and defines the buisness logic for your product. An application should be a list of tasks to execute and events to listen to.
 
 eg:
 - **when** a user signs up **then** send an email
