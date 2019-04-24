@@ -23,7 +23,7 @@ This will create a `mesg.yml` file in your current directory with the following 
 | **tasks** | <span class="type">map&lt;id, [Task](listen-for-tasks.md#task-definitions)&gt;</span> | `{}` | Services declare a list of tasks they can execute. A task is an action that accepts parameters as inputs, executes something on the connected technology, and returns one output to Core, with data.
 | **repository** | <span class="type">String</span> | `""` | The url of the repository eg: `https://github.com/org/repo` |
 | **configuration** |  <span class="type">[Dependency](dockerize-the-service.md#add-a-configuration-and-dependencies)</span> | `{}` | Service can specify one configuration that will be use for the main docker container of the service |
-| **dependencies** | <span class="type">map&lt;id, [Dependency](dockerize-the-service.md#add-dependencies)&gt;</span> | `{}` | Services can specify internal dependencies such as a database, cache or blockchain client. |
+| **dependencies** | <span class="type">map&lt;id, [Dependency](dockerize-the-service.html#add-a-configuration-and-dependencies)&gt;</span> | `{}` | Services can specify internal dependencies such as a database, cache or blockchain client. |
 
 You can find an example of `mesg.yml` file [here](https://github.com/mesg-foundation/service-ethereum/blob/master/mesg.yml).
 
