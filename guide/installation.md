@@ -25,11 +25,11 @@ bash <(curl -fsSL https://mesg.com/install)
 
 * Download and install [Docker CE](https://www.docker.com/community-edition)
 * Initialize Docker Swarm by running
-```
+```bash
 docker swarm init
 ```
 * If the error `Could not choose an IP address to advertise since this system has multiple addresses on interface eth0 (xxx.xxx.xxx.xxx and yyy.yyy.yyy.yyy)` is returned, run:
-```
+```bash
 docker swarm init --advertise-addr xxx.xxx.xxx.xxx
 ```
 

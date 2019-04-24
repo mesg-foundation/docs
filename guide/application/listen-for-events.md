@@ -14,7 +14,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 | **serviceID** | `String` | Required | ID of the Service that you want to listen to. |
 | **eventFilter** | `String` | Optional | Only listens for this given event ID. |
 
-```javascript
+```json
 {
   "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "eventFilter": "eventIDToOnlyListenTo"
@@ -30,7 +30,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 | **eventKey** | `String` | The event's key defined in the [Service file](../service/service-file.md). |
 | **eventData** | `String` | The event's data in JSON format. |
 
-```javascript
+```json
 {
   "eventKey": "eventX",
   "eventData": "{\"dataX\": \"event data\"}"
@@ -117,7 +117,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **outputFilter** | `String` | Optional | Only listens for this given output ID. If set, the attribute `taskFilter` should also be provided. |
 | **tagFilters** | `String[]` | Optional | Filter only results with one or multiple tags given during the execution |
 
-```javascript
+```json
 {
   "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "taskFilter": "taskIDToOnlyListenTo",
@@ -139,7 +139,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **executionTags** | `String[]` | List of tags associated to this execution |
 | **error** | `String` | The execution's error if something went wrong |
 
-```javascript
+```json
 {
   "executionID": "xxxxx",
   "taskKey": "taskX",

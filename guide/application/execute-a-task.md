@@ -16,7 +16,7 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 | **inputData** | `String` | Required | The task's inputs in JSON format. |
 | **executionTags** | `String[]` | Optional | A list of tags to associate with the execution |
 
-```javascript
+```json
 {
   "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "taskKey": "taskX",
@@ -33,7 +33,7 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 | --- | --- | --- |
 | **executionID** | `String` | The ID of the execution. |
 
-```javascript
+```json
 {
   "executionID": "xxxxx"
 }

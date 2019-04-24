@@ -20,7 +20,7 @@ You can access the final version of the [source code on GitHub](https://github.c
 You can find a more advanced and maintained version of this service here: [Service Ethereum ERC20](https://github.com/mesg-foundation/service-ethereum-erc20).
 
 ::: tip
-MESG Core should already be installed on your computer. If it isn't yet, [install it here](../../guide/installation.md).
+MESG Core should already be installed on your computer. If it isn't yet, [install it here](/guide/installation.md).
 :::
 
 ## Create the MESG service
@@ -184,7 +184,7 @@ events:
         type: String
 ```
 
-This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](../../guide/service/service-file.md) for more information about the `mesg.yml` file.
+This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](/guide/service/service-file.md) for more information about the `mesg.yml` file.
 
 ### Add mesg-js lib
 

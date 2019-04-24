@@ -49,21 +49,21 @@ Example of an event definition in a [`mesg.yml`](service-file.md) file:
 ```yaml
 ...
 events:
-    eventX:
-        name: "Event X"
-        description: "This is event X"
-        data:
-            foo:
-                name: "Foo"
-                description: "Foo is a string"
-                type: String
-                optional: false
-            bar:
-                name: "Bar"
-                description: "Bar is an optional array of boolean"
-                type: Boolean
-                optional: true
-                repeated: true
+  eventX:
+    name: "Event X"
+    description: "This is event X"
+    data:
+      foo:
+        name: "Foo"
+        description: "Foo is a string"
+        type: String
+        optional: false
+      bar:
+        name: "Bar"
+        description: "Bar is an optional array of boolean"
+        type: Boolean
+        optional: true
+        repeated: true
 ...
 ```
 
@@ -86,7 +86,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 | **eventKey** | `String` | Required | The event's key defined in the [service file](../service/service-file.md) |
 | **eventData** | `String` | Required | The event's data in JSON format |
 
-```javascript
+```json
 {
     "token": "TOKEN_FROM_ENV",
     "eventKey": "eventX",
@@ -102,7 +102,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 | --- | --- | --- |
 
 
-```javascript
+```json
 {}
 ```
 

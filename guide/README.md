@@ -7,10 +7,10 @@ MESG is a framework for developers to build application efficiently. It relies o
 
 MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
 MESG Services have two responsibilities:
-- Executing **tasks** that your application triggers
-- Sending **events** to your application
+- [Executing **tasks**](/guide/service/listen-for-tasks.md) that your application triggers
+- [Sending **events**](/guide/service/emit-an-event.md) to your application
 
-Your applications rely only on services managed by MESG Core, so you need to focus only on your application's business logic and nothing more.
+Your [applications](/guide/application/) rely only on [services](/guide/service/) managed by MESG Core, so you need to focus only on your application's business logic and nothing more.
 
 ### Why do I need MESG Core?
 
@@ -27,7 +27,7 @@ Your application is now only responsible for communicating with MESG Core, and u
 ![Architecture](/schema.svg)
 
 From left to right:
-- Your application that sends tasks and receives events from MESG Core
+- Your [application](/guide/application/) that sends tasks and receives events from MESG Core
 - MESG Core that routes tasks and events and manages your services
-- The MESG Services, executing tasks and emitting events based on their prescribed purpose
+- The [MESG Services](/guide/service/), executing tasks and emitting events based on their prescribed purpose
 

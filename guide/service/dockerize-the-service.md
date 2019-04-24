@@ -19,7 +19,7 @@ In order to be compatible with [Docker](https://www.docker.com/), a `Dockerfile`
 <tabs>
   <tab title="Node" vp-markdown>
     
-```bash
+```dockerfile
 FROM node:carbon
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -34,7 +34,7 @@ CMD [ "npm", "start" ]
   </tab>
   <tab title="Go" vp-markdown>
 
-```bash
+```dockerfile
 FROM golang:latest
 RUN mkdir /app
 ADD . /app/

@@ -59,36 +59,36 @@ Example of a task definition in a [`mesg.yml`](../service/service-file.md) file 
 ```yaml
 ...
 tasks:
-    taskX:
-        name: "Task X"
-        description: "This is the task X"
-        inputs:
-            inputX:
-                name: "Input x"
-                description: "Foo is a string"
-                type: String
-                optional: false
-            inputY:
-                name: "Input y"
-                description: "Bar is an optional array of boolean"
-                type: Boolean
-                optional: true
-                repeated: true
-        outputs:
-            outputX:
-                name: "OutputX"
-                description: "Output X"
-                data:
-                    foo:
-                        name: "Output data x"
-                        description: "Description about output data x"
-                        type: String
-                    bar:
-                        name: "Output data y"
-                        description: "Description about output data y"
-                        type: Boolean
-            outputY:
-                ...
+  taskX:
+    name: "Task X"
+    description: "This is the task X"
+    inputs:
+      inputX:
+        name: "Input x"
+        description: "Foo is a string"
+        type: String
+        optional: false
+      inputY:
+        name: "Input y"
+        description: "Bar is an optional array of boolean"
+        type: Boolean
+        optional: true
+        repeated: true
+    outputs:
+      outputX:
+        name: "OutputX"
+        description: "Output X"
+        data:
+          foo:
+            name: "Output data x"
+            description: "Description about output data x"
+            type: String
+          bar:
+            name: "Output data y"
+            description: "Description about output data y"
+            type: Boolean
+      outputY:
+        ...
 ...
 ```
 
@@ -109,7 +109,7 @@ Consider listening for tasks when your service is ready. If your service needs t
 | --- | --- | --- | --- |
 | **token** | `String` | Required | The token given by the Core as environment variable `MESG_TOKEN` |
 
-```javascript
+```json
 {
     "token": "TOKEN_FROM_ENV"
 }
@@ -125,7 +125,7 @@ Consider listening for tasks when your service is ready. If your service needs t
 | **taskKey** | `String` | Key of the task to execute \(as in your `mesg.yml` file\) |
 | **inputData** | `String` | Inputs of the task serialized in JSON |
 
-```javascript
+```json
 {
     "executionID": "xxxxxx",
     "taskKey": "taskX",
@@ -201,7 +201,7 @@ Once the task execution is finished, the Service has to send the outputs of the 
 | **outputKey** | `String` | required | The ID of the output as defined in the [output's declaration](#task-definitions). |
 | **outputData** | `String` | required | The output's data encoded in JSON. The data should match the one defined in the [output's declaration](#task-definitions). |
 
-```javascript
+```json
 {
     "executionID": "xxxxxx",
     "outputKey": "outputX"
@@ -217,7 +217,7 @@ Once the task execution is finished, the Service has to send the outputs of the 
 | --- | --- | --- |
 | **executionID** | `String` | The ID of the execution. |
 
-```javascript
+```json
 {
     "executionID": "xxxxxx"
 }
