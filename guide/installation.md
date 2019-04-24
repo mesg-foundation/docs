@@ -11,7 +11,7 @@ bash <(curl -fsSL https://mesg.com/install)
 <div class="page-nav">
   <p class="inner">
     <span class="next">
-      <router-link to="/guide/start-here/quick-start-guide.html">
+      <router-link to="/guide/quick-start-guide.html">
         Quick Start Guide
       </router-link>
       →

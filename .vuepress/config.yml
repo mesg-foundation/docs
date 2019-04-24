@@ -96,8 +96,8 @@ themeConfig:
   sidebar:
     /guide/:
       - /guide/
-      - /guide/start-here/installation
-      - /guide/start-here/quick-start-guide
+      - /guide/installation
+      - /guide/quick-start-guide
       - title: Application
         children:
           - /guide/application/create-an-application
