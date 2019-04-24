@@ -100,12 +100,12 @@ themeConfig:
       - /guide/quick-start-guide
       - title: Application
         children:
-          - /guide/application/create-an-application
+          - /guide/application/
           - /guide/application/listen-for-events
           - /guide/application/execute-a-task
       - title: Service
         children:
-          - /guide/service/create-a-service
+          - /guide/service/
           - /guide/service/service-file
           - /guide/service/emit-an-event
           - /guide/service/listen-for-tasks
