@@ -16,31 +16,31 @@ To implement tasks in your Service, you'll need to :
 
 The first step is to declare the tasks that the service will be able to execute in the service's [`mesg.yml`](service-file.md) file. The events should be indexed by their ID and should describe the following attributes :
 
-| **Attribute** | **Default value** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- | --- | --- |
-| **name** | `id` | `String` | If the name of the task is not set, the name will be the ID of the task. |
-| **description** | `""` | `String` | Description of the task: what the task is doing and why it is useful. |
-| **inputs** | `{}` | `map<id,`[`Parameter`](listen-for-tasks.md#parameter-input-output)`>` | Map of inputs that the task needs in order to be executed. |
-| **outputs** | `{}` | `map<id,`[`Outputs`](listen-for-tasks.md#outputs)`>` | Map of outputs that the task will emit. The task can declare multiple outputs but can only submit one output per execution. |
+| **name** | <span class="type">String</span> | `id` | If the name of the task is not set, the name will be the ID of the task. |
+| **description** | <span class="type">String</span> | `""` | Description of the task: what the task is doing and why it is useful. |
+| **inputs** | <span class="type">map&lt;id,[Parameter](listen-for-tasks.md#parameter-input-output)&gt;</span> | `{}` | Map of inputs that the task needs in order to be executed. |
+| **outputs** | <span class="type">map&lt;id,[Outputs](listen-for-tasks.md#outputs)&gt;</span> | `{}` | Map of outputs that the task will emit. The task can declare multiple outputs but can only submit one output per execution. |
 
 ### Outputs
 
-| **Attribute** | **Default value** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- |
-| **name** | `id` | `String` | Name of the output. The default is the ID. |
-| **description** | `""` | `String` | A description of the output: what kind of output, and how is it useful. |
-| **data** | `{}` | `map<id,`[`Parameter`](listen-for-tasks.md#parameter-input-output)`>` | Map of the data  the output will return. |
+| **name** | <span class="type">String</span> | `id` | Name of the output. The default is the ID. |
+| **description** | <span class="type">String</span> | `""` | A description of the output: what kind of output, and how is it useful. |
+| **data** | <span class="type">map&lt;id,[Parameter](listen-for-tasks.md#parameter-input-output)&gt;</span> | `{}` | Map of the data  the output will return. |
 
 ### Parameter (Input/Output)
 
-| **Attribute** | **Default value** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- | --- |
-| **name** | `id` | `String` | Name or the parameter. The default is the ID. |
-| **description** | `""` | `String` | Description of the parameter. |
-| **type** | `String` | [`Type`](listen-for-tasks.md#type-of-your-data) | Type of the parameter. |
-| **object** | `{}` | [`Parameter`](listen-for-tasks.md#parameter-input-output) | Nested parameters. Parameters can contain child parameters. It can only be defined when `type` is `Object`. |
-| **optional** | `false` | `Boolean` | If true, this parameter is considered as optional and might remain empty. |
-| **repeated** | `false` | `Boolean` | Define this parameter as an array of the type selected |
+| **name** | <span class="type">String</span> | `id` | Name or the parameter. The default is the ID. |
+| **description** | <span class="type">String</span> | `""` | Description of the parameter. |
+| **type** | <span class="type">[Type](listen-for-tasks.md#type-of-parameter)</span> | `String` | Type of the parameter. |
+| **object** | <span class="type">[Parameter](listen-for-tasks.md#parameter-input-output)</span> | `{}` | Nested parameters. Parameters can contain child parameters. It can only be defined when `type` is `Object`. |
+| **optional** | <span class="type">Boolean</span> | `false` | If true, this parameter is considered as optional and might remain empty. |
+| **repeated** | <span class="type">Boolean</span> | `false` | Define this parameter as an array of the type selected |
 
 ### Type of parameter
 

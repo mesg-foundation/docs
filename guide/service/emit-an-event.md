@@ -15,22 +15,22 @@ To emit events from your Service, you'll need to:
 
 To create an event, the first step is to update the Service's [`mesg.yml`](service-file.md) file and add an event indexed by its key with the following attributes:
 
-| **Attribute** | **Default value** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- |
-| **name** | `id` | `String` | Name of the event. If the name is not set, it will be the same as the ID you choose for the event. |
-| **description** | `""` | `String` | Describe the event, what's its purpose is and why users would want to use it. |
-| **data** | `{}` | `map<id,`[`Data`](emit-an-event.md#event-s-data)`>` | The structure of the event's data. |
+| **name** | <span class="type">String</span> | `id` | Name of the event. If the name is not set, it will be the same as the ID you choose for the event. |
+| **description** | <span class="type">String</span> | `""` | Describe the event, what's its purpose is and why users would want to use it. |
+| **data** | <span class="type">map&lt;id,[Data](emit-an-event.md#event-s-data)&gt;</span> | `{}` | The structure of the event's data. |
 
 ### Event's data
 
-| **Attribute** | **Default value** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- | --- |
-| **name** | `id` | `String` | Name of the data |
-| **description** | `""` | `String` | Description of the data |
-| **type** | `String` | [`Type`](emit-an-event.md#type-of-your-data) | Type of data |
-| **object** | `{}` | [`Data`](emit-an-event.md#event-s-data) | Nested data. Data can contain child data. It can only be defined when `type` is `Object` |
-| **optional** | `false` | `boolean` | Mark the data as optional |
-| **repeated** | `false` | `boolean` | Define this data as an array of the type selected |
+| **name** | <span class="type">String</span> | `id` | Name of the data |
+| **description** | <span class="type">String</span> | `""` | Description of the data |
+| **type** | <span class="type">[Type](emit-an-event.md#data-s-type)</span> | `String` | Type of data |
+| **object** | <span class="type">[Data](emit-an-event.md#event-s-data)</span> | `{}` | Nested data. Data can contain child data. It can only be defined when `type` is `Object` |
+| **optional** | <span class="type">Boolean</span> | `false` | Mark the data as optional |
+| **repeated** | <span class="type">Boolean</span> | `false` | Define this data as an array of the type selected |
 
 ### Data's type
 

@@ -62,13 +62,13 @@ If the service requires dependencies to other Docker container, specify them in 
 
 ### Definitions
 
-| **Attribute** | **Type** | **Description** |
+| **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- | --- | --- |
-| **image** | `String` | The docker image of the Service. Only available for dependencies. |
-| **volumes** | `array[string]` | A list of [volumes](https://docs.docker.com/storage/volumes/) that will be mounted in the Service. |
-| **ports** | `array[string]` | A list of ports that the Service needs to expose. |
-| **command** | `String` | The command to run when the Service starts if not defined in your [Dockerfile](#create-the-dockerfile). |
-| **volumesfrom** | `array[string]` | List of dependencies' names to mount a volume from. |
+| **image** | `String` | `""` | The docker image of the Service. Only available for dependencies. |
+| **volumes** | `array[String]` | `[]` | A list of [volumes](https://docs.docker.com/storage/volumes/) that will be mounted in the Service. |
+| **ports** | `array[String]` | `[]` | A list of ports that the Service needs to expose. |
+| **command** | `String` | `""` | The command to run when the Service starts if not defined in your [Dockerfile](#create-the-dockerfile). |
+| **volumesfrom** | `array[String]` | `[]` | List of dependencies' names to mount a volume from. |
 
 ### Example
 
