@@ -2,7 +2,7 @@
 
 ## Service file
 
-To define a [Service](what-is-a-service.md), you will need to create a specific folder with a `mesg.yml` file that describes its functionalities. This file can contain the following information in a `YAML`syntax:
+To define a [Service](create-a-service.md), you will need to create a specific folder with a `mesg.yml` file that describes its functionalities. This file can contain the following information in a `YAML`syntax:
 
 You can create a default file using the CLI by entering the command:
 
