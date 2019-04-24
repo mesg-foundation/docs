@@ -54,7 +54,7 @@ The parameter can be one of the following:
 
 ### Example
 
-Example of a task definition in a [`mesg.yml`](../service/service-file.md) file :
+Example of a task definition in a [`mesg.yml`](/guide/service/service-file.md) file :
 
 ```yaml
 ...

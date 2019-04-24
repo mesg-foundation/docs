@@ -27,7 +27,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- |
-| **eventKey** | `String` | The event's key defined in the [Service file](../service/service-file.md). |
+| **eventKey** | `String` | The event's key defined in the [Service file](/guide/service/service-file.md). |
 | **eventData** | `String` | The event's data in JSON format. |
 
 ```json
@@ -133,8 +133,8 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- | --- |
 | **executionID** | `String` | The execution ID of this output. |
-| **taskKey** | `String` | The key of the task as defined in the [service file](../service/service-file.md). |
-| **outputKey** | `String` | The key of the output of the task as defined in the [service file](../service/service-file.md). |
+| **taskKey** | `String` | The key of the task as defined in the [service file](/guide/service/service-file.md). |
+| **outputKey** | `String` | The key of the output of the task as defined in the [service file](/guide/service/service-file.md). |
 | **outputData** | `String` | The data returned by the task serialized in JSON. |
 | **executionTags** | `String[]` | List of tags associated to this execution |
 | **error** | `String` | The execution's error if something went wrong |

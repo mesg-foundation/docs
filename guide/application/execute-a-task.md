@@ -12,7 +12,7 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | **serviceId** | `String` | Required | ID of the service. |
-| **taskKey** | `String` | Required | The task's key defined in the [service file](../service/service-file.md). |
+| **taskKey** | `String` | Required | The task's key defined in the [service file](/guide/service/service-file.md). |
 | **inputData** | `String` | Required | The task's inputs in JSON format. |
 | **executionTags** | `String[]` | Optional | A list of tags to associate with the execution |
 

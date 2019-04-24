@@ -83,7 +83,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | **token** | `String` | Required | The token given by the Core as environment variable `MESG_TOKEN` |
-| **eventKey** | `String` | Required | The event's key defined in the [service file](../service/service-file.md) |
+| **eventKey** | `String` | Required | The event's key defined in the [service file](/guide/service/service-file.md) |
 | **eventData** | `String` | Required | The event's data in JSON format |
 
 ```json
