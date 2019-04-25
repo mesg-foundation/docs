@@ -21,7 +21,7 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
   "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
   "taskKey": "taskX",
   "inputData": "{\"inputX\":\"input value\"}",
-  "tags": ["foo", "bar"]
+  "executionTags": ["foo", "bar"]
 }
 ```
 
