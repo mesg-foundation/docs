@@ -17,10 +17,14 @@ We will use the library [Web3.js](https://web3js.readthedocs.io/en/1.0/) to inte
 
 You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token).
 
-You can find a more advanced and maintained version of this service here: [Service Ethereum ERC20](https://github.com/mesg-foundation/service-ethereum-erc20).
+You can find a more advanced and maintained version of this service here: [Service Ethereum ERC20](https://github.com/mesg-foundation/service-ethereum-erc20)
 
 ::: tip
-MESG Core should already be installed on your computer. If it isn't yet, [install it here](/guide/installation.md).
+If you haven't installed **MESG Core** yet, you can do so by running the command:
+
+`bash <(curl -fsSL https://mesg.com/install)`
+
+You can also install it manually by following [this guide](/guide/installation.md#manual-installation).
 :::
 
 ## Create the MESG service
@@ -34,23 +38,35 @@ mesg-core service init
 Then, answer the prompts with the following information:
 
 ```text
-Name: service-ethereum-erc20
-Description: Listen to transfers of an ERC20
+? Enter the output directory: service-ethereum-erc20
+? Select a template to use Javascript (https://github.com/mesg-foundation/template-service-javascript)
 ```
 
-The command should have created a `service-ethereum-erc20` folder containing `mesg.yml` and `Dockerfile` files.  
+The command should have created a `service-ethereum-erc20` folder containing `mesg.yml`, `Dockerfile` files and a boilerplate for the service.  
 Leave these files intact; we'll return to them a bit later in this tutorial.
 
-## Create a Node app
+::: tip
+You should see a **mesg.yml** and a **Dockerfile** in your service folder which are the fundamental parts of every MESG service.
 
-Let's initialize our node app.
+* **mesg.yml:** A file that contains all of the metadata of your Service. It gives some global descriptions but also includes the tasks and events that the Service can provide.
+  
+* **Dockerfile:** A file that describes your Docker container and configures the environment for your service to run inside.
+:::
+
+### Before starting...
+Let's remove some code related with the service boilerplate for now to create a usual node.js app for demonstration.
 
 First, make sure your terminal is pointed towards the newly-created `service-ethereum-erc20` folder.  
-Then, run:
 
-```bash
-npm init -y
-```
+Clean all the code inside `index.js`. And remove the `tasks` folder since we're not going to use it for this service.
+
+And install the dependencies:
+
+ ```bash	
+npm install
+```	
+
+### Initialize Web3 with Infura
 
 Let's install [Web3.js](https://web3js.readthedocs.io/en/1.0/):
 
@@ -58,11 +74,7 @@ Let's install [Web3.js](https://web3js.readthedocs.io/en/1.0/):
 npm install --save web3
 ```
 
-Then, create the `index.js` file in the Service folder.
-
-### Initialize Web3 with Infura
-
-The first step is to load Web3 and initialize it with Infura.  
+The first step is to load Web3 and initialize it with Infura.
 Add the following code to the top of `index.js` :
 
 ```javascript
@@ -86,7 +98,7 @@ Now, let's come back to `index.js` and initialize the contract with the ABI and 
 const contract = new web3.eth.Contract(require('./erc20-abi.json'), '0xe41d2489571d322189246dafa5ebde1f4699f498')
 ```
 
-### Listen for transfer events
+### Listen for transfer events on ERC20 network
 
 We're finally ready to listen for transfers!
 
@@ -94,9 +106,13 @@ Web3, thanks to the ABI, gives us access to the contract neatly. Let's add the f
 
 ```javascript
 contract.events.Transfer({fromBlock: 'latest'})
-.on('data', event => {
-  console.log('transfer', event)
-})
+  .on('data', (event) => {
+    console.log('transfer', event)
+  })
+  .on('error', (err) => {
+    console.error(err)
+  })
+
 console.log('Listening ERC20 transfer...')
 ```
 
@@ -114,15 +130,19 @@ Let's improve the output by showing only the useful information. Edit to match:
 
 ```javascript
 contract.events.Transfer({fromBlock: 'latest'})
-.on('data', event => {
-  console.log('transfer', {
-    blockNumber: event.blockNumber,
-    transactionHash: event.transactionHash,
-    from: event.returnValues.from,
-    to: event.returnValues.to,
-    value: String(event.returnValues.value / Math.pow(10, 18)) // We convert value to its user representation based on the number of decimals used by this ERC20.
+  .on('data', (event) => {
+    console.log('transfer', {
+      blockNumber: event.blockNumber,
+      transactionHash: event.transactionHash,
+      from: event.returnValues.from,
+      to: event.returnValues.to,
+      value: String(event.returnValues.value / Math.pow(10, 18)) // We convert value to its user representation based on the number of decimals used by this ERC20.
+    })
   })
-})
+  .on('error', (err) => {
+    console.error(err)
+  })
+
 console.log('Listening ERC20 transfer...')
 ```
 
@@ -159,10 +179,11 @@ Now, it's time to transform this node app to a fully-compatible MESG Service.
 
 Let's add the event we want to emit to MESG Core to the `mesg.yml` file.
 
-Now, clean the `mesg.yml` file, keeping only the keys: `name` and `description`. It should look like this:
+First, clean the `mesg.yml` file, keeping only the keys: `name`, `sid` and `description`. Change their value to look like this:
 
 ```yaml
-name: service-ethereum-erc20-tuto
+name: Ethereum ERC20 Service Tutorial
+sid: service-ethereum-erc20-tuto
 description: Listen to transfers of an ERC20
 ```
 
@@ -186,48 +207,46 @@ events:
 
 This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](/guide/service/service-file.md) for more information about the `mesg.yml` file.
 
-### Add mesg-js lib
+### Require MESG service client
 
-Let's install the `mesg-js` lib:
-
-```bash
-npm install --save mesg-js
-```
-
-Let's transform the file `index.js` to use the lib. Add at the top of the file:
+Add the following code to the top of `index.js` :
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 ```
 
-Replace `console.log` by `MESG.emitEvent`, like so:
+### Emit `transfer` service event to MESG Core
+
+Replace `console.log` by `mesg.emitEvent`, like so:
 
 ```javascript
 contract.events.Transfer({fromBlock: 'latest'})
-.on('data', event => {
-  console.log('New ERC20 transfer received with hash:', event.transactionHash)
-  MESG.emitEvent('transfer', {
-    blockNumber: event.blockNumber,
-    transactionHash: event.transactionHash,
-    from: event.returnValues.from,
-    to: event.returnValues.to,
-    value: String(event.returnValues.value / Math.pow(10, 18)) // We convert value to its user representation based on the number of decimals used by this ERC20.
+  .on('data', (event) => {
+    console.log('New ERC20 transfer received with hash:', event.transactionHash)
+    mesg.emitEvent('transfer', {
+      blockNumber: event.blockNumber,
+      transactionHash: event.transactionHash,
+      from: event.returnValues.from,
+      to: event.returnValues.to,
+      value: String(event.returnValues.value / Math.pow(10, 18)) // We convert value to its user representation based on the number of decimals used by this ERC20.
+    })
   })
-})
+  .on('error', (err) => {
+    console.error(err)
+  })
+
 console.log('Listening ERC20 transfer...')
 ```
 
-### Dockerize it
+## Testing
 
-Let's update the `Dockerfile` to make our Service compatible with Docker. Because it is a Node.JS app, it's pretty simple:
+The first step of testing is to make sure that the Service is valid by running:
 
-<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/Dockerfile
+```bash
+mesg-core service validate
+```
 
-Let's also create a `.dockerignore` file to ignore the `node_modules` from the build of the Service.
-
-<<< @/tutorials/erc20-transfer-notifications/listen-to-transfer-of-ethereum-erc20-token/.dockerignore
-
-### Test the Service
+You should have a message with `Service is valid`, if not, check the previous steps again; you probably missed something 🤔
 
 It's time to test the Service with MESG!
 
@@ -261,7 +280,7 @@ And finally, after a few seconds:
 Hooray!!! 🎉 You finished building a MESG Service that listens for transfer of an ERC20 token!
 :::
 
-### Deploy the Service
+## Usage
 
 To use this Service in your future application, you'll need to deploy it:
 

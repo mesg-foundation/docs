@@ -20,14 +20,6 @@ mesg-core service stop SERVICE_ID
 
 This command will stop the Docker container\(s\) started for your service.
 
-## Status
-
-You can check all the services that are running anytime by running the following command :
-
-```bash
-mesg-core service status
-```
-
 ## Share your Services
 
 Nice work on connecting a Service to MESG!   

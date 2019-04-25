@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This is a step-by-step guide to create an application that sends a Discord invitation email when a webhook is called.
+This guide will show you step-by-step how to create an application that sends a Discord invitation email when a webhook is called.
 
 [[toc]]
 
@@ -28,56 +28,86 @@ You need to deploy every service your application is using.
 
 In this guide, the application is using 2 services.
 
-Let's start by deploying the [webhook service](https://github.com/mesg-foundation/service-webhook):
+Start by deploying the [webhook service](https://github.com/mesg-foundation/service-webhook):
 
 ```bash
 mesg-core service deploy https://github.com/mesg-foundation/service-webhook
 ```
 
-Now let's deploy the [invite discord service](https://github.com/mesg-foundation/service-discord-invitation):
+Deploy the [invite discord service](https://github.com/mesg-foundation/service-discord-invitation):
 
 ```bash
 mesg-core service deploy https://github.com/mesg-foundation/service-discord-invitation
 ```
 
-Once the service is deployed, the console displays its Service ID. The Service ID is the unique way for the application to connect to the right service through MESG Core. You'll need to use them inside the application.
+Once the service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through MESG Core. You'll need to use them inside the application.
 
 ## 4. Create the application
 
-Now that the services are up and running, let's create the application.
+Now when the services are up and running, let's create the application.
 
 The application is using [NodeJS](https://nodejs.org) and [NPM](https://www.npmjs.com/).
 
-Let's init the app and install the [MESG JS library](https://www.npmjs.com/package/mesg-js).
+Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/mesg-js).
+
+Create and move your terminal to a folder that will contain the application. Then run:
 
 ```bash
 npm init && npm install --save mesg-js
 ```
 
-Now, let's create an `index.js` file and with the following code:
+Now, create an `index.js` file and with the following code:
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-const webhook    = '__ID_SERVICE_WEBHOOK__' // To replace by the Service ID of the Webhook service
-const invitation = '__ID_SERVICE_INVITATION_DISCORD__' // To replace by the Service ID of the Invite Discord service
-const email      = '__YOUR_EMAIL_HERE__' // To replace by your email
+const email = '__YOUR_EMAIL_HERE__' // To replace by your email
 const sendgridAPIKey = '__SENDGRID_API_KEY__' // To replace by your SendGrid API key. See https://app.sendgrid.com/settings/api_keys
 
-MESG.listenEvent({ serviceID: webhook, eventFilter: 'request' })
-  .on('data', (event) => {
-    MESG.executeTask({
-      serviceID: invitation,
-      taskKey: 'send',
-      inputData: JSON.stringify({ email, sendgridAPIKey })
-    }).catch((err) => console.log(err.message))
+mesg.listenEvent({
+  serviceID: 'webhook',
+  eventFilter: 'request'
+})
+  .on('data', async (event) => {
+    console.log('webhook event received')
+    try {
+      const result = await mesg.executeTaskAndWaitResult({
+        serviceID: 'discord-invitation',
+        taskKey: 'send',
+        inputData: JSON.stringify({ email, sendgridAPIKey })
+      })
+      if (result.outputKey !== 'success') {
+        const message = JSON.parse(result.outputData).message
+        console.error('an error occurred while sending the invitation: ', message)
+        return
+      }
+      console.log('discord invitation send to:', email)
+    } catch (error) {
+      console.error('an error occurred while executing the send task:', error.message)
+    }
   })
-  .on('error', (err) => console.log(err.message))
+  .on('error', (error) => {
+    console.error('an error occurred while listening the request events:', error.message)
+  })
+
+console.log('application is running and listening for events')
 ```
 
-Don't forget to replace the values `__ID_SERVICE_WEBHOOK__`, `__ID_SERVICE_INVITATION_DISCORD__`, `__YOUR_EMAIL_HERE__` and `__SENDGRID_API_KEY__`.
+Don't forget to replace the values `__YOUR_EMAIL_HERE__` and `__SENDGRID_API_KEY__`.
 
-## 5. Start the application
+## 5. Start the services
+
+Start the webhook service:
+```bash
+mesg-core service start webhook
+```
+
+Start discord invitation service:
+```bash
+mesg-core service start discord-invitation
+```
+
+## 6. Start the application
 
 Start your application like any node application:
 
@@ -85,11 +115,11 @@ Start your application like any node application:
 node index.js
 ```
 
-## 6. Test the application
+## 7. Test the application
 
 Now let's give this super simple application a try.
 
-Let's trigger the webhook with the following command:
+Trigger the webhook with the following command:
 
 ```bash
 curl -XPOST http://localhost:3000/webhook

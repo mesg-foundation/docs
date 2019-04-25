@@ -98,13 +98,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 
 <tab title="Reply" vp-markdown>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-
-
-```json
-{}
-```
+Reply of EmitEvent API doesn't contain any data.
 
 </tab>
 </tabs>
@@ -115,13 +109,17 @@ Consider emitting event when the service is ready. If the service needs to synch
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 
-MESG.emitEvent("eventX", {
+mesg.emitEvent("eventX", {
   foo: "hello",
   bar: false,
+}).catch((err) => {
+  console.error(err)
 })
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#event)
 
 </tab>
 
@@ -131,39 +129,25 @@ MESG.emitEvent("eventX", {
 package main
 
 import (
-    "context"
-    "encoding/json"
-    "io/ioutil"
-    "log"
-    "os"
-
-    api "github.com/mesg-foundation/core/api/service"
-    "google.golang.org/grpc"
-    yaml "gopkg.in/yaml.v2"
+	"github.com/mesg-foundation/core/client/service"
 )
 
 type EventX struct {
-    Foo string
-    Bar bool
+	Foo string `json:"foo"`
+	Bar bool   `json:"bar"`
 }
 
 func main() {
-    connection, _ := grpc.Dial(os.Getenv("MESG_ENDPOINT"), grpc.WithInsecure())
-    cli := api.NewServiceClient(connection)
+	s, _ := service.New()
 
-    eventX, _ := json.Marshal(EventX{
-        Foo: "hello",
-        Bar: false,
-    })
-
-    reply, _ := cli.EmitEvent(context.Background(), &api.EmitEventRequest{
-        Token:   os.Getenv("MESG_TOKEN"),
-        EventKey:  "eventX",
-        EventData: string(eventX),
-    })
-    log.Println(reply)
+	s.Emit("eventX", EventX{
+		Foo: "hello",
+		Bar: false,
+	})
 }
 ```
+
+[See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
 
 </tab>
 </tabs>

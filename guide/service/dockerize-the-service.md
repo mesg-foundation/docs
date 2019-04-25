@@ -20,16 +20,15 @@ In order to be compatible with [Docker](https://www.docker.com/), a `Dockerfile`
   <tab title="Node" vp-markdown>
     
 ```dockerfile
-FROM node:carbon
+FROM node:latest
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
 
-[source](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
+Check out how to [dockerizing a Node.js web app](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/).
 
   </tab>
   <tab title="Go" vp-markdown>
@@ -43,7 +42,7 @@ RUN go build -o main .
 CMD ["/app/main"]
 ```
 
-[source](https://blog.codeship.com/building-minimal-docker-containers-for-go-applications/)
+Check out how to [build a minimal Docker Containers for Go applications](https://blog.codeship.com/building-minimal-docker-containers-for-go-applications/).
 
   </tab>
 </tabs>

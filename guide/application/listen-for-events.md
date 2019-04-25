@@ -16,7 +16,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 
 ```json
 {
-  "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
+  "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "eventFilter": "eventIDToOnlyListenTo"
 }
 ```
@@ -46,20 +46,22 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.listenEvent({
-  serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
+mesg.listenEvent({
+  serviceID: 'SERVICE_ID'
 })
-.on('data', function(data) {
-  // New event received 
-  console.log(data.eventKey)
-  console.log(JSON.parse(data.eventData))
-})
-.on('error', function(error) {
-  // An error has occurred and the stream has been closed.
-})
+  .on('data', (event) => {
+    console.log('event received', event)
+  })
+  .on('error', (err) => {
+    console.error('an error occurred while listening for events:', err.message)
+  })
+
+console.log('application is running and listening for events')
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-events)
 
 </tab>
 
@@ -69,30 +71,51 @@ MESG.listenEvent({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"github.com/mesg-foundation/core/x/xsignal"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    stream, _ := cli.ListenEvent(context.Background(), &core.ListenEventRequest{
-        ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
-    })
-    for {
-        event, err := stream.Recv()
-        if err != nil {
-          panic(err)
-        }
-        fmt.Println(event.EventKey, event.EventData)
-        // TODO process event
-    }
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	defer func() {
+		log.Println("closing connection...")
+		connection.Close()
+	}()
+	client := coreapi.NewCoreClient(connection)
+	log.Println("connected to core")
+
+	go func() {
+		stream, err := client.ListenEvent(context.Background(), &coreapi.ListenEventRequest{
+			ServiceID:   "SERVICE_ID",
+			EventFilter: "eventX", // optional
+		})
+		if err != nil {
+			log.Panic(err)
+		}
+
+		for {
+			event, err := stream.Recv()
+			if err != nil {
+				log.Panic(err)
+			}
+			log.Println("event received", event)
+		}
+	}()
+
+	<-xsignal.WaitForInterrupt()
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>
@@ -115,14 +138,14 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **serviceID** | `String` | Required | ID of the Service. |
 | **taskFilter** | `String` | Optional | Only listens for this given task ID. |
 | **outputFilter** | `String` | Optional | Only listens for this given output ID. If set, the attribute `taskFilter` should also be provided. |
-| **tagFilters** | `String[]` | Optional | Filter only results with one or multiple tags given during the execution |
+| **tagFilters** | `String[]` | Optional | The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
 
 ```json
 {
-  "serviceID": "027107ba9454e44bd7aaaa9922edbe445789092a",
+  "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskFilter": "taskIDToOnlyListenTo",
   "outputFilter": "outputIDToOnlyListenTo",
-  "tagFilrters": ["foo"]
+  "tagFilters": ["tagX=1"]
 }
 ```
 
@@ -158,20 +181,22 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.listenResult({
-  serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
+mesg.listenResult({
+  serviceID: 'SERVICE_ID'
 })
-.on('data', function(data) {
-  // New result received 
-  console.log(data.outputKey)
-  console.log(JSON.parse(data.outputData))
-})
-.on('error', function(error) {
-  // An error has occurred and the stream has been closed.
-})
+  .on('data', (result) => {
+    console.log('result received', result)
+  })
+  .on('error', (err) => {
+    console.error('an error occurred while listening for results:', err.message)
+  })
+
+console.log('application is running and listening for results')
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-results)
 
 </tab>
 
@@ -181,29 +206,51 @@ MESG.listenResult({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"github.com/mesg-foundation/core/x/xsignal"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    stream, _ := cli.ListenResult(context.Background(), &core.ListenResultRequest{
-        ServiceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
-    })
-    for {
-        result, err := stream.Recv()
-        if err != nil {
-          panic(err)
-        }
-        fmt.Println(result.ExecutionID, result.OutputKey, result.OutputData)
-    }
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	defer func() {
+		log.Println("closing connection...")
+		connection.Close()
+	}()
+	client := coreapi.NewCoreClient(connection)
+	log.Println("connected to core")
+
+	go func() {
+		stream, err := client.ListenResult(context.Background(), &coreapi.ListenResultRequest{
+			ServiceID:  "SERVICE_ID",
+			TaskFilter: "taskX", // optional
+		})
+		if err != nil {
+			log.Panic(err)
+		}
+
+		for {
+			result, err := stream.Recv()
+			if err != nil {
+				log.Panic(err)
+			}
+			log.Println("result received", result)
+		}
+	}()
+
+	<-xsignal.WaitForInterrupt()
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>

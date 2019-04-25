@@ -77,6 +77,8 @@ themeConfig:
               link: https://github.com/mesg-foundation/core/tree/master/client/service
             - text: Golang (Application)
               link: https://github.com/mesg-foundation/core/tree/master/protobuf/coreapi
+            - text: C#
+              link: https://github.com/neville-nazerane/mesg-apis
         - text: News
           items:
             - text: Blog
@@ -103,6 +105,7 @@ themeConfig:
           - /guide/application/
           - /guide/application/listen-for-events
           - /guide/application/execute-a-task
+          - /guide/application/full-example
       - title: Service
         children:
           - /guide/service/

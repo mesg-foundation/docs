@@ -2,7 +2,7 @@
 
 ## Execute a Service's task
 
-To execute a task, Applications need to connect to Core through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). Core will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](execute-a-task.md#listen-for-execution-outputs)
+To execute a task, Applications need to connect to Core through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). Core will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
 
 <tabs>
 <tab title="Request" vp-markdown>
@@ -48,18 +48,22 @@ To execute a task, Applications need to connect to Core through [gRPC](https://g
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').application()
+const mesg = require('mesg-js').application()
 
-MESG.executeTask({
-  serviceID: "027107ba9454e44bd7aaaa9922edbe445789092a",
+mesg.executeTask({
+  serviceID: "SERVICE_ID",
   taskKey: "taskX",
   inputData: JSON.stringify({
     inputX: "input value"
   })
-}, (err, reply) => {
-  // handle response if needed
+}).then((reply) => {
+  console.log(reply.executionID)
+}).catch((err) => {
+  console.error('an error occurred while executing task:', err.message)
 })
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#execute-task)
 
 </tab>
 
@@ -69,25 +73,39 @@ MESG.executeTask({
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"encoding/json"
+	"log"
 
-    "github.com/mesg-foundation/core/api/core"
-    "github.com/mesg-foundation/core/service"
-    "google.golang.org/grpc"
+	"github.com/mesg-foundation/core/protobuf/coreapi"
+	"google.golang.org/grpc"
 )
 
 func main() {
-    connection, _ := grpc.Dial(":50052", grpc.WithInsecure())
-    cli := core.NewCoreClient(connection)
-    res, _ := cli.ExecuteTask(context.Background(), &core.ExecuteTaskRequest{
-        ServiceID:  "027107ba9454e44bd7aaaa9922edbe445789092a",
-        TaskKey:  "taskX",
-        InputData: "{\"inputX\":\"input value\"}",
-    })
-    fmt.Println(res.ExecutionID)
+	connection, err := grpc.Dial(":50052", grpc.WithInsecure())
+	if err != nil {
+		log.Panic(err)
+	}
+	client := coreapi.NewCoreClient(connection)
+
+  inputData, err := json.Marshal(map[string]string{"foo": "bar"})
+  if err != nil {
+    log.Panic(err)
+  }
+  reply, err := client.ExecuteTask(context.Background(), &coreapi.ExecuteTaskRequest{
+    ServiceID: "SERVICE_ID",
+    TaskKey:   "taskX",
+    InputData: string(inputData),
+  })
+  if err != nil {
+    log.Panic(err)
+  }
+  log.Println("execution reply", reply)
 }
+
 ```
+
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>

@@ -94,7 +94,7 @@ tasks:
 
 ## Listen for task executions
 
-To listen for task to execute, the Service needs to open a stream with Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](listen-for-tasks.md#submit-outputs-of-your-execution) back to Core.
+To listen for task to execute, the Service needs to open a stream with Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to Core.
 
 ::: tip
 Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, you should wait for this synchronization before listening for tasks.
@@ -130,56 +130,6 @@ Consider listening for tasks when your service is ready. If your service needs t
     "executionID": "xxxxxx",
     "taskKey": "taskX",
     "inputData": "{\"inputX\":\"Hello world!\",\"inputY\":true}"
-}
-```
-
-</tab>
-</tabs>
-
-### Examples
-
-<tabs>
-<tab title="Node" vp-markdown>
-
-```javascript
-const MESG = require('mesg-js').service()
-
-MESG.listenTask({
-// task      inputs           outputs
-  taskX: ({ inputX, inputY }, { outputX, outputY }) => outputX({ foo: "super result", bar: true })
-})
-```
-
-</tab>
-
-<tab title="Go" vp-markdown>
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "io/ioutil"
-    "os"
-
-    api "github.com/mesg-foundation/core/api/service"
-    "google.golang.org/grpc"
-    yaml "gopkg.in/yaml.v2"
-)
-
-func main() {
-    connection, _ := grpc.Dial(os.Getenv("MESG_ENDPOINT"), grpc.WithInsecure())
-    cli := api.NewServiceClient(connection)
-
-    stream, _ := cli.ListenTask(context.Background(), &api.ListenTaskRequest{
-        Token: os.Getenv("MESG_TOKEN"),
-    })
-
-    for {
-        res, _ := stream.Recv()
-        fmt.Println("receive task", res.TaskKey, "with inputs", res.InputData)
-    }
 }
 ```
 
@@ -226,19 +176,29 @@ Once the task execution is finished, the Service has to send the outputs of the 
 </tab>
 </tabs>
 
-### Examples
+## Examples
 
 <tabs>
 <tab title="Node" vp-markdown>
 
 ```javascript
-const MESG = require('mesg-js').service()
+const mesg = require('mesg-js').service()
 
-MESG.listenTask({
-// task      inputs           outputs
-  taskX: ({ inputX, inputY }, { outputX, outputY }) => outputX({ foo: "super result", bar: true })
+mesg.listenTask({
+  // handler function of taskX
+  taskX: (inputs, outputs) => {
+    outputs.outputX({
+      foo: inputs.inputX,
+      bar: true
+    })
+  },
 })
+  .on('error', (error) => {
+    console.error(error)
+  })
 ```
+
+[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#service)
 
 </tab>
 
@@ -248,47 +208,37 @@ MESG.listenTask({
 package main
 
 import (
-    "context"
-    "encoding/json"
-    "io/ioutil"
-    "log"
-    "os"
-
-    api "github.com/mesg-foundation/core/api/service"
-    "google.golang.org/grpc"
-    yaml "gopkg.in/yaml.v2"
+	"github.com/mesg-foundation/core/client/service"
 )
 
-type OutputX struct {
-    Foo string
-    Bar bool
+type taskXInputs struct {
+	InputX string `json:"inputX"`
+	InputY []bool `json:"inputY"`
+}
+
+type taskXOutputX struct {
+	Foo string `json:"foo"`
+	Bar bool   `json:"bar"`
 }
 
 func main() {
-    connection, _ := grpc.Dial(os.Getenv("MESG_ENDPOINT"), grpc.WithInsecure())
-    cli := api.NewServiceClient(connection)
+	s, _ := service.New()
 
-    stream, _ := cli.ListenTask(context.Background(), &api.ListenTaskRequest{
-        Token: os.Getenv("MESG_TOKEN"),
-    })
+	s.Listen(
+		service.Task("taskX", func(execution *service.Execution) (string, interface{}) {
+			var inputs taskXInputs
+			execution.Data(&inputs)
 
-    for {
-        res, _ := stream.Recv()
-        fmt.Println("receive task", res.TaskKey, "with inputs", res.InputData)
-
-        outputX, _ := json.Marshal(OutputX{
-            Foo: "super result",
-            Bar: true,
-        })
-        reply, _ := cli.SubmitResult(context.Background(), &api.SubmitResultRequest{
-            ExecutionID: res.ExecutionID,
-            OutputKey:  "outputX",
-            OutputData: string(outputX),
-        })
-        log.Println(reply)
-    }
+			return "outputX", taskXOutputX{
+				Foo: inputs.InputX,
+				Bar: true,
+			}
+		}),
+	)
 }
 ```
+
+[See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
 
 </tab>
 </tabs>
