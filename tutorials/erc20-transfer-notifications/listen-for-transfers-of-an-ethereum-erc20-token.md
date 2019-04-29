@@ -24,7 +24,7 @@ If you haven't installed **MESG Core** yet, you can do so by running the command
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
-You can also install it manually by following [this guide](../../guide/start-here/installation.md#manual-installation).
+You can also install it manually by following [this guide](/guide/installation.md#manual-installation).
 :::
 
 ## Create the MESG service
@@ -205,7 +205,7 @@ events:
         type: String
 ```
 
-This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](../../guide/service/service-file.md) for more information about the `mesg.yml` file.
+This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](/guide/service/service-file.md) for more information about the `mesg.yml` file.
 
 ### Require MESG service client
 

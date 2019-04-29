@@ -1,9 +1,5 @@
 # Listen for events
 
-## Why listen for events?
-
-Applications listen for events in real-time to execute actions or tasks when something relevant happens on a technology.
-
 ## Listening for events from Services
 
 To listen for events, the Application needs to open a stream with Core with [gRPC](https://grpc.io/) using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). When opening the stream, the Application listens to the Service. It can listen to many Services at the same time.
@@ -18,7 +14,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 | **serviceID** | `String` | Required | ID of the Service that you want to listen to. |
 | **eventFilter** | `String` | Optional | Only listens for this given event ID. |
 
-```javascript
+```json
 {
   "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "eventFilter": "eventIDToOnlyListenTo"
@@ -31,10 +27,10 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- |
-| **eventKey** | `String` | The event's key defined in the [Service file](../service/service-file.md). |
+| **eventKey** | `String` | The event's key defined in the [Service file](/guide/service/service-file.md). |
 | **eventData** | `String` | The event's data in JSON format. |
 
-```javascript
+```json
 {
   "eventKey": "eventX",
   "eventData": "{\"dataX\": \"event data\"}"
@@ -53,7 +49,7 @@ To listen for events, the Application needs to open a stream with Core with [gRP
 const mesg = require('mesg-js').application()
 
 mesg.listenEvent({
-  serviceID: SERVICE_EVENT_ID
+  serviceID: 'SERVICE_ID'
 })
   .on('data', (event) => {
     console.log('event received', event)
@@ -98,7 +94,7 @@ func main() {
 
 	go func() {
 		stream, err := client.ListenEvent(context.Background(), &coreapi.ListenEventRequest{
-			ServiceID:   "SERVICE_EVENT_ID",
+			ServiceID:   "SERVICE_ID",
 			EventFilter: "eventX", // optional
 		})
 		if err != nil {
@@ -142,9 +138,9 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **serviceID** | `String` | Required | ID of the Service. |
 | **taskFilter** | `String` | Optional | Only listens for this given task ID. |
 | **outputFilter** | `String` | Optional | Only listens for this given output ID. If set, the attribute `taskFilter` should also be provided. |
-| **tagFilters** | `Array<String>` | Optional | The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
+| **tagFilters** | `String[]` | Optional | The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
 
-```javascript
+```json
 {
   "serviceID": "f4923d9de32f211a1e3fbd54399752c305e2db72",
   "taskFilter": "taskIDToOnlyListenTo",
@@ -160,16 +156,19 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- | --- |
 | **executionID** | `String` | The execution ID of this output. |
-| **taskKey** | `String` | The key of the task as defined in the [service file](../service/service-file.md). |
-| **outputKey** | `String` | The key of the output of the task as defined in the [service file](../service/service-file.md). |
+| **taskKey** | `String` | The key of the task as defined in the [service file](/guide/service/service-file.md). |
+| **outputKey** | `String` | The key of the output of the task as defined in the [service file](/guide/service/service-file.md). |
 | **outputData** | `String` | The data returned by the task serialized in JSON. |
+| **executionTags** | `String[]` | List of tags associated to this execution |
+| **error** | `String` | The execution's error if something went wrong |
 
-```javascript
+```json
 {
   "executionID": "xxxxx",
   "taskKey": "taskX",
   "outputKey": "outputX",
   "outputData": "{\"outputValX\": \"result of execution\"}",
+  "executionTags": ["foo", "bar"]
 }
 ```
 
@@ -185,7 +184,7 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 const mesg = require('mesg-js').application()
 
 mesg.listenResult({
-  serviceID: SERVICE_RESULT_ID
+  serviceID: 'SERVICE_ID'
 })
   .on('data', (result) => {
     console.log('result received', result)
@@ -230,7 +229,7 @@ func main() {
 
 	go func() {
 		stream, err := client.ListenResult(context.Background(), &coreapi.ListenResultRequest{
-			ServiceID:  "SERVICE_TASK_ID",
+			ServiceID:  "SERVICE_ID",
 			TaskFilter: "taskX", // optional
 		})
 		if err != nil {

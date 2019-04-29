@@ -16,7 +16,7 @@ mesg-core service dev ./PATH_TO_SERVICE_FOLDER
 
 If you don't specify the path to the service folder, the command searches in the current folder for the `mesg.yml` file.
 
-[More details here](../../cli/mesg-core_service_dev.md)
+[More details here](/cli/mesg-core_service_dev.md)
 
 ## Execute a task
 
@@ -30,14 +30,14 @@ mesg-core service execute --task taskX --json TASK_INPUTS_JSON_FILE SERVICE_ID
 
 The file for the inputs should be a `json` with a map of all the inputs that your task needs. For example:
 
-```javascript
+```json
 {
     "inputX": "...",
     "inputY": "..."
 }
 ```
 
-[More details here](../../cli/mesg-core_service_execute.md)
+[More details here](/cli/mesg-core_service_execute.md)
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

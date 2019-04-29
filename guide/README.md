@@ -1,24 +1,33 @@
 # Introduction
 
-MESG \(pronounced ˈmesij/, or **message**\) is a technology-agnostic network of [Services](./service/what-is-a-service.md). 
+MESG is a framework for developers to build application efficiently. It relies on two specific tools:
 
-Services can be connected to any technology, including but not limited to, blockchains, web services, databases, notifications, business logic or IoT devices. 
+- The engine called the **MESG Core**
+- The **MESG Marketplace** to bootstrap applications faster
 
-As the code to connect Services is often identical between applications, it be shared and reused through through our [Awesome](https://github.com/mesg-foundation/awesome) repository to accelerate development efficiency. 
+MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
+MESG Services have two responsibilities:
+- [Executing **tasks**](/guide/service/listen-for-tasks.md) that an application triggers
+- [Sending **events**](/guide/service/emit-an-event.md) to an application
 
-Services can be combined together in any order to create [Applications](./application/what-is-an-application.md). Since developers can use a shared Service instead of being required to write each one from scratch, they can now feature complex technologies in their Applications without needing to first learn their languages or data formats.
+[Applications](/guide/application/) rely only on [services](/guide/service/) managed by MESG Core, so developers can focus on applications' business logic and nothing more.
 
-Interoperability between all Services and Applications is managed automatically by MESG Core. [Core](./start-here/installation.md) organizes and dispatches information to and from all connected Services and routes it through a stream of real-time information to your Application, allowing Applications to be highly interconnected, yet lightweight and powerful.
+### Why use MESG Core?
 
-The MESG infrastructure is based upon event-driven programming, so Applications built using MESG are designed to listen to events and react with tasks, resuling in easily-maintainable autonomous applications. 
+MESG Core:
+- Creates and manages services 
+- Manages communication between all services with a standardized bi-directional API
+- Manages the security and isolation of services
+- Routes the various tasks and events to listen to the appropriate service
 
-Applications on MESG can look like anything from a multinational DApp store, to an automated business workflow, to an automatic payment of personal bills or linking real-time notifications to blockchain events. The possibilities and use cases are truly endless.
+Applications are only responsible for communicating with MESG Core, and use only one API to access any service. 
 
-**In Q1 2020**, MESG will deploy the decentralized Network to unify the MESG infrastructure and launch the full MESG Economy. It will make it easy for developers to incorporate decentralization into existing technologies.
+### Architecture of applications with MESG
 
-The decentralized network will help DApps adopt useful functionalities that boost the UX, such as notifications or fiat payment processing. DApps will soon be able to deliver the same excellent user experiences that centralized apps deliver while remaining highy decentralized. 
+![Architecture](/schema.svg)
 
-The Network also introduces MESG's full token-based economy. Pre-built Services will be sold on the Network using MESG Tokens, allowing developers to receive income each time their Service is used, while rewarding each network supporter with passive income from their participation. 
- 
-
+From left to right:
+- An [application](/guide/application/) that sends tasks and receives events from MESG Core
+- MESG Core that routes tasks and events and manages services
+- The [MESG Services](/guide/service/), executing tasks and emitting events based on their prescribed purpose
 

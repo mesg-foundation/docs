@@ -98,19 +98,17 @@ themeConfig:
   sidebar:
     /guide/:
       - /guide/
-      - /guide/start-here/installation
-      - /guide/start-here/quick-start-guide
-      - /guide/start-here/join-us
+      - /guide/installation
+      - /guide/quick-start-guide
       - title: Application
         children:
-          - /guide/application/what-is-an-application
-          - /guide/application/use-cases
+          - /guide/application/
           - /guide/application/listen-for-events
           - /guide/application/execute-a-task
           - /guide/application/full-example
       - title: Service
         children:
-          - /guide/service/what-is-a-service
+          - /guide/service/
           - /guide/service/service-file
           - /guide/service/emit-an-event
           - /guide/service/listen-for-tasks
