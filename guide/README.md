@@ -3,31 +3,31 @@
 MESG is a framework for developers to build application efficiently. It relies on two specific tools:
 
 - The engine called the **MESG Core**
-- The **MESG Marketplace** to bootstrap your applications faster
+- The **MESG Marketplace** to bootstrap applications faster
 
 MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
 MESG Services have two responsibilities:
-- [Executing **tasks**](/guide/service/listen-for-tasks.md) that your application triggers
-- [Sending **events**](/guide/service/emit-an-event.md) to your application
+- [Executing **tasks**](/guide/service/listen-for-tasks.md) that an application triggers
+- [Sending **events**](/guide/service/emit-an-event.md) to an application
 
-Your [applications](/guide/application/) rely only on [services](/guide/service/) managed by MESG Core, so you need to focus only on your application's business logic and nothing more.
+[Applications](/guide/application/) rely only on [services](/guide/service/) managed by MESG Core, so developers can focus on applications' business logic and nothing more.
 
-### Why do I need MESG Core?
+### Why use MESG Core?
 
-MESG Core is software that lets you:
-- Create and manage the services that you want to run
-- Manage the communication with these services with a standardized bi-directional API
-- Manage the security and isolation of your services
-- Route the different tasks and events that you want to listen to to the appropriate service
+MESG Core:
+- Creates and manages services 
+- Manages communication between all services with a standardized bi-directional API
+- Manages the security and isolation of services
+- Routes the various tasks and events to listen to the appropriate service
 
-Your application is now only responsible for communicating with MESG Core, and uses only one API to access any service. 
+Applications are only responsible for communicating with MESG Core, and use only one API to access any service. 
 
-### Architecture of your application with MESG
+### Architecture of applications with MESG
 
 ![Architecture](/schema.svg)
 
 From left to right:
-- Your [application](/guide/application/) that sends tasks and receives events from MESG Core
-- MESG Core that routes tasks and events and manages your services
+- An [application](/guide/application/) that sends tasks and receives events from MESG Core
+- MESG Core that routes tasks and events and manages services
 - The [MESG Services](/guide/service/), executing tasks and emitting events based on their prescribed purpose
 
