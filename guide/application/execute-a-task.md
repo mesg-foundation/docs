@@ -2,7 +2,7 @@
 
 ## Execute a Service's task
 
-To execute a task, Applications need to connect to Core through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). Core will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
+To execute a task, Applications need to connect to the Engine through [gRPC](https://grpc.io/) and use the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). The Engine will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
 
 <tabs>
 <tab title="Request" vp-markdown>
@@ -105,7 +105,7 @@ func main() {
 
 ```
 
-[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
+[See the Engine API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>
