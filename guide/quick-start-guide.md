@@ -1,12 +1,12 @@
 # Quick Start Guide
 
-This guide will show you step-by-step how to create an application that sends a Discord invitation email when a webhook is called.
+This step-by-step guide will show you how to create an application that sends a Discord invitation email when a webhook is called.
 
 [[toc]]
 
 ## 1. Installation
 
-Run the following command in a console to install MESG Core:
+Run the following command in a console to install the MESG Engine:
 
 ```bash
 bash <(curl -fsSL https://mesg.com/install)
@@ -14,9 +14,9 @@ bash <(curl -fsSL https://mesg.com/install)
 
 You can also install it manually by following [this guide](/guide/installation.md).
 
-## 2. Run MESG Core
+## 2. Run the MESG Engine
 
-MESG Core runs as a daemon. To start it, execute:
+MESG Engine runs as a daemon. To start it, execute:
 
 ```bash
 mesg-core start
@@ -40,7 +40,7 @@ Deploy the [invite discord service](https://github.com/mesg-foundation/service-d
 mesg-core service deploy https://github.com/mesg-foundation/service-discord-invitation
 ```
 
-Once the service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through MESG Core. You'll need to use them inside the application.
+Once the service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine. You'll need to use them inside the application.
 
 ## 4. Create the application
 
