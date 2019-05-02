@@ -50,10 +50,10 @@ Check out how to [build a minimal Docker Containers for Go applications](https:/
 ## Add a configuration and dependencies
 
 ::: tip
-Configuration and dependencies are an advanced feature and your service might not need this. This is totally optional and really depends on your service needs.
+Configuration and dependencies are an advanced feature and your service may not need them. This is totally optional and really depends on your service's needs.
 :::
 
-Once the Service can run on Docker, Core should be able to start it automatically. Update the [`mesg.yml`](service-file.md) file with the config. and optional dependencies the service needs.
+Once the Service can run on Docker, The Engine should be able to start it automatically. Update the [`mesg.yml`](service-file.md) file with the config. and optional dependencies the service needs.
 
 The `configuration` key is a Dependency object that will be use to configure the main Docker container of the service. All Dependency attributes are available except image. The attribute `image` will be set automatically when the service is deployed.
 
