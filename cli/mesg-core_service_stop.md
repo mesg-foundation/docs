@@ -13,7 +13,7 @@ mesg-core service stop SERVICE [flags]
 ### Examples
 
 ```
-mesg-core service stop SERVICE
+mesg-core service stop SERVICE [SERVICE...]
 ```
 
 ### Options

@@ -16,14 +16,13 @@ mesg-core service init [flags]
 
 ```
 mesg-core service init
-mesg-core service init --name NAME
-mesg-core service init --current
+mesg-core service init ./PATH_TO_SERVICE
+mesg-core service init --template TEMPLATE_URL
 ```
 
 ### Options
 
 ```
-      --dir string        Create the service in the directory
   -h, --help              help for init
   -t, --template string   Specify the template URL to use
 ```

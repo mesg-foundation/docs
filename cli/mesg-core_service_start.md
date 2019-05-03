@@ -13,7 +13,7 @@ mesg-core service start SERVICE [flags]
 ### Examples
 
 ```
-mesg-core service start SERVICE
+mesg-core service start SERVICE [SERVICE...]
 ```
 
 ### Options

@@ -62,6 +62,10 @@ Subscribe to a stream that listens for events from a service.
 
 
 
+
+
+
+
 #### ListenEventRequest
 The request's data for the `ListenEvent` stream's API.
 
@@ -101,17 +105,9 @@ The request's data for the `ListenEvent` stream's API.
 
 
 
-
-
-
-
-
-
 </tab>
 
 <tab title="Reply">
-
-
 
 
 
@@ -233,6 +229,10 @@ Subscribe to a stream that listens for task's result from a service.
 
 
 
+
+
+
+
 #### ListenResultRequest
 The request's data for the `ListenResult` stream API.
 
@@ -253,12 +253,6 @@ The request's data for the `ListenResult` stream API.
 | taskFilter | [string](#string) | __Optional.__  The task's key to filter. The task must match this key. The default is `*` which matches any task. |
 | outputFilter | [string](#string) | __Optional.__ The output's key from the task to filter. The task must return this output's key. The default is `*` which matches any output. |
 | tagFilters | [string](#string)[] | __Optional.__ The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
-
-
-
-
-
-
 
 
 
@@ -368,8 +362,6 @@ The data will be received over time as long as the stream is open.
 
 
 
-
-
 </tab>
 </tabs>
 
@@ -379,8 +371,6 @@ Execute a service's task through Core.
 
 <tabs>
 <tab title="Request">
-
-
 
 
 
@@ -464,8 +454,6 @@ The request's data for the `ExecuteTask` API.
 </tab>
 
 <tab title="Reply">
-
-
 
 
 
@@ -623,8 +611,6 @@ The request's data for the `StartService` API.
 
 
 
-
-
 </tab>
 
 <tab title="Reply">
@@ -679,8 +665,6 @@ The request's data for the `StartService` API.
 
 #### StartServiceReply
 Reply of `StartService` API doesn't contain any data.
-
-
 
 
 
@@ -775,8 +759,6 @@ The request's data for the `StopService` API.
 
 
 
-
-
 </tab>
 
 <tab title="Reply">
@@ -835,8 +817,6 @@ The request's data for the `StopService` API.
 
 #### StopServiceReply
 Reply of `StopService` API doesn't contain any data.
-
-
 
 
 
@@ -942,13 +922,9 @@ or
 
 
 
-
-
 </tab>
 
 <tab title="Reply">
-
-
 
 
 
@@ -986,8 +962,8 @@ or
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | status | [DeployServiceReply.Status](#api.DeployServiceReply.Status) | `status` will be sent after each status change. |
-| serviceID | [string](#string) | `serviceID` will be sent as the last message of stream when service deployed successfully. |
 | validationError | [string](#string) | `validationError` will be sent as the last message of stream when there is a validation error. |
+| service | [DeployServiceReply.Service](#api.DeployServiceReply.Service) | `service` will be sent as the last message of stream when service deployed successfully. |
 
 
 
@@ -1125,8 +1101,6 @@ Request's data of the `DeleteService` API.
 
 
 
-
-
 </tab>
 
 <tab title="Reply">
@@ -1135,8 +1109,6 @@ Request's data of the `DeleteService` API.
 
 #### DeleteServiceReply
 Reply of `DeleteService` API doesn't contain any data.
-
-
 
 
 
@@ -1234,14 +1206,12 @@ List all services already deployed in Core.
 
 
 
+
+
+
+
 #### ListServicesRequest
 Reply of `ListServices` API doesn't contain any data.
-
-
-
-
-
-
 
 
 
@@ -1299,6 +1269,10 @@ Reply of `ListServices` API doesn't contain any data.
 
 
 
+
+
+
+
 #### ListServicesReply
 The reply's data of the `ListServices` API.
 
@@ -1306,47 +1280,51 @@ The reply's data of the `ListServices` API.
 ```json
 {
   "services": [{
-    "id": "idX",
-    "sid": "sidX",
-    "name": "serviceX",
-    "description": "descriptionX",
-    "status": "statusX",
-    "events": [{
-      "key": "eventX",
-      "name": "nameX",
-      "description": "descriptionX",
-      "data": [{  
-        "key": "dataX",
-        "name": "nameX",
-        "description": "descriptionX",
-        "type": "String",
-        "optional": true
-      }]
-    }],
-    "tasks": [{
-      "key": "taskX",
-      "name": "nameX",
-      "description": "descriptionX",
-      "inputs": [{
-        "key": "foo",
-        "name": "nameX",
-        "description": "descriptionX",
-        "type": "String",
-        "optional": true
+    "definition": {
+      "dependencies": [{
+        "image": "sha256:dfb1b6be0001c2f64822917ee8462585e43941376db887b83167413230117af9",
+        "key": "service"
       }],
-      "outputs": [{
-        "key": "outputX",
-        "name": "nameX",
-        "description": "descriptionX",
-        "data": [{  
-          "key": "resX",
-          "name": "nameX",
-          "description": "descriptionX",
-          "type": "String",
-          "optional": false
-        }]
+      "description": "Description of my service",
+      "events": [{
+        "data": [{
+          "key": "x",
+          "type": "Boolean"
+        }],
+        "key": "started"
+      }],
+      "hash": "e8de3872762ec68f22a82ddeecac49d07cef17dbf7f2dbdb1c97f36d7cfce91a",
+      "name": "myservice",
+      "sid": "myservice",
+      "tasks": [{
+        "inputs": [{
+            "key": "bar",
+            "type": "String"
+          },
+          {
+            "key": "foo",
+            "type": "String"
+          }
+        ],
+        "key": "taskX",
+        "outputs": [{
+            "data": [{
+              "key": "error",
+              "type": "String"
+            }],
+            "key": "error"
+          },
+          {
+            "data": [{
+              "key": "message",
+              "type": "String"
+            }],
+            "key": "success"
+          }
+        ]
       }]
-    }]
+    },
+    "status": 1
   }]
 }
 ```
@@ -1354,13 +1332,7 @@ The reply's data of the `ListServices` API.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| services | [Service](#api.Service)[] | The list of previously-deployed services' definitions. |
-
-
-
-
-
-
+| services | [Service](#api.Service)[] | The list of previously-deployed services' detail. |
 
 
 
@@ -1397,8 +1369,6 @@ Get the definition of an already-deployed service from its ID.
 
 <tabs>
 <tab title="Request">
-
-
 
 
 
@@ -1499,8 +1469,6 @@ The request's data for the `GetService` API.
 
 
 
-
-
 #### GetServiceReply
 The reply's data of the `GetService` API.
 
@@ -1508,47 +1476,51 @@ The reply's data of the `GetService` API.
 ```json
 {
   "service": {
-    "id": "idX",
-    "sid": "sidX",
-    "name": "serviceX",
-    "description": "descriptionX",
-    "status": "statusX",
-    "events": [{  
-      "key": "eventX",
-      "name": "nameX",
-      "description": "descriptionX",
-      "data": [{  
-        "key": "dataX",
-        "name": "nameX",
-        "description": "descriptionX",
-        "type": "String",
-        "optional": true
-      }]
-    }],
-    "tasks": [{
-      "key": "taskX",
-      "name": "nameX",
-      "description": "descriptionX",
-      "inputs": [{  
-        "key": "foo",
-        "name": "nameX",
-        "description": "descriptionX",
-        "type": "String",
-        "optional": true
+    "definition": {
+      "dependencies": [{
+        "image": "sha256:dfb1b6be0001c2f64822917ee8462585e43941376db887b83167413230117af9",
+        "key": "service"
       }],
-      "outputs": [{
-        "key": "outputX",
-        "name": "nameX",
-        "description": "descriptionX",
-        "data": [{  
-          "key": "resX",
-          "name": "nameX",
-          "description": "descriptionX",
-          "type": "String",
-          "optional": false
-        }]
+      "description": "Description of my service",
+      "events": [{
+        "data": [{
+          "key": "x",
+          "type": "Boolean"
+        }],
+        "key": "started"
+      }],
+      "hash": "e8de3872762ec68f22a82ddeecac49d07cef17dbf7f2dbdb1c97f36d7cfce91a",
+      "name": "myservice",
+      "sid": "myservice",
+      "tasks": [{
+        "inputs": [{
+            "key": "bar",
+            "type": "String"
+          },
+          {
+            "key": "foo",
+            "type": "String"
+          }
+        ],
+        "key": "taskX",
+        "outputs": [{
+            "data": [{
+              "key": "error",
+              "type": "String"
+            }],
+            "key": "error"
+          },
+          {
+            "data": [{
+              "key": "message",
+              "type": "String"
+            }],
+            "key": "success"
+          }
+        ]
       }]
-    }]
+    },
+    "status": 1
   }
 }
 ```
@@ -1556,7 +1528,7 @@ The reply's data of the `GetService` API.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| service | [Service](#api.Service) | Service's definition. |
+| service | [Service](#api.Service) | Service's detail. |
 
 
 
@@ -1679,11 +1651,13 @@ The request's data for `ServiceLogs` API.
 
 
 
-
-
 </tab>
 
 <tab title="Reply">
+
+
+
+
 
 
 
@@ -1740,6 +1714,144 @@ The data will be received over time as long as the stream is open.
 | dependency | [string](#string) | Service dependency that data belongs. |
 | type | [LogData.Type](#api.LogData.Type) | The log type. |
 | data | [bytes](#bytes) | Log data chunk. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tab>
+</tabs>
+
+## Info
+
+Info returns all necessary information from the core.
+
+<tabs>
+<tab title="Request">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### InfoRequest
+The request to fetch all informations of the Core
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tab>
+
+<tab title="Reply">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### InfoReply
+Information concerning the Core from the `info` API.
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| services | [InfoReply.CoreService](#api.InfoReply.CoreService)[] | List of services that the core is running as core service |
+| address | [string](#string) | Address to reach the core |
+| image | [string](#string) | Docker image used |
+| version | [string](#string) | Version of the core |
+
+
+
+
+
+
+
+
 
 
 

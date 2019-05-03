@@ -15,12 +15,14 @@ mesg-core service gen-doc [flags]
 ```
 mesg-core service gen-doc
 mesg-core service gen-doc ./PATH_TO_SERVICE
+mesg-core service gen-doc --force
 ```
 
 ### Options
 
 ```
-  -h, --help   help for gen-doc
+  -f, --force   No confirmation. Will replace existing README.md file
+  -h, --help    help for gen-doc
 ```
 
 ### Options inherited from parent commands

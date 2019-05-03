@@ -14,6 +14,7 @@ mesg-core start [flags]
 
 ```
   -h, --help                help for start
+      --log-force-colors    log force colors [false|true]
       --log-format string   log format [text|json] (default "text")
       --log-level string    log level [debug|info|warn|error|fatal|panic] (default "info")
 ```

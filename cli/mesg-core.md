@@ -17,8 +17,10 @@ MESG Core
 ### SEE ALSO
 
 * [mesg-core logs](mesg-core_logs.md)	 - Show the Core's logs
+* [mesg-core marketplace](mesg-core_marketplace.md)	 - Interact with the MESG Marketplace
 * [mesg-core service](mesg-core_service.md)	 - Manage services
 * [mesg-core start](mesg-core_start.md)	 - Start the Core
 * [mesg-core status](mesg-core_status.md)	 - Get the Core's status
 * [mesg-core stop](mesg-core_stop.md)	 - Stop the Core
+* [mesg-core wallet](mesg-core_wallet.md)	 - Manage wallets
 
