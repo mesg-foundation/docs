@@ -3,7 +3,6 @@ FROM golang:1.11.4-stretch
 ENV GOPROXY=https://proxy.golang.org
 
 WORKDIR /project
-COPY . .
 VOLUME /project
 
 RUN apt-get update -y && \
