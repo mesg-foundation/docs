@@ -1,13 +1,13 @@
 #!/bin/bash -e
 
+VERSION=${version:-release-dev}
+
 if [ ! -f /.dockerenv ]; then
-  docker build -t mesg/docs:local -f Dockerfile.docs .
+  docker build -t mesg/docs:local --build-arg version=$VERSION -f Dockerfile.docs .
 
   docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/project mesg/docs:local ./generate-docs.sh
   exit
 fi
-
-VERSION=${version:-release-dev}
 
 curl -sL https://github.com/mesg-foundation/core/archive/$VERSION.tar.gz | tar -xz
 
