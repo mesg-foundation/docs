@@ -8,5 +8,7 @@ import (
 )
 
 func main() {
-	log.Fatalln(doc.GenMarkdownTree(commands.Build(nil), "./cli"))
+	if err := doc.GenMarkdownTree(commands.Build(nil), "../cli"); err != nil {
+		log.Fatalln(err)
+	}
 }
