@@ -1,11 +1,11 @@
 # Wallet
 
-The wallet contains the Ethereum accounts that you will be able to use to interact with the Marketplace.
+The wallet contains the Ethereum accounts you can use to interact with the Marketplace.
 
-The wallet holds the private keys of the Ethereum accounts and never expose it.
+The wallet holds the private keys of the Ethereum accounts and never exposes them.
 
-::: tip Backup everything!
-Make sure to always backup the passphrase and the exported account to prevent loosing access to the account and thus your Ether or MESG Token!
+::: tip Back up everything!
+Make sure to always back up the passphrase and the exported account to prevent losing access to the account and thus your Ether or MESG Tokens!
 :::
 
 ## Create an account
@@ -17,13 +17,13 @@ mesg-core wallet create
 
 Enter a desired passphrase and hit enter.
 
-For security reason, you should set a different passphrase for every account you create.
+For security reasons, you should set a different passphrase for every account you create.
 
-**Backup the passphrase!** If you lost it, you will loose the access to this account forever.
+**Back up the passphrase!** If you lose it, you will lose the access to this account forever.
 
 You should get a new account with an address like `0xc31183605099bc7207a2e0f49520581a216d9bcd`.
 
-## Export an account
+## Export the account
 
 Let's export the account so you can back it up in a secure location.
 
@@ -64,7 +64,7 @@ You should get a JSON object like:
 
 Copy and paste the JSON object in a file in a secure location.
 
-**You will need both this file and the passphrase to import this account.**
+**You will need both the passphrase and this file to import this account.**
 
 ::: tip Compatibility
 The exported account respects the [Web3 Secret Storage specification of Ethereum](https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition) so you should be able to import from / export to other Ethereum wallets.
@@ -92,9 +92,9 @@ Make sure to export the account first if you want to import it later.
 
 ## Import an account
 
-An account can be imported by two ways: from a private key or from a JSON file (like the one returned by the [export](#export-an-account) command).
+An account can be imported by two ways: from a private key, or from a JSON file (like the one returned by the [export](#export-an-account) command).
 
-In both case, execute the command and answer the questions:
+In both cases, execute the command and answer the questions:
 
 ```bash
 mesg-core wallet import
