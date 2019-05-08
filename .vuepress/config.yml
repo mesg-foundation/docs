@@ -117,6 +117,12 @@ themeConfig:
           - /guide/service/test
           - /guide/service/deploy-a-service
           - /guide/service/run-the-service
+      - title: Marketplace
+        children:
+          - /guide/marketplace/
+          - /guide/marketplace/wallet
+          - /guide/marketplace/deploy
+          - /guide/marketplace/publish
     /tutorials/:
       - /tutorials/
       - title: ERC20 transfer notifications
