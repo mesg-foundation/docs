@@ -4,7 +4,7 @@ The wallet contains the Ethereum accounts you can use to interact with the Marke
 
 The wallet holds the private keys of the Ethereum accounts and never exposes them.
 
-::: tip Back up everything!
+::: warning Back up everything!
 Make sure to always back up the passphrase and the exported account to prevent losing access to the account and thus your Ether or MESG Tokens!
 :::
 
