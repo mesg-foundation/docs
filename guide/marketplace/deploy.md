@@ -17,7 +17,7 @@ If the Service is free (the Service has at least one offer with a price of 0 MES
 
 To deploy a Service, click on the deploy button, copy the command and execute it in your terminal.
 For the [`email-sendgrid`](https://marketplace.mesg.com/services/email-sendgrid) Service, it looks like:
-```
+```bash
 mesg-core service deploy mesg://marketplace/service/5GbZWqgV2NTkAuev5TEjZZcgFhrNR5zBKw8y4UnLHLT9
 ```
 
