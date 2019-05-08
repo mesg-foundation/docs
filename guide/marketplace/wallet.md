@@ -86,6 +86,8 @@ To delete an account from the wallet, execute:
 mesg-core wallet delete 0xc31183605099bc7207a2e0f49520581a216d9bcd
 ```
 
+_Replace `0xc31183605099bc7207a2e0f49520581a216d9bcd` by the address you want to delete._
+
 Enter the account's passphrase and hit enter.
 
 Make sure to export the account first if you want to import it later.

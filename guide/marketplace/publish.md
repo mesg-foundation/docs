@@ -22,11 +22,11 @@ Now let's wait for the magic to happen!
 
 Once done, the terminal should display a link to the page of your Service on the Marketplace website!
 
-Congrats, you've just published a Service! But don't forget to [create at least one offer](#create-an-offer).
+Congrats, you've just published a Service! But nobody can access it until you [create at least one offer](#create-an-offer).
 
 ## Create an offer
 
-Now that your Service has been published, you have to create at least one offer to allow other users to use your Service.
+Now that your Service has been published, you have to create at least one offer to allow other users to use your Service (even if the offer is free).
 
 Offers are defined by a price in MESG Tokens and a duration.
 
