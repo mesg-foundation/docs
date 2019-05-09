@@ -1,4 +1,4 @@
 https://docs.mesg.tech/* https://docs.mesg.com/:splat 301!
 https://mesg-docs.netlify.com/* https://docs.mesg.com/:splat 301!
 
-https://docs.mesg.com/guide/start-here/* https://docs.mesg.com/guide/:splat 301!
+/guide/start-here/* /guide/:splat
