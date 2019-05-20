@@ -2,7 +2,7 @@
 
 ## Why emit an Event?
 
-Events are emitted from a Service \(e.g.: a web server receiving a request, or a blockchain technology receiving a new transaction\). These events are emitted to achieve a desired effect or to be used as a trigger to make another task happen. Each Service has different kinds of events that you can send to Core.
+Events are emitted from a Service \(e.g.: a web server receiving a request, or a blockchain technology receiving a new transaction\). These events are emitted to achieve a desired effect or to be used as a trigger to make another task happen. Each Service has different kinds of events that you can send to the Engine.
 
 ## Steps to follow
 
@@ -69,7 +69,7 @@ events:
 
 ## Emit an Event
 
-To emit events from the Service to the Core, the Service has to follow the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and use [gRPC](https://grpc.io/).
+To emit events from the Service to the Engine, the Service has to follow the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and use [gRPC](https://grpc.io/).
 
 ::: tip
 Consider emitting event when the service is ready. If the service needs to synchronize data first, it should wait for the synchronization to complete before emitting events.
@@ -82,7 +82,7 @@ Consider emitting event when the service is ready. If the service needs to synch
 
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| **token** | `String` | Required | The token given by the Core as environment variable `MESG_TOKEN` |
+| **token** | `String` | Required | The token given by the Engine as environment variable `MESG_TOKEN` |
 | **eventKey** | `String` | Required | The event's key defined in the [service file](/guide/service/service-file.md) |
 | **eventData** | `String` | Required | The event's data in JSON format |
 

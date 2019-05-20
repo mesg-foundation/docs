@@ -20,7 +20,7 @@ You can access the final version of the [source code on GitHub](https://github.c
 You can find a more advanced and maintained version of this service here: [Service Ethereum ERC20](https://github.com/mesg-foundation/service-ethereum-erc20)
 
 ::: tip
-If you haven't installed **MESG Core** yet, you can do so by running the command:
+If you haven't installed **MESG Engine** yet, you can do so by running the command:
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
@@ -177,7 +177,7 @@ Now, it's time to transform this node app to a fully-compatible MESG Service.
 
 ### Update mesg.yml
 
-Let's add the event we want to emit to MESG Core to the `mesg.yml` file.
+Let's add the event we want to emit to MESG Engine to the `mesg.yml` file.
 
 First, clean the `mesg.yml` file, keeping only the keys: `name`, `sid` and `description`. Change their value to look like this:
 
@@ -205,7 +205,7 @@ events:
         type: String
 ```
 
-This definition matches the JavaScript object we want to emit to MESG Core. You can refer to the [documentation](/guide/service/service-file.md) for more information about the `mesg.yml` file.
+This definition matches the JavaScript object we want to emit to MESG Engine. You can refer to the [documentation](/guide/service/service-file.md) for more information about the `mesg.yml` file.
 
 ### Require MESG service client
 
@@ -215,7 +215,7 @@ Add the following code to the top of `index.js` :
 const mesg = require('mesg-js').service()
 ```
 
-### Emit `transfer` service event to MESG Core
+### Emit `transfer` service event to MESG Engine
 
 Replace `console.log` by `mesg.emitEvent`, like so:
 
@@ -250,7 +250,7 @@ You should have a message with `Service is valid`, if not, check the previous st
 
 It's time to test the Service with MESG!
 
-Make sure MESG Core is running:
+Make sure MESG Engine is running:
 
 ```bash
 mesg-core start

@@ -2,14 +2,14 @@
 
 ## Why listen for tasks?
 
-The Service needs to receive a command sent by Core in order to execute any desired task. Every time a command is received, it will ensure that the sender is Core, then it will check if it can handle the command, and if so, it will execute it. Once executed, it will reply to Core with the result of the command.
+Services need to receive a command from the Engine in order to execute any desired task. Every time a command is received, it will ensure that the sender is the Engine, then it will check if it can handle the command, and if so, it will execute it. Once executed, it will reply to the Engine with the result of the command.
 
 ## Steps to follow
 
 To implement tasks in your Service, you'll need to :
 
 * [Add the task definition](#task-definitions) in the Service's [`mesg.yml`](service-file.md) file
-* [Listen for task's execution](#listen-for-task-executions) from the Core
+* [Listen for task's execution](#listen-for-task-executions) from the Engine
 * [Submit the outputs](#submit-outputs-of-task-executions) of the task
 
 ## Task definitions
@@ -94,7 +94,7 @@ tasks:
 
 ## Listen for task executions
 
-To listen for task to execute, the Service needs to open a stream with Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to Core.
+To listen for task to execute, the Service needs to open a stream with the Engine using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to the Engine.
 
 ::: tip
 Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, you should wait for this synchronization before listening for tasks.
@@ -107,7 +107,7 @@ Consider listening for tasks when your service is ready. If your service needs t
 
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| **token** | `String` | Required | The token given by the Core as environment variable `MESG_TOKEN` |
+| **token** | `String` | Required | The token given by the Engine as environment variable `MESG_TOKEN` |
 
 ```json
 {
@@ -138,7 +138,7 @@ Consider listening for tasks when your service is ready. If your service needs t
 
 ## Submit outputs of task executions
 
-Once the task execution is finished, the Service has to send the outputs of the execution back to Core using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
+Once the task execution is finished, the Service has to send the outputs of the execution back to the Engine using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
 
 <tabs>
 <tab title="Request" vp-markdown>

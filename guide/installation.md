@@ -46,20 +46,20 @@ chmod +x mesg-core
 mv ./mesg-core /usr/local/bin/mesg-core
 # Create system services folder under your mesg path
 mkdir -p ~/.mesg/systemservices
-# Start MESG Core with the command
+# Start the MESG Engine with the command
 mesg-core start
 ```
 
 ### Docker only
 
-If you don't want to use the CLI, you can start the Core by executing the following commands.
+If you don't want to use the CLI, you can start the Engine by executing the following commands.
 
 ```bash
 # Download latest version
 docker pull mesg/core:latest
 # Create the MESG network
 docker network create core -d overlay --label com.docker.stack.namespace=core
-# Start MESG Core
+# Start the MESG Engine
 docker service create --network core --env MESG_CORE_PATH=/mesg --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind --mount source=$HOME/.mesg,destination=/mesg,type=bind --publish 50052:50052 --label com.docker.stack.namespace=core --name core mesg/core:latest
 ```
 

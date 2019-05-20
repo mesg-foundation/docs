@@ -6,7 +6,7 @@ e.g.:
 - **when** a user signs up **then** send an email
 - **when** a user pays **then** change the state of the order to paid **then** send an email to the user
 
-Applications using this architecture pattern need to interact with MESG Core to [listen for events](listen-for-events.md) and [execute tasks](execute-a-task.md).
+Applications using this architecture pattern need to interact with MESG Engine to [listen for events](listen-for-events.md) and [execute tasks](execute-a-task.md).
 
 ![Application](/application.svg)
 
