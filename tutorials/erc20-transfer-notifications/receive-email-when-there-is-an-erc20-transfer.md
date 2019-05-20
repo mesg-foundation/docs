@@ -16,7 +16,7 @@ Today we'll learn how to create a JavaScript application that connects the two p
 You can access the final version of the [source code on GitHub](https://github.com/mesg-foundation/docs/tree/master/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer).
 
 ::: tip
-If you haven't installed **MESG Core** yet, you can do so by running the command:
+If you haven't installed **MESG Engine** yet, you can do so by running the command:
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
@@ -25,9 +25,9 @@ You can also install it manually by following [this guide](/guide/start-here/ins
 
 ## Setup
 
-### Start core
+### Start engine
 
-Let's start MESG Core, if it isn't already running:
+Let's start MESG Engine, if it isn't already running:
 
 ```text
 mesg-core start

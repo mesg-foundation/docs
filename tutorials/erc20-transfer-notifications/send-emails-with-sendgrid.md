@@ -17,7 +17,7 @@ You can access the final version of the [source code on GitHub](https://github.c
 You can find a more advanced and maintained version of this service here: [Service Email SendGrid](https://github.com/mesg-foundation/service-email-sendgrid)
 
 ::: tip
-If you haven't installed **MESG Core** yet, you can do so by running the command:
+If you haven't installed **MESG Engine** yet, you can do so by running the command:
 
 `bash <(curl -fsSL https://mesg.com/install)`
 
@@ -61,7 +61,7 @@ You should see a **mesg.yml** and a **Dockerfile** in your service folder which 
 
 ### Configure your task
 
-Let's add the task we want to serve for MESG Core to the `mesg.yml` file.
+Let's add the task we want to serve for MESG Engine to the `mesg.yml` file.
 
 First, clean the `mesg.yml` file, keeping only the keys: `name`, `sid` and `description`. Change their value to look like this:
 
@@ -127,7 +127,7 @@ mesg.listenTask({
   })
 ```
 
-With this code, service will start listening execution requests for `send` task from **MESG Core** and execute the handler to create and submit a result.
+With this code, service will start listening execution requests for `send` task from **MESG Engine** and execute the handler to create and submit a result.
 
 To create a handler for the `send` task, rename `tasks/taskX.js` to `tasks/send.js` and replace its content with the following code:
 
@@ -224,7 +224,7 @@ In one terminal execute:
 mesg-core service dev
 ```
 
-Don't worry, the first time you do this, it will take a bit of time because MESG Core is building your Service, but the subsequent times will be faster.
+Don't worry, the first time you do this, it will take a bit of time because MESG Engine is building your Service, but the subsequent times will be faster.
 
 Wait for the service to start and then copy the service ID.
 
