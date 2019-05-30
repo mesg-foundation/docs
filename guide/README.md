@@ -2,7 +2,7 @@
 
 MESG is a framework for developers to build application efficiently. It relies on two specific tools:
 
-- The **MESG Engine** that connects services together
+- The **MESG SDK** that connects services together
 - The **MESG Marketplace** to bootstrap applications faster
 
 MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
@@ -12,13 +12,13 @@ MESG Services have two responsibilities:
 
 [Applications](/guide/application/) rely only on [services](/guide/service/) managed by the MESG Engine, so developers can focus on applications' business logic and nothing more.
 
-### Why use the MESG Engine?
+### Why use the MESG SDK?
 
-MESG Engine:
-- Creates and manages services 
-- Manages communication between all services with a standardized bi-directional API
-- Manages the security and isolation of services
-- Routes the various tasks and events to listen to the appropriate service
+The tools within the SDK:
+- Create and manage services 
+- Manage communication between all services with a standardized bi-directional API
+- Manage the security and isolation of services
+- Route the various tasks and events to listen to the appropriate service
 
 Applications are only responsible for communicating with the MESG Engine, and use only one API to access any service. 
 

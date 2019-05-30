@@ -6,7 +6,7 @@ This step-by-step guide will show you how to create an application that sends a 
 
 ## 1. Installation
 
-Run the following command in a console to install the MESG Engine:
+Run the following command in a console to install the MESG SDK:
 
 ```bash
 bash <(curl -fsSL https://mesg.com/install)
