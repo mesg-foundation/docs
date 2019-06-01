@@ -9,6 +9,6 @@
   "license": "ISC",
   "dependencies": {
     "vuepress": "^0.14.4",
-    "vuepress-plugin-sitemap": "0.0.1"
+    "vuepress-plugin-sitemap": "1.1.1"
   }
 }
