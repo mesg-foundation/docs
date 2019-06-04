@@ -18,7 +18,7 @@ For the [service email-sendgrid](https://marketplace.mesg.com/services/email-sen
 mesg-core service deploy mesg://marketplace/service/8mcRi836QZZmYAvt2o7RgHdUjsvGsdnPdSHVBq25jjyB
 ```
 
-If the Service is free or if you've previously purchased access, the Service should be deployed your MESG Core and ready to be started!
+If the Service is free or if you've previously purchased access, the Service should be deployed your MESG Engine and ready to be started!
 
 ## Purchase access
 
