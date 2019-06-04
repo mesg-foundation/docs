@@ -56,11 +56,11 @@ If you don't want to use the CLI, you can start the Engine by executing the foll
 
 ```bash
 # Download latest version
-docker pull mesg/core:latest
+docker pull mesg/engine:latest
 # Create the MESG network
-docker network create core -d overlay --label com.docker.stack.namespace=core
+docker network create engine -d overlay --label com.docker.stack.namespace=engine
 # Start the MESG Engine
-docker service create --network core --env MESG_CORE_PATH=/mesg --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind --mount source=$HOME/.mesg,destination=/mesg,type=bind --publish 50052:50052 --label com.docker.stack.namespace=core --name core mesg/core:latest
+docker service create --network engine --env MESG_CORE_PATH=/mesg --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind --mount source=$HOME/.mesg,destination=/mesg,type=bind --publish 50052:50052 --label com.docker.stack.namespace=engine --name engine mesg/engine:latest
 ```
 
 ::: tip Get Help
