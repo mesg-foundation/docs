@@ -147,7 +147,7 @@ func main() {
 
 ```
 
-[See the Engine API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
+[See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
 </tab>
 </tabs>
