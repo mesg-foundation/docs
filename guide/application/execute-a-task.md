@@ -2,7 +2,7 @@
 
 ## Execute a Service's task
 
-To execute a task, Applications need to connect to the Engine through [gRPC](https://grpc.io/) and use the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). The Engine will reply with an `executionID`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
+To execute a task, Applications need to connect to the Engine through [gRPC](https://grpc.io/) and use the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). The Engine will reply with an `executionHash`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
 
 <tabs>
 <tab title="Request" vp-markdown>
@@ -31,11 +31,11 @@ To execute a task, Applications need to connect to the Engine through [gRPC](htt
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| **executionID** | `String` | The ID of the execution. |
+| **executionHash** | `String` | The hash of the execution. |
 
 ```json
 {
-  "executionID": "xxxxx"
+  "executionHash": "xxxxx"
 }
 ```
 
@@ -57,7 +57,7 @@ mesg.executeTask({
     inputX: "input value"
   })
 }).then((reply) => {
-  console.log(reply.executionID)
+  console.log(reply.executionHash)
 }).catch((err) => {
   console.error('an error occurred while executing task:', err.message)
 })
