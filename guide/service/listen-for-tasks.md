@@ -107,13 +107,13 @@ Consider listening for tasks when your service is ready. If your service needs t
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- |
-| **executionID** | `String` | A unique ID for the task that allows you to track the result in an asynchronous way |
+| **executionHash** | `String` | The hash of the execution that allows you to track the result in an asynchronous way |
 | **taskKey** | `String` | Key of the task to execute \(as in your `mesg.yml` file\) |
 | **inputData** | `String` | Inputs of the task serialized in JSON |
 
 ```json
 {
-    "executionID": "xxxxxx",
+    "executionHash": "xxxxxx",
     "taskKey": "taskX",
     "inputData": "{\"inputX\":\"Hello world!\",\"inputY\":true}"
 }
@@ -133,12 +133,12 @@ Once the task execution is finished, the Service has to send the outputs of the 
 
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| **executionID** | `String` | required | The `executionID` received from the [listen](listen-for-tasks.md#listen-for-task-executions) stream. |
+| **executionHash** | `String` | required | The `executionHash` received from the [listen](listen-for-tasks.md#listen-for-task-executions) stream. |
 | **outputData** | `String` | required | The output's data encoded in JSON. The data should match the one defined in the [output's declaration](#task-definitions). |
 
 ```json
 {
-    "executionID": "xxxxxx",
+    "executionHash": "xxxxxx",
     "outputData": "{\"foo\":\"super result\",\"bar\":true}"
 }
 ```
@@ -149,11 +149,11 @@ Once the task execution is finished, the Service has to send the outputs of the 
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| **executionID** | `String` | The ID of the execution. |
+| **executionHash** | `String` | The hash of the execution. |
 
 ```json
 {
-    "executionID": "xxxxxx"
+    "executionHash": "xxxxxx"
 }
 ```
 
