@@ -9,7 +9,7 @@ To publish a Service, make sure it's running as intended, has a good `README.md`
 To publish a Service, execute the following command:
 
 ```bash
-mesg-core marketplace publish PATH_TO_THE_SERVICE
+mesg-cli marketplace:publish PATH_TO_THE_SERVICE
 ```
 
 *Replace `PATH_TO_THE_SERVICE` by the actual path of the service on your computer, eg: `./service-email-sendgrid`.*
@@ -39,7 +39,7 @@ The duration (in seconds) defines how long the user is allowed to use your Servi
 The create an offer, execute the following command:
 
 ```bash
-mesg-core marketplace create-offer SERVICE_SID
+mesg-cli marketplace:create-offer SERVICE_SID
 ```
 
 *Replace `SERVICE_SID` by your service SID that is returned by the [publish command](#publish-a-service).*

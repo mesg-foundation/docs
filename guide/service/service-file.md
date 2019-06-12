@@ -7,7 +7,7 @@ To define a [Service](create-a-service.md), you will need to create a specific f
 You can create a default file using the CLI by entering the command:
 
 ```bash
-mesg-core service init
+mesg-cli service:init
 ```
 
 This will create a `mesg.yml` file in your current directory with the following attributes:
