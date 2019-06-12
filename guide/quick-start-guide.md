@@ -6,13 +6,13 @@ This step-by-step guide will show you how to create an application that sends a 
 
 ## 1. Installation
 
-Run the following command in a console to install the MESG SDK:
+Run the following command in a console to install the MESG CLI:
 
 ```bash
-bash <(curl -fsSL https://mesg.com/install)
+npm install -g mesg-cli
 ```
 
-You can also install it manually by following [this guide](/guide/installation.md).
+More details on [the installation guide](/guide/installation.md).
 
 ## 2. Run the MESG Engine
 
