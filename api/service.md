@@ -201,8 +201,8 @@ The data must contain the `executionID` of the executed task received from the s
 ```json
 {
   "executionID": "__EXECUTION_ID__",
-  "outputKey":   "__OUTPUT_KEY__",
   "outputData":  "{\"foo\":\"super result\",\"bar\":true}"
+  "error":  "{\"message\":\"some error\"}"
 }
 ```
 
@@ -210,8 +210,8 @@ The data must contain the `executionID` of the executed task received from the s
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | executionID | [string](#string) | The `executionID` received from the [`ListenTask` stream](#listentask). |
-| outputKey | [string](#string) | The output's key as defined in the [service file](../guide/service/service-file.md). |
 | outputData | [string](#string) | The result's data encoded in JSON as defined in the [service file](../guide/service/service-file.md). |
+| error | [string](#string) | The error message. |
 
 
 
