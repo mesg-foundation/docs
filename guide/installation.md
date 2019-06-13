@@ -34,6 +34,8 @@ If you don't want to use the CLI, you can start the Engine directly on Docker.
 - Run the following commands:
 
 ```bash
+# Create local `.mesg` dir
+mkdir -p ~/.mesg
 # Start docker swarm
 docker swarm init
 # Download latest version
