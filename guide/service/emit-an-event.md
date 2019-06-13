@@ -69,7 +69,7 @@ events:
 
 ## Emit an Event
 
-To emit events from the Service to the Engine, the Service has to follow the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and use [gRPC](https://grpc.io/).
+To emit events from the Service to the Engine, the Service has to follow the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and use [gRPC](https://grpc.io/).
 
 ::: tip
 Consider emitting event when the service is ready. If the service needs to synchronize data first, it should wait for the synchronization to complete before emitting events.

@@ -1,6 +1,9 @@
 name: Ethereum ERC20 Service Tutorial
 sid: service-ethereum-erc20-tuto
 description: Listen to transfers of an ERC20
+configuration:
+  env:
+    - PROVIDER_ENDPOINT=__ENV_PROVIDER_ENDPOINT_NEEDS_TO_BE_REPLACED__
 events:
   transfer:
     data:
@@ -13,4 +16,6 @@ events:
       to:
         type: String
       value:
+        type: String
+      contractAddress:
         type: String

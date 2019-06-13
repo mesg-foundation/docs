@@ -1,6 +1,6 @@
 const mesg = require('mesg-js').service()
 const Web3 = require('web3')
-const web3 = new Web3('wss://mainnet.infura.io/ws')
+const web3 = new Web3(process.env.PROVIDER_ENDPOINT)
 const contract = new web3.eth.Contract(require('./erc20-abi.json'), '0xe41d2489571d322189246dafa5ebde1f4699f498')
 
 contract.events.Transfer({fromBlock: 'latest'})
@@ -11,13 +11,12 @@ contract.events.Transfer({fromBlock: 'latest'})
       transactionHash: event.transactionHash,
       from: event.returnValues.from,
       to: event.returnValues.to,
-      value: String(event.returnValues.value / Math.pow(10, 18)) // We convert value to its user representation based on the number of decimals used by this ERC20.
-    }).catch((err) => {
-      console.error(err.message)
+      value: event.returnValues.value,
+      contractAddress: event.address,
     })
   })
   .on('error', (err) => {
-    console.error(err.message)
+    console.error(err)
   })
 
 console.log('Listening ERC20 transfer...')
