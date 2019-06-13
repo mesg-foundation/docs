@@ -68,6 +68,7 @@ If the service requires dependencies to other Docker container, specify them in 
 | **ports** | `String[]` | `[]` | A list of ports that the Service needs to expose. |
 | **command** | `String` | `""` | The command to run when the Service starts if not defined in your [Dockerfile](#create-the-dockerfile). |
 | **volumesFrom** | `String[]` | `[]` | List of dependencies' names to mount a volume from. |
+| **env** | `String[]` | `[]` | List of environmental variables needed for the dependency with the format `KEY=VALUE`. |
 
 ### Example
 
@@ -79,6 +80,8 @@ configuration:
   command: "node start"
   volumesFrom:
     - serviceToConnectWith
+  env:
+    - FOO=BAR
 dependencies:
   serviceToConnectWith:
     image: "..."

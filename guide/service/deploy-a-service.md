@@ -10,6 +10,12 @@ mesg-core service deploy PATH_OF_THE_SERVICE
 
 This will give the id of your service. You need to use this id whenever you want to use the service.
 
+::: tip
+Env variables from the configuration can be overwrite with the flag `--env`.
+
+`mesg-cli service:deploy PATH_OF_SERVICE --env FOO=BAR2`
+:::
+
 ### List deployed services
 
 If you want to see the list of services already deployed you can run the command:
