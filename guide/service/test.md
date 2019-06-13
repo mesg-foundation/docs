@@ -16,6 +16,12 @@ mesg-core service dev ./PATH_TO_SERVICE_FOLDER
 
 If you don't specify the path to the service folder, the command searches in the current folder for the `mesg.yml` file.
 
+::: tip
+Env variables from the configuration can be overwrite with the flag `--env`.
+
+`mesg-cli service:dev PATH_OF_SERVICE --env FOO=BAR2`
+:::
+
 [More details here](/cli/mesg-core_service_dev.md)
 
 ## Execute a task
