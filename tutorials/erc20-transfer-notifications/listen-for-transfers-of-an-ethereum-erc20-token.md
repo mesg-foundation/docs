@@ -294,7 +294,7 @@ After the deployment and start step, you should see in the console:
 
 ```text
 Deploy service... service-ethereum-erc20-tuto
-Start service... 6novP8X6zRbCeGrYE7W49HP9S5yZNAytpakqkdsamgPm
+Start service... CY21L4ZLSLLR4sb8yYmd3gCgHYgyL6idEo6H9wh84LZF
 service |  Listening ERC20 transfer...
 ```
 

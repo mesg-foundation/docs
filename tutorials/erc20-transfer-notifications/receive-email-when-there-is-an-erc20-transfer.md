@@ -149,11 +149,15 @@ try {
     return
   }
   console.log('task send return status', JSON.parse(result.outputData).status)
+} catch(err) {
+  console.error(err.message)
+}
 ```
 
 Replace `__REPLACE_WITH_YOUR_EMAIL__` by your email.
 
 The `index.js` file should look like:
+
 <<< @/tutorials/erc20-transfer-notifications/email-notification-on-erc20-transfer/index.js
 
 #### Run it!
