@@ -5,7 +5,7 @@
 To start a Service, run the command:
 
 ```bash
-mesg-core service start SERVICE_ID
+mesg-cli service:start SERVICE_ID
 ```
 
 The command will start the Docker container\(s\) needed to run your service.
@@ -15,7 +15,7 @@ The command will start the Docker container\(s\) needed to run your service.
 To stop a Service, run the command:
 
 ```bash
-mesg-core service stop SERVICE_ID
+mesg-cli service:stop SERVICE_ID
 ```
 
 This command will stop the Docker container\(s\) started for your service.

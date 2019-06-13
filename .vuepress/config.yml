@@ -120,7 +120,7 @@ themeConfig:
       - title: Marketplace
         children:
           - /guide/marketplace/
-          - /guide/marketplace/wallet
+          - /guide/marketplace/account
           - /guide/marketplace/deploy
           - /guide/marketplace/publish
     /tutorials/:

@@ -1,8 +1,8 @@
-# Wallet
+# Account
 
-The wallet contains the Ethereum accounts you can use to interact with the Marketplace.
+The account contains the Ethereum accounts you can use to interact with the Marketplace.
 
-The wallet holds the private keys of the Ethereum accounts and never exposes them.
+The account holds the private keys of the Ethereum accounts and never exposes them.
 
 ::: warning Back up everything!
 Make sure to always back up the passphrase and the exported account to prevent losing access to the account and thus your Ether or MESG Tokens!
@@ -12,7 +12,7 @@ Make sure to always back up the passphrase and the exported account to prevent l
 
 First, let's create an account by executing the following command:
 ```bash
-mesg-core wallet create
+mesg-cli account:create
 ```
 
 Enter a desired passphrase and hit enter.
@@ -29,7 +29,7 @@ Let's export the account so you can back it up in a secure location.
 
 To export an account, execute the command:
 ```bash
-mesg-core wallet export 0xc31183605099bc7207a2e0f49520581a216d9bcd
+mesg-cli account:export 0xc31183605099bc7207a2e0f49520581a216d9bcd
 ```
 
 _Replace `0xc31183605099bc7207a2e0f49520581a216d9bcd` by the address created previously._
@@ -67,7 +67,7 @@ Copy and paste the JSON object in a file in a secure location.
 **You will need both the passphrase and this file to import this account.**
 
 ::: tip Compatibility
-The exported account respects the [Web3 Secret Storage specification of Ethereum](https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition) so you should be able to import from / export to other Ethereum wallets.
+The exported account respects the [Web3 Secret Storage specification of Ethereum](https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition) so you should be able to import from / export to other Ethereum accounts.
 :::
 
 ## List accounts
@@ -75,15 +75,15 @@ The exported account respects the [Web3 Secret Storage specification of Ethereum
 To list all available accounts, execute:
 
 ```bash
-mesg-core wallet list
+mesg-cli account:list
 ```
 
 ## Delete an account
 
-To delete an account from the wallet, execute:
+To delete an account execute:
 
 ```bash
-mesg-core wallet delete 0xc31183605099bc7207a2e0f49520581a216d9bcd
+mesg-cli account:delete 0xc31183605099bc7207a2e0f49520581a216d9bcd
 ```
 
 _Replace `0xc31183605099bc7207a2e0f49520581a216d9bcd` by the address you want to delete._
@@ -96,8 +96,7 @@ Make sure to export the account first if you want to import it later.
 
 An account can be imported by two ways: from a private key, or from a JSON file (like the one returned by the [export](#export-an-account) command).
 
-In both cases, execute the command and answer the questions:
-
 ```bash
-mesg-core wallet import
+mesg-cli account:import ACCOUNT
+mesg-cli account:import-private-key PRIVATE_KEY
 ```

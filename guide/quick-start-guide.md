@@ -6,20 +6,20 @@ This step-by-step guide will show you how to create an application that sends a 
 
 ## 1. Installation
 
-Run the following command in a console to install the MESG SDK:
+Run the following command in a console to install the MESG CLI:
 
 ```bash
-bash <(curl -fsSL https://mesg.com/install)
+npm install -g mesg-cli
 ```
 
-You can also install it manually by following [this guide](/guide/installation.md).
+More details on [the installation guide](/guide/installation.md).
 
 ## 2. Run the MESG Engine
 
 MESG Engine runs as a daemon. To start it, execute:
 
 ```bash
-mesg-core start
+mesg-cli daemon:start
 ```
 
 ## 3. Deploy the services
@@ -31,13 +31,13 @@ In this guide, the application is using 2 services.
 Start by deploying the [webhook service](https://github.com/mesg-foundation/service-webhook):
 
 ```bash
-mesg-core service deploy https://github.com/mesg-foundation/service-webhook
+mesg-cli service:deploy https://github.com/mesg-foundation/service-webhook
 ```
 
 Deploy the [invite discord service](https://github.com/mesg-foundation/service-discord-invitation):
 
 ```bash
-mesg-core service deploy https://github.com/mesg-foundation/service-discord-invitation
+mesg-cli service:deploy https://github.com/mesg-foundation/service-discord-invitation
 ```
 
 Once the service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine. You'll need to use them inside the application.
@@ -98,12 +98,12 @@ Don't forget to replace the values `__YOUR_EMAIL_HERE__` and `__SENDGRID_API_KEY
 
 Start the webhook service:
 ```bash
-mesg-core service start webhook
+mesg-cli service:start webhook
 ```
 
 Start discord invitation service:
 ```bash
-mesg-core service start discord-invitation
+mesg-cli service:start discord-invitation
 ```
 
 ## 6. Start the application
