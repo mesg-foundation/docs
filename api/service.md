@@ -10,9 +10,9 @@ This file is generated using the ./scripts/build-proto.sh scripts
 Please update the Service file
 -->
 
-This is the API for MESG Services to interact with MESG Core.
+This is the API for MESG Services to interact with MESG Engine.
 It is to be consumed only by MESG Services.
-It provides all necessary functions that MESG Services need in order to interact with MESG Core.
+It provides all necessary functions that MESG Services need in order to interact with MESG Engine.
 
 This API is only accessible through [gRPC](https://grpc.io/).
 
@@ -150,12 +150,12 @@ The request's data for the `ListenTask` stream API.
 #### TaskData
 The data received from the stream of the `ListenTask` API.
 The data will be received over time as long as the stream is open.
-The `executionID` value must be kept and sent with the result when calling the [`SubmitResult` API](#submitresult).
+The `executionHash` value must be kept and sent with the result when calling the [`SubmitResult` API](#submitresult).
 
 **Example:**
 ```json
 {
-  "executionID": "__EXECUTION_ID__",
+  "executionHash": "__EXECUTION_HASH__",
   "taskKey":     "__TASK_KEY__",
   "inputData":   "{\"inputX\":\"Hello world!\",\"inputY\":true}"
 }
@@ -164,7 +164,7 @@ The `executionID` value must be kept and sent with the result when calling the [
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The unique identifier of the execution. Must be kept and sent with the result when calling the [`SubmitResult` API](#submitresult). |
+| executionHash | [string](#string) | The unique identifier of the execution. Must be kept and sent with the result when calling the [`SubmitResult` API](#submitresult). |
 | taskKey | [string](#string) | The key from the task to execute as defined in the [service file](../guide/service/service-file.md). |
 | inputData | [string](#string) | The task's input encoded in JSON as defined in the [service file](../guide/service/service-file.md). |
 
@@ -195,12 +195,12 @@ The result must be defined as a task's output in the [service's definition file]
 
 #### SubmitResultRequest
 The request's data for the `SubmitResult` API.
-The data must contain the `executionID` of the executed task received from the stream of [`ListenTask` API](#listentask).
+The data must contain the `executionHash` of the executed task received from the stream of [`ListenTask` API](#listentask).
 
 **Example:**
 ```json
 {
-  "executionID": "__EXECUTION_ID__",
+  "executionHash": "__EXECUTION_HASH__",
   "outputData":  "{\"foo\":\"super result\",\"bar\":true}"
   "error":  "{\"message\":\"some error\"}"
 }
@@ -209,7 +209,7 @@ The data must contain the `executionID` of the executed task received from the s
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The `executionID` received from the [`ListenTask` stream](#listentask). |
+| executionHash | [string](#string) | The `executionHash` received from the [`ListenTask` stream](#listentask). |
 | outputData | [string](#string) | The result's data encoded in JSON as defined in the [service file](../guide/service/service-file.md). |
 | error | [string](#string) | The error message. |
 

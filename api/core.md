@@ -10,8 +10,8 @@ This file is generated using the ./scripts/build-proto.sh scripts
 Please update the Core file
 -->
 
-This is the primary API to interact with MESG Core functionalities.
-It can be consumed by any applications or tools that you'd like to interact with MESG Core.
+This is the primary API to interact with MESG Engine functionalities.
+It can be consumed by any applications or tools that you'd like to interact with MESG Engine.
 It is actually used by the MESG CLI and MESG Application libraries.
 
 This API is only accessible through [gRPC](https://grpc.io/).
@@ -325,7 +325,7 @@ The data will be received over time as long as the stream is open.
 **Example**
 ```json
 {
-  "executionID":   "__EXECUTION_ID__",
+  "executionHash":   "__EXECUTION_HASH__",
   "taskKey":       "__TASK_KEY__",
   "outputData":    "{\"foo\":\"bar\"}",
   "executionTags": ["executionX", "test"],
@@ -336,7 +336,7 @@ The data will be received over time as long as the stream is open.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The unique identifier of the execution. |
+| executionHash | [string](#string) | The unique identifier of the execution. |
 | taskKey | [string](#string) | The key of the executed task. |
 | outputData | [string](#string) | The output's data from the returned task, encoded in JSON. |
 | executionTags | [string](#string)[] | The list of tags associated with the execution. |
@@ -475,14 +475,14 @@ The reply's data of the `ExecuteTask` API.
 **Example**
 ```json
 {
-  "executionID": "__EXECUTION_ID__"
+  "executionHash": "__EXECUTION_HASH__"
 }
 ```
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The unique identifier of the execution. |
+| executionHash | [string](#string) | The unique identifier of the execution. |
 
 
 
@@ -1837,8 +1837,6 @@ Information concerning the Core from the `info` API.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | services | [InfoReply.CoreService](#api.InfoReply.CoreService)[] | List of services that the core is running as core service |
-| address | [string](#string) | Address to reach the core |
-| image | [string](#string) | Docker image used |
 | version | [string](#string) | Version of the core |
 
 

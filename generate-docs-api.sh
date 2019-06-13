@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-VERSION=${version:-release-dev}
+VERSION=${version:-master}
 
 if [ ! -f /.dockerenv ]; then
   docker build -t mesg/docs:local --build-arg version=$VERSION -f Dockerfile.docs .
 
-  docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/project mesg/docs:local ./generate-docs.sh
+  docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/project mesg/docs:local ./generate-docs-api.sh
   exit
 fi
 
