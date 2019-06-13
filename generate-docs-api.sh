@@ -11,11 +11,10 @@ fi
 
 curl -sL https://github.com/mesg-foundation/core/archive/$VERSION.tar.gz | tar -xz
 
-COREDIR=core-${VERSION#v}
+COREDIR=engine-${VERSION#v}
 
 PROJECT=$(pwd)
 GRPC=$PROJECT/$COREDIR
-cp generate.go $COREDIR
 
 pushd $COREDIR
 go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
@@ -25,10 +24,6 @@ API_DOCS="--doc_out=$PROJECT/api/ --doc_opt=$PROJECT/api.template"
 
 protoc $API_DOCS,core.md --proto_path=$GRPC protobuf/coreapi/api.proto
 protoc $API_DOCS,service.md --proto_path=$GRPC protobuf/serviceapi/api.proto
-
-echo "Generate CLI documentation"
-go run generate.go
-
 popd
 
 rm -rf $COREDIR

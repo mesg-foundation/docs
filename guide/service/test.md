@@ -22,7 +22,7 @@ Env variables from the configuration can be overwrite with the flag `--env`.
 `mesg-cli service:dev PATH_OF_SERVICE --env FOO=BAR2`
 :::
 
-[More details here](/cli/mesg-core_service_dev.md)
+[More details here](/cli/commands/service.md)
 
 ## Execute a task
 
@@ -43,7 +43,7 @@ The file for the inputs should be a `json` with a map of all the inputs that you
 }
 ```
 
-[More details here](/cli/mesg-core_service_execute.md)
+[More details here](/cli/commands/service.md)
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
