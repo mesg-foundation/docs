@@ -9,6 +9,6 @@
   "author": "Anthony Estebe <anthony@mesg.com>",
   "license": "ISC",
   "dependencies": {
-    "mesg-js": "^2.0.1"
+    "mesg-js": "^3.0.0"
   }
 }

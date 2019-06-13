@@ -20,25 +20,17 @@ The first step is to declare the tasks that the service will be able to execute 
 | --- | --- | --- | --- | --- | --- |
 | **name** | <span class="type">String</span> | `id` | If the name of the task is not set, the name will be the ID of the task. |
 | **description** | <span class="type">String</span> | `""` | Description of the task: what the task is doing and why it is useful. |
-| **inputs** | <span class="type">map&lt;id,[Parameter](listen-for-tasks.md#parameter-input-output)&gt;</span> | `{}` | Map of inputs that the task needs in order to be executed. |
-| **outputs** | <span class="type">map&lt;id,[Outputs](listen-for-tasks.md#outputs)&gt;</span> | `{}` | Map of outputs that the task will emit. The task can declare multiple outputs but can only submit one output per execution. |
+| **inputs** | <span class="type">map&lt;id,[Parameter](listen-for-tasks.md#parameter)&gt;</span> | `{}` | Map of inputs that the task needs in order to be executed. |
+| **outputs** | <span class="type">map&lt;id,[Outputs](listen-for-tasks.md#parameter)&gt;</span> | `{}` | Map of outputs that the task returns. |
 
-### Outputs
-
-| **Attribute** | **Type** | **Default** | **Description** |
-| --- | --- | --- | --- |
-| **name** | <span class="type">String</span> | `id` | Name of the output. The default is the ID. |
-| **description** | <span class="type">String</span> | `""` | A description of the output: what kind of output, and how is it useful. |
-| **data** | <span class="type">map&lt;id,[Parameter](listen-for-tasks.md#parameter-input-output)&gt;</span> | `{}` | Map of the data  the output will return. |
-
-### Parameter (Input/Output)
+### Parameter
 
 | **Attribute** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- | --- |
 | **name** | <span class="type">String</span> | `id` | Name or the parameter. The default is the ID. |
 | **description** | <span class="type">String</span> | `""` | Description of the parameter. |
 | **type** | <span class="type">[Type](listen-for-tasks.md#type-of-parameter)</span> | `String` | Type of the parameter. |
-| **object** | <span class="type">[Parameter](listen-for-tasks.md#parameter-input-output)</span> | `{}` | Nested parameters. Parameters can contain child parameters. It can only be defined when `type` is `Object`. |
+| **object** | <span class="type">[Parameter](listen-for-tasks.md#parameter)</span> | `{}` | Nested parameters. Parameters can contain child parameters. It can only be defined when `type` is `Object`. |
 | **optional** | <span class="type">Boolean</span> | `false` | If true, this parameter is considered as optional and might remain empty. |
 | **repeated** | <span class="type">Boolean</span> | `false` | Define this parameter as an array of the type selected |
 
@@ -65,39 +57,33 @@ tasks:
     inputs:
       inputX:
         name: "Input x"
-        description: "Foo is a string"
+        description: "Input x is a string"
         type: String
         optional: false
       inputY:
         name: "Input y"
-        description: "Bar is an optional array of boolean"
+        description: "Input y is an optional array of boolean"
         type: Boolean
         optional: true
         repeated: true
     outputs:
-      outputX:
-        name: "OutputX"
-        description: "Output X"
-        data:
-          foo:
-            name: "Output data x"
-            description: "Description about output data x"
-            type: String
-          bar:
-            name: "Output data y"
-            description: "Description about output data y"
-            type: Boolean
-      outputY:
-        ...
+      foo:
+        name: "Output foo"
+        description: "Description about output foo"
+        type: String
+      bar:
+        name: "Output bar"
+        description: "Description about output bar"
+        type: Boolean
 ...
 ```
 
 ## Listen for task executions
 
-To listen for task to execute, the Service needs to open a stream with the Engine using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to the Engine.
+To listen for task to execute, the Service needs to open a stream with the Engine using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to the Engine.
 
 ::: tip
-Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, you should wait for this synchronization before listening for tasks.
+Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, it should wait for the synchronization to finish before listening for tasks.
 :::
 
 <tabs>
@@ -121,13 +107,13 @@ Consider listening for tasks when your service is ready. If your service needs t
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- |
-| **executionID** | `String` | A unique ID for the task that allows you to track the result in an asynchronous way |
+| **executionHash** | `String` | The hash of the execution that allows you to track the result in an asynchronous way |
 | **taskKey** | `String` | Key of the task to execute \(as in your `mesg.yml` file\) |
 | **inputData** | `String` | Inputs of the task serialized in JSON |
 
 ```json
 {
-    "executionID": "xxxxxx",
+    "executionHash": "xxxxxx",
     "taskKey": "taskX",
     "inputData": "{\"inputX\":\"Hello world!\",\"inputY\":true}"
 }
@@ -138,7 +124,7 @@ Consider listening for tasks when your service is ready. If your service needs t
 
 ## Submit outputs of task executions
 
-Once the task execution is finished, the Service has to send the outputs of the execution back to the Engine using the [Protobuffer definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
+Once the task execution is finished, the Service has to send the outputs of the execution back to the Engine using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
 
 <tabs>
 <tab title="Request" vp-markdown>
@@ -147,14 +133,12 @@ Once the task execution is finished, the Service has to send the outputs of the 
 
 | **Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| **executionID** | `String` | required | The `executionID` received from the [listen](listen-for-tasks.md#listen-for-task-executions) stream. |
-| **outputKey** | `String` | required | The ID of the output as defined in the [output's declaration](#task-definitions). |
+| **executionHash** | `String` | required | The `executionHash` received from the [listen](listen-for-tasks.md#listen-for-task-executions) stream. |
 | **outputData** | `String` | required | The output's data encoded in JSON. The data should match the one defined in the [output's declaration](#task-definitions). |
 
 ```json
 {
-    "executionID": "xxxxxx",
-    "outputKey": "outputX"
+    "executionHash": "xxxxxx",
     "outputData": "{\"foo\":\"super result\",\"bar\":true}"
 }
 ```
@@ -165,11 +149,11 @@ Once the task execution is finished, the Service has to send the outputs of the 
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| **executionID** | `String` | The ID of the execution. |
+| **executionHash** | `String` | The hash of the execution. |
 
 ```json
 {
-    "executionID": "xxxxxx"
+    "executionHash": "xxxxxx"
 }
 ```
 
@@ -186,11 +170,11 @@ const mesg = require('mesg-js').service()
 
 mesg.listenTask({
   // handler function of taskX
-  taskX: (inputs, outputs) => {
-    outputs.outputX({
+  taskX: (inputs) => {
+    return {
       foo: inputs.inputX,
       bar: true
-    })
+    }
   },
 })
   .on('error', (error) => {
@@ -216,7 +200,7 @@ type taskXInputs struct {
 	InputY []bool `json:"inputY"`
 }
 
-type taskXOutputX struct {
+type taskXOutputs struct {
 	Foo string `json:"foo"`
 	Bar bool   `json:"bar"`
 }
@@ -225,14 +209,14 @@ func main() {
 	s, _ := service.New()
 
 	s.Listen(
-		service.Task("taskX", func(execution *service.Execution) (string, interface{}) {
+		service.Task("taskX", func(execution *service.Execution) (interface{}, error) {
 			var inputs taskXInputs
 			execution.Data(&inputs)
 
-			return "outputX", taskXOutputX{
+			return taskXOutputs{
 				Foo: inputs.InputX,
 				Bar: true,
-			}
+			}, nil
 		}),
 	)
 }

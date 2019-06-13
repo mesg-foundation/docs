@@ -1,12 +1,18 @@
 # Installation
 
-## Automatic installation
+## Automatic
 
-Run the following command in a console:
+MESG is using Docker so you need to make sure to have Docker installed on your machine.
+
+- Download and install [Docker CE](https://www.docker.com/community-edition)
+- Initialize Docker Swarm by running `docker swarm init`
+- In order to access to the Engine, you can use the MESG CLI and install it with
 
 ```bash
-bash <(curl -fsSL https://mesg.com/install)
+npm install -g mesg-cli
 ```
+
+You can now run the MESG Engine with `mesg-cli daemon:start`
 
 <div class="page-nav">
   <p class="inner">
@@ -19,49 +25,34 @@ bash <(curl -fsSL https://mesg.com/install)
   </p>
 </div>
 
-## Manual installation
+## MESG Engine only (advanced mode)
 
-### Docker
+If you don't want to use the CLI, you can start the Engine directly on Docker.
 
-* Download and install [Docker CE](https://www.docker.com/community-edition)
-* Initialize Docker Swarm by running
+- Download and install [Docker CE](https://www.docker.com/community-edition)
+- Initialize Docker Swarm by running `docker swarm init`
+- Run the following commands:
+
 ```bash
+# Create local `.mesg` dir
+mkdir -p ~/.mesg
+# Start docker swarm
 docker swarm init
-```
-* If the error `Could not choose an IP address to advertise since this system has multiple addresses on interface eth0 (xxx.xxx.xxx.xxx and yyy.yyy.yyy.yyy)` is returned, run:
-```bash
-docker swarm init --advertise-addr xxx.xxx.xxx.xxx
-```
-
-### CLI
-
-* Download the binary from our [release page on GitHub](https://github.com/mesg-foundation/core/releases)
-* Rename the binary to `mesg-core`
-* Run the following commands
-
-```bash
-# Give it the execution permission
-chmod +x mesg-core
-# Move it to your local bin folder
-mv ./mesg-core /usr/local/bin/mesg-core
-# Create system services folder under your mesg path
-mkdir -p ~/.mesg/systemservices
-# Start the MESG Engine with the command
-mesg-core start
-```
-
-### Docker only
-
-If you don't want to use the CLI, you can start the Engine by executing the following commands.
-
-```bash
 # Download latest version
 docker pull mesg/engine:latest
 # Create the MESG network
 docker network create engine -d overlay --label com.docker.stack.namespace=engine
 # Start the MESG Engine
-docker service create --network engine --env MESG_CORE_PATH=/mesg --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind --mount source=$HOME/.mesg,destination=/mesg,type=bind --publish 50052:50052 --label com.docker.stack.namespace=engine --name engine mesg/engine:latest
+docker service create \
+  --network engine \
+  --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind \
+  --mount source=~/.mesg,destination=/home/root/.mesg,type=bind \
+  --publish 50052:50052 \
+  --label com.docker.stack.namespace=engine \
+  --name engine \
+  mesg/engine:latest
 ```
 
 ::: tip Get Help
 You need help? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+:::

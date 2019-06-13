@@ -10,8 +10,8 @@ This file is generated using the ./scripts/build-proto.sh scripts
 Please update the Core file
 -->
 
-This is the primary API to interact with MESG Core functionalities.
-It can be consumed by any applications or tools that you'd like to interact with MESG Core.
+This is the primary API to interact with MESG Engine functionalities.
+It can be consumed by any applications or tools that you'd like to interact with MESG Engine.
 It is actually used by the MESG CLI and MESG Application libraries.
 
 This API is only accessible through [gRPC](https://grpc.io/).
@@ -241,7 +241,6 @@ The request's data for the `ListenResult` stream API.
 {
   "serviceID":     "__SERVICE_ID__",
   "taskFilter":    "__TASK_KEY_TO_MATCH__",
-  "outputFilter":  "__OUTPUT_KEY_TO_MATCH__",
   "tagFilters":     ["tagX"]
 }
 ```
@@ -251,7 +250,6 @@ The request's data for the `ListenResult` stream API.
 | ----- | ---- | ----------- |
 | serviceID | [string](#string) | The Service ID. Generated when using the [`DeployService` API](#deployservice). |
 | taskFilter | [string](#string) | __Optional.__  The task's key to filter. The task must match this key. The default is `*` which matches any task. |
-| outputFilter | [string](#string) | __Optional.__ The output's key from the task to filter. The task must return this output's key. The default is `*` which matches any output. |
 | tagFilters | [string](#string)[] | __Optional.__ The list of tags to filter. This is a "match all" list. All tags in parameters should be included in the execution to match. |
 
 
@@ -327,9 +325,8 @@ The data will be received over time as long as the stream is open.
 **Example**
 ```json
 {
-  "executionID":   "__EXECUTION_ID__",
+  "executionHash":   "__EXECUTION_HASH__",
   "taskKey":       "__TASK_KEY__",
-  "outputKey":     "__OUTPUT_KEY__",
   "outputData":    "{\"foo\":\"bar\"}",
   "executionTags": ["executionX", "test"],
   "error":         "error from the execution if something went wrong",
@@ -339,9 +336,8 @@ The data will be received over time as long as the stream is open.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The unique identifier of the execution. |
+| executionHash | [string](#string) | The unique identifier of the execution. |
 | taskKey | [string](#string) | The key of the executed task. |
-| outputKey | [string](#string) | The output's key from the returned task. |
 | outputData | [string](#string) | The output's data from the returned task, encoded in JSON. |
 | executionTags | [string](#string)[] | The list of tags associated with the execution. |
 | error | [string](#string) | The execution's error if something went wrong. |
@@ -479,14 +475,14 @@ The reply's data of the `ExecuteTask` API.
 **Example**
 ```json
 {
-  "executionID": "__EXECUTION_ID__"
+  "executionHash": "__EXECUTION_HASH__"
 }
 ```
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| executionID | [string](#string) | The unique identifier of the execution. |
+| executionHash | [string](#string) | The unique identifier of the execution. |
 
 
 
@@ -1841,8 +1837,6 @@ Information concerning the Core from the `info` API.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | services | [InfoReply.CoreService](#api.InfoReply.CoreService)[] | List of services that the core is running as core service |
-| address | [string](#string) | Address to reach the core |
-| image | [string](#string) | Docker image used |
 | version | [string](#string) | Version of the core |
 
 
