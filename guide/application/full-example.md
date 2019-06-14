@@ -136,10 +136,10 @@ func main() {
 			if err != nil {
 				log.Panic(err)
 			}
-      log.Println("result received", result)
-      if result.error != "" {
-        log.Panic(err)
-      }
+			log.Println("result received", result)
+			if result.error != "" {
+				log.Panic(err)
+			}
 			inputData, err := json.Marshal(map[string]string{"hello": "world"})
 			if err != nil {
 				log.Panic(err)
