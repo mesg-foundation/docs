@@ -47,7 +47,7 @@ mesg-cli service:deploy mesg://marketplace/service/Fh7LN5g2ECvqcEEZLP9h6AJ4fphbs
 Deploy the [SendGrid Service](https://marketplace.mesg.com/services/email-sendgrid):
 
 ```bash
-https://marketplace.mesg.com/services/email-sendgrid/6YXz84SaPapfnFd9FkR4DJbcZhBY1FjfAjDwDXaXkBod --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
+mesg-cli service:deploy mesg://marketplace/service/6YXz84SaPapfnFd9FkR4DJbcZhBY1FjfAjDwDXaXkBod --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
 ```
 
 Replace `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` by the SendGrid API Key.
