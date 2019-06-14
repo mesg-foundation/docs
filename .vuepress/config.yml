@@ -77,14 +77,14 @@ themeConfig:
               link: https://godoc.org/github.com/mesg-foundation/engine/client/service
             - text: C# (Not official)
               link: https://github.com/neville-nazerane/mesg-apis
-        - text: Resource Lists
+        - text: Ressources
           items:
-            - text: Release Notes
-              link: https://forum.mesg.com/tags/release
             - text: Marketplace
               link: https://marketplace.mesg.com
             - text: Awesome list
               link: https://github.com/mesg-foundation/awesome
+            - text: Release Notes
+              link: https://forum.mesg.com/tags/release
         - text: News
           items:
             - text: Website
