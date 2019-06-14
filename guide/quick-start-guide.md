@@ -92,7 +92,7 @@ const mesg = require('mesg-js').application()
 
 ## 6. Listen for events
 
-Let's listen for [events `every_10_seconds` of the `emit-event-interval` service](https://marketplace.mesg.com/services/emit-event-interval#api). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds:
+Let's listen for events `every_10_seconds` of the service [`emit-event-interval`](https://marketplace.mesg.com/services/emit-event-interval#api). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds:
 
 ```javascript
 // Listen events
@@ -114,7 +114,7 @@ console.log('application is running and listening for events')
 
 Let's get the balance of an Ethereum account of the MESG Token.
 
-To do so, let's execute the [task `balanceOf` of service `ethereum-erc20`](https://marketplace.mesg.com/services/ethereum-erc20#api).
+To do so, let's execute the task `balanceOf` of service [`ethereum-erc20`](https://marketplace.mesg.com/services/ethereum-erc20#api).
 
 Add the following code after `console.log('event received')`:
 
@@ -146,7 +146,7 @@ try {
 
 Let's send the balance to a Webhook.
 
-Let's call the [task `call` of the `webhook` service](https://marketplace.mesg.com/services/webhook#api).
+Let's call the task `call` of the service [`webhook`](https://marketplace.mesg.com/services/webhook#api).
 
 Add the following code after `console.log('balance is', balanceData.balance)`:
 
