@@ -63,24 +63,32 @@ themeConfig:
               link: https://forum.mesg.com
             - text: Discord
               link: https://discord.gg/5tVTHJC
-        - text: Tools
+        - text: References
           items:
             - text: CLI
               link: /cli/
-            - text: API
+            - text: Engine API
               link: /api/core.md
-        - text: Core libraries
+        - text: Libraries
           items:
             - text: NodeJS
               link: https://github.com/mesg-foundation/mesg-js
             - text: Golang (Service)
-              link: https://github.com/mesg-foundation/core/tree/master/client/service
-            - text: Golang (Application)
-              link: https://github.com/mesg-foundation/core/tree/master/protobuf/coreapi
-            - text: C#
+              link: https://godoc.org/github.com/mesg-foundation/engine/client/service
+            - text: C# (Not official)
               link: https://github.com/neville-nazerane/mesg-apis
+        - text: Ressources
+          items:
+            - text: Marketplace
+              link: https://marketplace.mesg.com
+            - text: Awesome list
+              link: https://github.com/mesg-foundation/awesome
+            - text: Release Notes
+              link: https://forum.mesg.com/tags/release
         - text: News
           items:
+            - text: Website
+              link: https://mesg.com/
             - text: Blog
               link: https://medium.com/mesg
             - text: Twitter
@@ -89,12 +97,6 @@ themeConfig:
               link: https://www.linkedin.com/company/mesg/
             - text: Facebook
               link: https://www.facebook.com/mesgfoundation/
-        - text: Resource Lists
-          items:
-            - text: Core Changelog
-              link: https://github.com/mesg-foundation/core/blob/master/CHANGELOG.md
-            - text: Awesome list
-              link: https://github.com/mesg-foundation/awesome
   sidebar:
     /guide/:
       - /guide/
