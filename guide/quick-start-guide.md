@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This step-by-step guide will show you how to create an application that sends a Discord invitation email when a webhook is called.
+This step-by-step guide will show you how to create an application that get the ERC20 token balance of a Ethereum account every 10 seconds and send it to a Webhook.
 
 [[toc]]
 
@@ -22,31 +22,59 @@ MESG Engine runs as a daemon. To start it, execute:
 mesg-cli daemon:start
 ```
 
+The first start will take few minutes.. Check the daemon logs by running:
+```
+mesg-cli daemon:logs
+```
+
+Wait until you see `server listens on [::]:50052`.
+
 ## 3. Deploy the services
 
-You need to deploy every service your application is using.
+You first need to deploy the 3 services your application will use.
 
-In this guide, the application is using 2 services.
-
-Start by deploying the [webhook service](https://github.com/mesg-foundation/service-webhook):
+First, deploy the [Webhook service](https://marketplace.mesg.com/services/webhook):
 
 ```bash
-mesg-cli service:deploy https://github.com/mesg-foundation/service-webhook
+mesg-cli service:deploy mesg-cli service:deploy mesg://marketplace/service/F86nLMh3B458tqbbRNcdU98sBPdCntCEkuFCtqqBbkhJ
 ```
 
-Deploy the [invite discord service](https://github.com/mesg-foundation/service-discord-invitation):
+Then, deploy the [emit event interval service](https://marketplace.mesg.com/services/emit-event-interval):
 
 ```bash
-mesg-cli service:deploy https://github.com/mesg-foundation/service-discord-invitation
+mesg-cli service:deploy mesg://marketplace/service/HdMymWafRxUEEcsnwRDzagcJY39vYuASERSGU2SJWm3S
 ```
 
-Once the service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine. You'll need to use them inside the application.
+Lastly, deploy the [ethereum erc20 service](https://marketplace.mesg.com/services/ethereum-erc20):
 
-## 4. Create the application
+```bash
+mesg-cli service:deploy mesg://marketplace/service/Fh7LN5g2ECvqcEEZLP9h6AJ4fphbsDKVrmLVLyP4pkb6 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
+```
 
-Now when the services are up and running, let's create the application.
+Every time a service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine.
 
-The application is using [NodeJS](https://nodejs.org) and [NPM](https://www.npmjs.com/).
+## 4. Start the services
+
+Start the Webhook service:
+```bash
+mesg-cli service:start webhook
+```
+
+Start emit event interval service:
+```bash
+mesg-cli service:start emit-event-interval
+```
+
+Start ethereum erc20 service:
+```bash
+mesg-cli service:start ethereum-erc20
+```
+
+## 5. Create the application
+
+Now the services are deployed and started, let's create the application.
+
+The application will be developed with Javascript and [NodeJS](https://nodejs.org).
 
 Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/mesg-js).
 
@@ -60,53 +88,91 @@ Now, create an `index.js` file and with the following code:
 
 ```javascript
 const mesg = require('mesg-js').application()
+```
 
-const email = '__YOUR_EMAIL_HERE__' // To replace by your email
-const sendgridAPIKey = '__SENDGRID_API_KEY__' // To replace by your SendGrid API key. See https://app.sendgrid.com/settings/api_keys
+## 6. Listen for events
 
+Let's listen for events `every_10_seconds` of the `emit-event-interval` service. This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds:
+
+```javascript
+// Listen events
 mesg.listenEvent({
-  serviceID: 'webhook',
-  eventFilter: 'request'
+  serviceID: 'emit-event-interval',
+  eventFilter: 'every_10_seconds'
 })
   .on('data', async (event) => {
-    console.log('webhook event received')
-    try {
-      const result = await mesg.executeTaskAndWaitResult({
-        serviceID: 'discord-invitation',
-        taskKey: 'send',
-        inputData: JSON.stringify({ email, sendgridAPIKey })
-      })
-      if (result.error) {
-        console.error('an error occurred while sending the invitation: ', result.error)
-        return
-      }
-      console.log('discord invitation send to:', email)
-    } catch (error) {
-      console.error('an error occurred while executing the send task:', error.message)
-    }
+    console.log('event received')
   })
   .on('error', (error) => {
-    console.error('an error occurred while listening the request events:', error.message)
+    console.error('an error occurred while listening the events', error.message)
   })
 
 console.log('application is running and listening for events')
 ```
 
-Don't forget to replace the values `__YOUR_EMAIL_HERE__` and `__SENDGRID_API_KEY__`.
+## 7. Get the ERC20 token balance of an account
 
-## 5. Start the services
+Let's get the balance of an Ethereum account of the MESG Token.
 
-Start the webhook service:
-```bash
-mesg-cli service:start webhook
+To do so, let's execute the task `balanceOf` of service `ethereum-erc20`.
+
+Add the following code after `console.log('event received')`:
+
+```javascript
+console.log('event received')
+
+try {
+  // Get the balance
+  const balanceResult = await mesg.executeTaskAndWaitResult({
+    serviceID: 'ethereum-erc20',
+    taskKey: 'balanceOf',
+    inputData: JSON.stringify({
+      contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
+      address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
+    })
+  })
+  if (balanceResult.error) {
+    console.error('an error occurred while getting the balance', balanceResult.error)
+    return
+  }
+  const balanceData = JSON.parse(balanceResult.outputData)
+  console.log('balance is', balanceData.balance)
+} catch (error) {
+  console.error('an error occurred', error.message)
+}
 ```
 
-Start discord invitation service:
-```bash
-mesg-cli service:start discord-invitation
+## 8. Send the balance to a Webhook
+
+Let's send the balance to a Webhook.
+
+Let's call the task `call` of the `webhook` service.
+
+Add the following code after `console.log('balance is', balanceData.balance)`:
+
+```javascript
+console.log('balance is', balanceData.balance)
+
+// Call the webhook
+const requestResult = await mesg.executeTaskAndWaitResult({
+  serviceID: 'webhook',
+  taskKey: 'call',
+  inputData: JSON.stringify({
+    url: '__REPLACE_BY_WEBHOOK_URL__',
+    data: balanceData,
+  })
+})
+if (requestResult.error) {
+  console.error('an error occurred while calling the webhook', requestResult.error)
+  return
+}
+const requestData = JSON.parse(requestResult.outputData)
+console.log('request status is', requestData.status)
 ```
 
-## 6. Start the application
+We will use [Webhook.site](https://webhook.site/) to generate a unique webhook URL and display the requests. Go on https://webhook.site, copy the generate URL (it looks like `https://webhook.site/b5f9ecce-bd5a-41c6-b60c-164d64849b5d`), and replace `__REPLACE_BY_WEBHOOK_URL__`.
+
+## 9. Start the application
 
 Start your application like any node application:
 
@@ -114,17 +180,13 @@ Start your application like any node application:
 node index.js
 ```
 
-## 7. Test the application
+Wait a few seconds for the `every_10_seconds` event to be triggered.
 
-Now let's give this super simple application a try.
+:tada: The webhook should be called with the MESG Token balance. Go to back to webhook.site and check the request's data!
 
-Trigger the webhook with the following command:
+## Final version of the source code
 
-```bash
-curl -XPOST http://localhost:3000/webhook
-```
-
-:tada: You should have received an email in your inbox with your invitation to our Discord. Come join our community.
+You can check the final version of source code of this app [here](quick-start-app.js).
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
