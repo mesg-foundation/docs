@@ -38,18 +38,16 @@ Go to [https://app.sendgrid.com/settings/api\_keys](https://app.sendgrid.com/set
 
 We'll start by deploying the two services. If you haven't already, make sure to read [the tutorials](./) to see how they were created.
 
-Deploy the ERC20 Service:
+Deploy the [ERC20 Service](https://marketplace.mesg.com/services/ethereum-erc20):
 
-# TODO: update link with latest version. make sure the service is FREE
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/ --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
+mesg-cli service:deploy mesg://marketplace/service/Fh7LN5g2ECvqcEEZLP9h6AJ4fphbsDKVrmLVLyP4pkb6 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
 ```
 
-Deploy the SendGrid Service:
+Deploy the [SendGrid Service](https://marketplace.mesg.com/services/email-sendgrid):
 
-# TODO: update link with latest version
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/ --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
+mesg-cli service:deploy mesg://marketplace/service/6YXz84SaPapfnFd9FkR4DJbcZhBY1FjfAjDwDXaXkBod --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
 ```
 
 Replace `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` by the SendGrid API Key.
