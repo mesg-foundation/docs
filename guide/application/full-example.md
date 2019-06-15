@@ -27,20 +27,31 @@ mesg.listenEvent({
   })
 
 // When SERVICE_TASK_ID send the result of taskX
-// then execute "taskB" from SERVICE_TASK2_ID
+// then execute "taskB" from SERVICE_TASK2_ID and wait for its result
 mesg.listenResult({
   serviceID: SERVICE_TASK_ID,
   taskFilter: 'taskX' // optional
 })
   .on('data', (result) => {
-    console.log('result received')
-    mesg.executeTask({
+    if (result.error) {
+      console.error('an error has occurred:', result.error)
+      return
+    }
+    console.log('a result received:', JSON.parse(result.outputData))
+    mesg.executeTaskAndWaitResult({
       serviceID: SERVICE_TASK2_ID,
       taskKey: 'taskB',
       inputData: JSON.stringify({ hello: "world" })
+    }).then((result) => {
+      if (result.error) {
+        console.error('an error has occurred:', result.error)
+        return
+      }
+      console.log('a result received:', JSON.parse(result.outputData))
     }).catch((err) => {
-      console.error('an error occurred while executing task:', err.message)
+      console.error('task execution failed with err:', err.message)
     })
+
   })
   .on('error', (err) => {
     console.error('an error occurred while listening for results:', err.message)
@@ -126,6 +137,9 @@ func main() {
 				log.Panic(err)
 			}
 			log.Println("result received", result)
+			if result.error != "" {
+				log.Panic(err)
+			}
 			inputData, err := json.Marshal(map[string]string{"hello": "world"})
 			if err != nil {
 				log.Panic(err)
