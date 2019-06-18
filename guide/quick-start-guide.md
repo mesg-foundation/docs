@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This step-by-step guide will show you how to create an application that get the ERC20 token balance of a Ethereum account every 10 seconds and send it to a Webhook.
+This step-by-step guide will show you how to create an application that gets the ERC20 token balance of an Ethereum account every 10 seconds and send it to a Webhook.
 
 [[toc]]
 
