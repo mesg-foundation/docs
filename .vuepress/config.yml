@@ -77,7 +77,7 @@ themeConfig:
               link: https://godoc.org/github.com/mesg-foundation/engine/client/service
             - text: C# (Not official)
               link: https://github.com/neville-nazerane/mesg-apis
-        - text: Ressources
+        - text: Resources
           items:
             - text: Marketplace
               link: https://marketplace.mesg.com
