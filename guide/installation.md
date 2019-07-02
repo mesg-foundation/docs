@@ -46,7 +46,7 @@ docker network create engine -d overlay --label com.docker.stack.namespace=engin
 docker service create \
   --network engine \
   --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind \
-  --mount source=~/.mesg,destination=/home/root/.mesg,type=bind \
+  --mount source=~/.mesg,destination=/root/.mesg,type=bind \
   --publish 50052:50052 \
   --label com.docker.stack.namespace=engine \
   --name engine \
