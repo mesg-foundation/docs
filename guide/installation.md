@@ -35,7 +35,7 @@ If you don't want to use the CLI, you can start the Engine directly on Docker.
 
 ```bash
 # Create local `.mesg` dir
-mkdir -p ~/.mesg
+mkdir -p $HOME/.mesg
 # Start docker swarm
 docker swarm init
 # Download latest version
@@ -46,7 +46,7 @@ docker network create engine -d overlay --label com.docker.stack.namespace=engin
 docker service create \
   --network engine \
   --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,type=bind \
-  --mount source=~/.mesg,destination=/root/.mesg,type=bind \
+  --mount source=$HOME/.mesg,destination=/root/.mesg,type=bind \
   --publish 50052:50052 \
   --label com.docker.stack.namespace=engine \
   --name engine \
