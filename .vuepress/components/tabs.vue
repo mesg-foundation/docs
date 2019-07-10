@@ -20,18 +20,24 @@ export default {
     activeId: ''
   }),
   mounted() {
-    this.tabs = this.$children
-    if (!this.tabs.length) return
-    this.selectTab(this.tabs[0].id)
+    this.initializeTab()
   },
   methods: {
+    initializeTab() {
+      this.tabs = this.$children
+      if (this.tabs.length) {
+        this.selectTab(this.tabs[0].id)
+      } else {
+        setTimeout(() => this.initializeTab(), 100)
+      }
+    },
     findTab(id) {
-      return this.tabs.find(tab => tab.id === id)
+      return [...this.tabs].find(tab => tab.id === id)
     },
     selectTab(selectedTabId) {
       const selectedTab = this.findTab(selectedTabId)
       if (!selectedTab) return
-      this.tabs.forEach(tab => {
+      [...this.tabs].forEach(tab => {
         tab.isActive = (tab.id === selectedTab.id)
       })
       this.activeId = selectedTab.id
