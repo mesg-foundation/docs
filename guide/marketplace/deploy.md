@@ -15,7 +15,7 @@ If the Service is free (the Service has at least one offer with a price of 0 MES
 To deploy a Service, click on the deploy button, copy the command and execute it in your terminal.
 For the [service email-sendgrid](https://marketplace.mesg.com/services/email-sendgrid), it looks like:
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/8mcRi836QZZmYAvt2o7RgHdUjsvGsdnPdSHVBq25jjyB
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/8mcRi836QZZmYAvt2o7RgHdUjsvGsdnPdSHVBq25jjyB)"
 ```
 
 If the Service is free or if you've previously purchased access, the Service should be deployed your MESG Engine and ready to be started!
