@@ -36,19 +36,19 @@ You first need to deploy the 3 services your application will use.
 First, deploy the [Webhook service](https://marketplace.mesg.com/services/webhook):
 
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/F86nLMh3B458tqbbRNcdU98sBPdCntCEkuFCtqqBbkhJ
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/9KnooKaxKjjoXF3d9jSCLZNVXoFmNmpC2dwpSi7bkRBd)"
 ```
 
 Then, deploy the [emit event interval service](https://marketplace.mesg.com/services/emit-event-interval):
 
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/HdMymWafRxUEEcsnwRDzagcJY39vYuASERSGU2SJWm3S
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/3jQFCECh9ovnWZgfib8VjV35VBjoRFW62b1PpmgLvxpc)"
 ```
 
 Lastly, deploy the [ethereum erc20 service](https://marketplace.mesg.com/services/ethereum-erc20):
 
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/Fh7LN5g2ECvqcEEZLP9h6AJ4fphbsDKVrmLVLyP4pkb6 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/FZk4bpkmofTsmDrj31ptB1emdNNN8C1ckfLzYwNgEyqX)"
 ```
 
 Every time a service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine.
@@ -67,7 +67,7 @@ mesg-cli service:start emit-event-interval
 
 Start ethereum erc20 service:
 ```bash
-mesg-cli service:start ethereum-erc20
+mesg-cli service:start ethereum-erc20 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
 ```
 
 ## 5. Create the application
@@ -88,17 +88,29 @@ Now, create an `index.js` file and with the following code:
 
 ```javascript
 const mesg = require('mesg-js').application()
+
+const main = async () => {
+  const emitEventInterval = await mesg.resolve('emit-event-interval')
+  const ethereumErc20 = await mesg.resolve('ethereum-erc20')
+  const webhook = await mesg.resolve('webhook')
+}
+
+main()
 ```
 
 ## 6. Listen for events
 
-Let's listen for events `every_10_seconds` of the service [`emit-event-interval`](https://marketplace.mesg.com/services/emit-event-interval#api). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds:
+Let's listen for events `every_10_seconds` of the service [`emit-event-interval`](https://marketplace.mesg.com/services/emit-event-interval#api). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds.
+
+Add the following code after `const webhook = await mesg.resolve('webhook')`:
 
 ```javascript
 // Listen events
 mesg.listenEvent({
-  serviceID: 'emit-event-interval',
-  eventFilter: 'every_10_seconds'
+  filter: {
+    instanceHash: emitEventInterval,
+    key: 'every_10_seconds'
+  }
 })
   .on('data', async (event) => {
     console.log('event received')
@@ -124,9 +136,9 @@ console.log('event received')
 try {
   // Get the balance
   const balanceResult = await mesg.executeTaskAndWaitResult({
-    serviceID: 'ethereum-erc20',
+    instanceHash: ethereumErc20,
     taskKey: 'balanceOf',
-    inputData: JSON.stringify({
+    inputs: JSON.stringify({
       contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
       address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
     })
@@ -135,7 +147,7 @@ try {
     console.error('an error occurred while getting the balance', balanceResult.error)
     return
   }
-  const balanceData = JSON.parse(balanceResult.outputData)
+  const balanceData = JSON.parse(balanceResult.outputs)
   console.log('balance is', balanceData.balance)
 } catch (error) {
   console.error('an error occurred', error.message)
@@ -153,12 +165,12 @@ Add the following code after `console.log('balance is', balanceData.balance)`:
 ```javascript
 console.log('balance is', balanceData.balance)
 
-// Call the webhook
+ // Call the webhook
 const requestResult = await mesg.executeTaskAndWaitResult({
-  serviceID: 'webhook',
+  instanceHash: webhook,
   taskKey: 'call',
-  inputData: JSON.stringify({
-    url: '__REPLACE_BY_WEBHOOK_URL__',
+  inputs: JSON.stringify({
+    url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
     data: balanceData,
   })
 })
@@ -166,7 +178,7 @@ if (requestResult.error) {
   console.error('an error occurred while calling the webhook', requestResult.error)
   return
 }
-const requestData = JSON.parse(requestResult.outputData)
+const requestData = JSON.parse(requestResult.outputs)
 console.log('request status is', requestData.status)
 ```
 
@@ -191,55 +203,65 @@ Here is the final version of the source code:
 ```javascript
 const mesg = require('mesg-js').application()
 
-// Listen events
-mesg.listenEvent({
-  serviceID: 'emit-event-interval',
-  eventFilter: 'every_10_seconds'
-})
-  .on('data', async (event) => {
-    console.log('event received')
+const main = async () => {
+  const emitEventInterval = await mesg.resolve('emit-event-interval')
+  const ethereumErc20 = await mesg.resolve('ethereum-erc20')
+  const webhook = await mesg.resolve('webhook')
 
-    try {
-      // Get the balance
-      const balanceResult = await mesg.executeTaskAndWaitResult({
-        serviceID: 'ethereum-erc20',
-        taskKey: 'balanceOf',
-        inputData: JSON.stringify({
-          contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
-          address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
-        })
-      })
-      if (balanceResult.error) {
-        console.error('an error occurred while getting the balance', balanceResult.error)
-        return
-      }
-      const balanceData = JSON.parse(balanceResult.outputData)
-      console.log('balance is', balanceData.balance)
-
-      // Call the webhook
-      const requestResult = await mesg.executeTaskAndWaitResult({
-        serviceID: 'webhook',
-        taskKey: 'call',
-        inputData: JSON.stringify({
-          url: 'https://webhook.site/d6ee62f4-5af9-4485-8222-cebb763ae232',
-          data: balanceData,
-        })
-      })
-      if (requestResult.error) {
-        console.error('an error occurred while calling the webhook', requestResult.error)
-        return
-      }
-      const requestData = JSON.parse(requestResult.outputData)
-      console.log('request status is', requestData.status)
-    } catch (error) {
-      console.error('an error occurred', error.message)
+  // Listen events
+  mesg.listenEvent({
+    filter: {
+      instanceHash: emitEventInterval,
+      key: 'every_10_seconds'
     }
   })
-  .on('error', (error) => {
-    console.error('an error occurred while listening the events', error.message)
-  })
+    .on('data', async (event) => {
+      console.log('event received')
 
-console.log('application is running and listening for events')
+      try {
+        // Get the balance
+        const balanceResult = await mesg.executeTaskAndWaitResult({
+          instanceHash: ethereumErc20,
+          taskKey: 'balanceOf',
+          inputs: JSON.stringify({
+            contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
+            address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
+          })
+        })
+        if (balanceResult.error) {
+          console.error('an error occurred while getting the balance', balanceResult.error)
+          return
+        }
+        const balanceData = JSON.parse(balanceResult.outputs)
+        console.log('balance is', balanceData.balance)
+
+        // Call the webhook
+        const requestResult = await mesg.executeTaskAndWaitResult({
+          instanceHash: webhook,
+          taskKey: 'call',
+          inputs: JSON.stringify({
+            url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
+            data: balanceData,
+          })
+        })
+        if (requestResult.error) {
+          console.error('an error occurred while calling the webhook', requestResult.error)
+          return
+        }
+        const requestData = JSON.parse(requestResult.outputs)
+        console.log('request status is', requestData.status)
+      } catch (error) {
+        console.error('an error occurred', error.message)
+      }
+    })
+    .on('error', (error) => {
+      console.error('an error occurred while listening the events', error.message)
+    })
+
+  console.log('application is running and listening for events')
+}
+
+main()
 ```
 
 ::: tip Get Help
