@@ -106,8 +106,9 @@ themeConfig:
         children:
           - /guide/application/
           - /guide/application/listen-for-events
+          - /guide/application/listen-for-results
           - /guide/application/execute-a-task
-          - /guide/application/full-example
+          - /guide/application/resolve-sid
       - title: Service
         children:
           - /guide/service/
