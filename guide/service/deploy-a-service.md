@@ -1,20 +1,34 @@
 # Deploy a service
 
-Once you finish developing your service and testing it, you can deploy it. A unique ID will be generated when you deploy a service. This ID is based on the [`mesg.yml`](service-file.md) file and will change every time you add any modifications to this service.
+Once you finish developing your service and testing it, you can deploy it by compiling it and create it in the Engine.
 
-To deploy the service you can run the command:
+A unique ID will be generated when you create a service. This ID is based on service's definition and the source code and will change every time you add any modifications to this service.
+
+## Compile
+
+To compile the service you can run the command:
 
 ```bash
-mesg-cli service:deploy PATH_OF_THE_SERVICE
+mesg-cli service:compile PATH_OF_THE_SERVICE
 ```
 
-This will give the id of your service. You need to use this id whenever you want to use the service.
+This command will return the compiled version of the service.
 
-::: tip
-Env variables from the configuration can be overwrite with the flag `--env`.
+## Create
 
-`mesg-cli service:deploy PATH_OF_SERVICE --env FOO=BAR2`
-:::
+To create the service in the Engine, run the command:
+
+```bash
+mesg-cli service:create COMPILED_SERVICE
+```
+
+This will give the id of the service. You need to use this id whenever you want to use the service.
+
+::: tip Compile & Create
+To compile and create the service with one line, you can run:
+```bash
+mesg-cli service:create "$(cat mesg-cli service:compile PATH_OF_THE_SERVICE)"
+```
 
 ### List deployed services
 
