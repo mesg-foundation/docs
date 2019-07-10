@@ -1,4 +1,4 @@
-# Resolve SID
+# Resolve Service
 
 Instead of hard-coding `instanceHash` in your application's env, your application can resolve dynamically using the service's SID and the function `resolve` of the [mesg-js](https://github.com/mesg-foundation/mesg-js) library.
 
