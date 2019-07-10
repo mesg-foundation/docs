@@ -15,11 +15,6 @@
 {{$file := .}}
 {{range .Services}}
 # {{.Name}} API
-<!--
-DO NOT EDIT
-This file is generated using the ./scripts/build-proto.sh scripts
-Please update the {{.Name}} file
--->
 
 {{.Description}}
 

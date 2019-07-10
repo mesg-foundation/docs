@@ -1,0 +1,31 @@
+
+{{range .Files}}
+{{range .Messages}}
+
+# {{.LongName}} Type
+{{.Description}}
+
+{{if .HasFields}}
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+{{range .Fields -}}
+  | {{.Name}} | [{{.LongType}}](#{{.FullType}}) | {{.Label}} | {{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}} |
+{{end}}
+{{end}}
+
+{{end}} <!-- end messages -->
+
+{{range .Enums}}
+
+## {{.LongName}}
+{{.Description}}
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+{{range .Values -}}
+  | {{.Name}} | {{.Number}} | {{nobr .Description}} |
+{{end}}
+
+{{end}} <!-- end enums -->
+
+{{end}}

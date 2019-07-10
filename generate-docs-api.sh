@@ -9,21 +9,26 @@ if [ ! -f /.dockerenv ]; then
   exit
 fi
 
-curl -sL https://github.com/mesg-foundation/core/archive/$VERSION.tar.gz | tar -xz
-
-COREDIR=engine-${VERSION#v}
-
-PROJECT=$(pwd)
-GRPC=$PROJECT/$COREDIR
-
-pushd $COREDIR
-go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
-
 echo "Generate API documentation"
-API_DOCS="--doc_out=$PROJECT/api/ --doc_opt=$PROJECT/api.template"
 
-protoc $API_DOCS,core.md --proto_path=$GRPC protobuf/coreapi/api.proto
-protoc $API_DOCS,service.md --proto_path=$GRPC protobuf/serviceapi/api.proto
-popd
+DEF_REPO="mesg-foundation/engine"
+DEF_BRANCH="dev"
+PROTO_PATH="https://raw.githubusercontent.com/$DEF_REPO/$DEF_BRANCH/protobuf"
+PROJECT="/project"
+GRPC_CACHE=$PROJECT/protobuf
+EXPORT_PATH=$PROJECT/api
 
-rm -rf $COREDIR
+mkdir -p $GRPC_CACHE/api
+mkdir -p $GRPC_CACHE/types
+
+ressources="event execution instance service"
+for ressource in $ressources; do
+  curl -o "$GRPC_CACHE/api/$ressource.proto" "$PROTO_PATH/api/$ressource.proto"
+  curl -o "$GRPC_CACHE/types/$ressource.proto" "$PROTO_PATH/types/$ressource.proto"
+  protoc --doc_out="$EXPORT_PATH" --doc_opt="$PROJECT/api.template","$ressource.md" --proto_path="$PROJECT" "$GRPC_CACHE/api/${ressource}.proto"
+  protoc --doc_out="$EXPORT_PATH" --doc_opt="$PROJECT/type.template","$ressource-type.md" --proto_path="$PROJECT" "$GRPC_CACHE/types/$ressource.proto"
+  cat "$EXPORT_PATH/$ressource-type.md" >> "$EXPORT_PATH/$ressource.md"
+  rm -f "$EXPORT_PATH/$ressource-type.md"
+done
+
+rm -rf $GRPC_CACHE
