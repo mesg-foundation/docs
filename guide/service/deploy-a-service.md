@@ -27,7 +27,7 @@ This will give the id of the service. You need to use this id whenever you want 
 ::: tip Compile & Create
 To compile and create the service with one line, you can run:
 ```bash
-mesg-cli service:create "$(cat mesg-cli service:compile PATH_OF_THE_SERVICE)"
+mesg-cli service:create "$(mesg-cli service:compile PATH_OF_THE_SERVICE)"
 ```
 :::
 
