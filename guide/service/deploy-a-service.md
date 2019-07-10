@@ -29,6 +29,7 @@ To compile and create the service with one line, you can run:
 ```bash
 mesg-cli service:create "$(cat mesg-cli service:compile PATH_OF_THE_SERVICE)"
 ```
+:::
 
 ### List deployed services
 
@@ -49,3 +50,4 @@ mesg-cli service:delete SERVICE_ID
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+:::

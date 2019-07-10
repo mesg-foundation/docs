@@ -33,7 +33,8 @@ mesg.listenResult({
 
 ::: tip API definition
 To see the API definition, check the [Execution API definition](../../api/execution.md).
-
+:::
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+:::

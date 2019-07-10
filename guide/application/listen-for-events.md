@@ -22,7 +22,8 @@ mesg.listenEvent({
 
 ::: tip API definition
 To see the API definition, check the [Event API definition](../../api/event.md).
-
+:::
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+:::
