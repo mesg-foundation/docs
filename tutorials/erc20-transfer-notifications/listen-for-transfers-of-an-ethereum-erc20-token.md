@@ -272,16 +272,6 @@ Make sure MESG Engine is running:
 mesg-cli daemon:start
 ```
 
-The first step of testing is to make sure that the Service is valid by running:
-
-```bash
-mesg-cli service:validate
-```
-
-Don't worry, the first time you do this, it will take a bit of time because MESG Engine is building your Service, but the subsequent times will be faster.
-
-You should have a message with `Service is valid`, if not, check the previous steps again; you probably missed something 🤔
-
 It's time to test the Service with MESG Engine!
 
 Let's start the service by running the command:
@@ -310,16 +300,6 @@ Stop the service by pressing `ctrl + c` in the terminal.
 ::: tip Congratulation!
 Hooray!!! 🎉 You finished building a MESG Service that listens for transfer of an ERC20 token!
 :::
-
-## Usage
-
-To use this Service in your future application, you'll need to deploy it:
-
-```text
-mesg-cli service:deploy
-```
-
-This command returns the service id that will be required by your application.
 
 ## Final version of the source code
 
