@@ -4,8 +4,8 @@
 
 To execute a task, Applications need to connect to the Engine through [gRPC](https://grpc.io/) and use the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). The Engine will reply with an `executionHash`that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution output.](./listen-for-events.md#listen-for-task-execution-outputs)
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Core.ExecuteTask`
 
@@ -25,9 +25,9 @@ To execute a task, Applications need to connect to the Engine through [gRPC](htt
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Reply" vp-markdown>
+<v-tab title="Reply" vp-markdown>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
@@ -39,13 +39,13 @@ To execute a task, Applications need to connect to the Engine through [gRPC](htt
 }
 ```
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ### Examples
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').application()
@@ -65,9 +65,9 @@ mesg.executeTask({
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#execute-task)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -109,8 +109,8 @@ func main() {
 
 [See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

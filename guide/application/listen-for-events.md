@@ -4,8 +4,8 @@
 
 To listen for events, the Application needs to open a stream with the Engine with [gRPC](https://grpc.io/) using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/coreapi/api.proto). When opening the stream, the Application listens to the Service. It can listen to many Services at the same time.
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Core.ListenEvent`
 
@@ -21,9 +21,9 @@ To listen for events, the Application needs to open a stream with the Engine wit
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Stream Reply" vp-markdown>
+<v-tab title="Stream Reply" vp-markdown>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- |
@@ -37,13 +37,13 @@ To listen for events, the Application needs to open a stream with the Engine wit
 }
 ```
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ### Example
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').application()
@@ -64,9 +64,9 @@ console.log('application is running and listening for events')
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-events)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -118,8 +118,8 @@ func main() {
 
 [See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ## Listen for task execution outputs
 
@@ -129,8 +129,8 @@ The execution of tasks can take a long time to finish depending on the action th
 Outputs are sent asynchronously. Make sure that the Application listens for outputs before it executes a task, otherwise it will miss the outputs.
 :::
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Core.ListenResult`
 
@@ -148,9 +148,9 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Stream Reply" vp-markdown>
+<v-tab title="Stream Reply" vp-markdown>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- | --- |
@@ -170,13 +170,13 @@ Outputs are sent asynchronously. Make sure that the Application listens for outp
 }
 ```
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ### Examples
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').application()
@@ -199,9 +199,9 @@ console.log('application is running and listening for results')
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#listen-results)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -256,8 +256,8 @@ func main() {
 
 [See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

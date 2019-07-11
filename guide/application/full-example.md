@@ -1,7 +1,7 @@
 # Full example
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').application()
@@ -62,9 +62,9 @@ console.log('application is running and listening for events and results')
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#application)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -163,8 +163,8 @@ func main() {
 
 [See the Core API for additional documentation](https://docs.mesg.com/api/core.html#core-api)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

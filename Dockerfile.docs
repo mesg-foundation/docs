@@ -6,7 +6,7 @@ WORKDIR /project
 VOLUME /project
 
 RUN apt-get update -y && \
-    apt-get install -y unzip && \
+    apt-get install -y unzip jq && \
     rm -rf /var/lib/apt/lists/*
 
 ARG protobuf=3.6.1
@@ -19,3 +19,5 @@ RUN wget -q https://github.com/protocolbuffers/protobuf/releases/download/v$prot
     unzip /tmp/protobuf.zip -d /tmp/protobuf && \
     mv /tmp/protobuf/bin/protoc /usr/local/bin/protoc && \
     rm -rf /tmp/*
+
+RUN go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc

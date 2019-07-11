@@ -68,7 +68,7 @@ themeConfig:
             - text: CLI
               link: /cli/
             - text: Engine API
-              link: /api/core.md
+              link: /api/service.md
         - text: Libraries
           items:
             - text: NodeJS
@@ -139,7 +139,9 @@ themeConfig:
       - /cli/commands/marketplace.md
       - /cli/commands/service.md
     /api/:
-      - /api/core
       - /api/service
+      - /api/instance
+      - /api/event
+      - /api/execution
     /:
       - ''
