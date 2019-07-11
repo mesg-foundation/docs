@@ -75,8 +75,8 @@ To emit events from the Service to the Engine, the Service has to follow the [Pr
 Consider emitting event when the service is ready. If the service needs to synchronize data first, it should wait for the synchronization to complete before emitting events.
 :::
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Service.EmitEvent`
 
@@ -94,19 +94,19 @@ Consider emitting event when the service is ready. If the service needs to synch
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Reply" vp-markdown>
+<v-tab title="Reply" vp-markdown>
 
 Reply of EmitEvent API doesn't contain any data.
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ### Examples
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').service()
@@ -121,9 +121,9 @@ mesg.emitEvent("eventX", {
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#event)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -149,8 +149,8 @@ func main() {
 
 [See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

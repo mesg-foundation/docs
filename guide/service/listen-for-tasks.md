@@ -86,8 +86,8 @@ To listen for task to execute, the Service needs to open a stream with the Engin
 Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, it should wait for the synchronization to finish before listening for tasks.
 :::
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Service.ListenTask`
 
@@ -101,9 +101,9 @@ Consider listening for tasks when your service is ready. If your service needs t
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Stream Reply" vp-markdown>
+<v-tab title="Stream Reply" vp-markdown>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- | --- | --- |
@@ -119,15 +119,15 @@ Consider listening for tasks when your service is ready. If your service needs t
 }
 ```
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ## Submit outputs of task executions
 
 Once the task execution is finished, the Service has to send the outputs of the execution back to the Engine using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
 
-<tabs>
-<tab title="Request" vp-markdown>
+<vue-tabs>
+<v-tab title="Request" vp-markdown>
 
 ### `Service.SubmitResult`
 
@@ -143,9 +143,9 @@ Once the task execution is finished, the Service has to send the outputs of the 
 }
 ```
 
-</tab>
+</v-tab>
 
-<tab title="Reply" vp-markdown>
+<v-tab title="Reply" vp-markdown>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
@@ -157,13 +157,13 @@ Once the task execution is finished, the Service has to send the outputs of the 
 }
 ```
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ## Examples
 
-<tabs>
-<tab title="Node" vp-markdown>
+<vue-tabs>
+<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').service()
@@ -184,9 +184,9 @@ mesg.listenTask({
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#service)
 
-</tab>
+</v-tab>
 
-<tab title="Go" vp-markdown>
+<v-tab title="Go" vp-markdown>
 
 ```go
 package main
@@ -224,8 +224,8 @@ func main() {
 
 [See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
 
-</tab>
-</tabs>
+</v-tab>
+</vue-tabs>
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

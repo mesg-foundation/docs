@@ -16,8 +16,8 @@ In order to be compatible with [Docker](https://www.docker.com/), a `Dockerfile`
 
 ### Examples
 
-<tabs>
-  <tab title="Node" vp-markdown>
+<vue-tabs>
+  <v-tab title="Node" vp-markdown>
     
 ```dockerfile
 FROM node:latest
@@ -30,8 +30,8 @@ CMD [ "npm", "start" ]
 
 Check out how to [dockerizing a Node.js web app](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/).
 
-  </tab>
-  <tab title="Go" vp-markdown>
+  </v-tab>
+  <v-tab title="Go" vp-markdown>
 
 ```dockerfile
 FROM golang:latest
@@ -44,8 +44,8 @@ CMD ["/app/main"]
 
 Check out how to [build a minimal Docker Containers for Go applications](https://blog.codeship.com/building-minimal-docker-containers-for-go-applications/).
 
-  </tab>
-</tabs>
+  </v-tab>
+</vue-tabs>
 
 ## Add a configuration and dependencies
 

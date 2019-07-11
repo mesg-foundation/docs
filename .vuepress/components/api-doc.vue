@@ -9,31 +9,33 @@
     <div v-for="method in api.methods" :key="method.name">
       <h2 :id="method.name">{{method.name}}</h2>
       <p v-html="fromMD(method.description)"></p>
-      <v-tabs>
+      <vue-tabs>
         <v-tab title="Request">
-          <h4><Badge v-if="method.requestStreaming" text="stream" type="warn"/> {{method.requestType}}</h4>
+          <h4>
+            <Badge v-if="method.requestStreaming" text="stream" type="warn" />
+            {{method.requestType}}
+          </h4>
           <p v-html="fromMD(types[method.requestFullType].description)"></p>
           <v-param-table :parameter="types[method.requestFullType]" :types="types" />
         </v-tab>
         <v-tab title="Response">
-          <h4><Badge v-if="method.responseStreaming" text="stream" type="warn"/> {{method.responseType}}</h4>
+          <h4>
+            <Badge v-if="method.responseStreaming" text="stream" type="warn" />
+            {{method.responseType}}
+          </h4>
           <p v-html="fromMD(types[method.responseFullType].description)"></p>
           <v-param-table :parameter="types[method.responseFullType]" :types="types" />
         </v-tab>
-      </v-tabs>
+      </vue-tabs>
     </div>
   </section>
 </template>
 
 <script>
-import VTabs from "./tabs";
-import VTab from "./tab";
 import VParamTable from "./param-table";
 const md = new require("markdown-it")();
 export default {
   components: {
-    VTabs,
-    VTab,
     VParamTable
   },
   props: {
