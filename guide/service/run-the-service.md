@@ -10,6 +10,12 @@ mesg-cli service:start SERVICE_ID
 
 The command will start the Docker container\(s\) needed to run your service.
 
+::: tip
+Env variables from the configuration can be overwrite with the flag `--env`.
+
+`mesg-cli service:start SERVICE_HASH --env FOO=BAR2`
+:::
+
 ## Stop
 
 To stop a Service, run the command:

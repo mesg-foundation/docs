@@ -1,7 +1,7 @@
 # `mesg-cli daemon`
 =================
 
-Manage MESG Engine
+Manage the Engine
 
 * [`mesg-cli daemon:logs`](#mesg-cli-daemonlogs)
 * [`mesg-cli daemon:start`](#mesg-cli-daemonstart)
@@ -17,18 +17,18 @@ USAGE
   $ mesg-cli daemon:logs
 
 OPTIONS
-  -h, --help   show CLI help
-  -q, --quiet
-  --name=name  (required) [default: engine] name of the service running the engine
-  --silent
-  --tail=tail  [default: -1] Output specified number of lines at the end of logs
+  -h, --help     show CLI help
+  -q, --quiet    Display only essential information
+  --[no-]follow  Follow logs
+  --name=name    (required) [default: engine] Name of the docker service running the engine
+  --tail=tail    [default: -1] Display the last N lines
 ```
 
-_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/daemon/logs.ts)_
+_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/logs.ts)_
 
 ## `mesg-cli daemon:start`
 
-Start the MESG Engine's daemon
+Start the Engine
 
 ```
 USAGE
@@ -36,16 +36,18 @@ USAGE
 
 OPTIONS
   -h, --help                                       show CLI help
-  -q, --quiet
-  --log-force-colors                               log force colors
-  --log-format=(text|json)                         [default: text] log format
-  --log-level=(debug|info|warn|error|fatal|panic)  [default: info] log level
-  --name=name                                      (required) [default: engine] name of the service running the engine
-  --silent
-  --version=version                                (required) [default: v0.10.0] Version of the engine to run
+  -q, --quiet                                      Display only essential information
+  --log-force-colors                               Log force colors
+  --log-format=(text|json)                         [default: text] Log format
+  --log-level=(debug|info|warn|error|fatal|panic)  [default: info] Log level
+
+  --name=name                                      (required) [default: engine] Name of the docker service running the
+                                                   engine
+
+  --version=version                                (required) [default: v0.11.0] Version of the Engine to run
 ```
 
-_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/daemon/start.ts)_
+_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/start.ts)_
 
 ## `mesg-cli daemon:status`
 
@@ -57,16 +59,15 @@ USAGE
 
 OPTIONS
   -h, --help   show CLI help
-  -q, --quiet
-  --name=name  (required) [default: engine] name of the service running the engine
-  --silent
+  -q, --quiet  Display only essential information
+  --name=name  (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/daemon/status.ts)_
+_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/status.ts)_
 
 ## `mesg-cli daemon:stop`
 
-Stop the MESG Engine's daemon
+Stop the Engine
 
 ```
 USAGE
@@ -74,9 +75,8 @@ USAGE
 
 OPTIONS
   -h, --help   show CLI help
-  -q, --quiet
-  --name=name  (required) [default: engine] name of the service running the engine
-  --silent
+  -q, --quiet  Display only essential information
+  --name=name  (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/daemon/stop.ts)_
+_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/stop.ts)_

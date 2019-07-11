@@ -1,38 +1,37 @@
 # `mesg-cli marketplace`
 ======================
 
-Let you interact with the MESG Marketplace
+Interact with the Marketplace
 
 * [`mesg-cli marketplace:create-offer SID`](#mesg-cli-marketplacecreate-offer-sid)
 * [`mesg-cli marketplace:publish SERVICE_PATH`](#mesg-cli-marketplacepublish-service_path)
-* [`mesg-cli marketplace:purchase SERVICE_ID OFFER_ID`](#mesg-cli-marketplacepurchase-service_id-offer_id)
+* [`mesg-cli marketplace:purchase SID OFFER_ID`](#mesg-cli-marketplacepurchase-sid-offer_id)
 
 ## `mesg-cli marketplace:create-offer SID`
 
-Create a new offer on a service on the MESG Marketplace
+Create an offer of a service
 
 ```
 USAGE
   $ mesg-cli marketplace:create-offer SID
 
 ARGUMENTS
-  SID  SID of the service on the MESG Marketplace
+  SID  SID of the service
 
 OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
-  -p, --passphrase=passphrase  Passphrase to unlock your account
-  -q, --quiet
-  --duration=duration          (required) Duration (in second) of the offer to create
-  --price=price                (required) Price (in MESG token) of the offer to create
-  --silent
+  -p, --passphrase=passphrase  Passphrase to unlock the account
+  -q, --quiet                  Display only essential information
+  --duration=duration          (required) Duration (in seconds)
+  --price=price                (required) Price (in MESG tokens)
 ```
 
-_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/marketplace/create-offer.ts)_
+_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/create-offer.ts)_
 
 ## `mesg-cli marketplace:publish SERVICE_PATH`
 
-Publish a service on the MESG Marketplace
+Publish a service
 
 ```
 USAGE
@@ -44,31 +43,29 @@ ARGUMENTS
 OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
-  -p, --passphrase=passphrase  Passphrase to unlock your account
-  -q, --quiet
-  --silent
+  -p, --passphrase=passphrase  Passphrase to unlock the account
+  -q, --quiet                  Display only essential information
 ```
 
-_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/marketplace/publish.ts)_
+_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/publish.ts)_
 
-## `mesg-cli marketplace:purchase SERVICE_ID OFFER_ID`
+## `mesg-cli marketplace:purchase SID OFFER_ID`
 
-Purchase a service on the MESG Marketplace
+Purchase a service
 
 ```
 USAGE
-  $ mesg-cli marketplace:purchase SERVICE_ID OFFER_ID
+  $ mesg-cli marketplace:purchase SID OFFER_ID
 
 ARGUMENTS
-  SERVICE_ID  ID of the service on the MESG Marketplace
-  OFFER_ID    ID of the offer on the MESG Marketplace
+  SID       ID of the service
+  OFFER_ID  ID of the offer
 
 OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
-  -p, --passphrase=passphrase  Passphrase to unlock your account
-  -q, --quiet
-  --silent
+  -p, --passphrase=passphrase  Passphrase to unlock the account
+  -q, --quiet                  Display only essential information
 ```
 
-_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.0.0/src/commands/marketplace/purchase.ts)_
+_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/purchase.ts)_

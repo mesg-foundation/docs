@@ -190,17 +190,7 @@ Make sure MESG Engine is running:
 mesg-cli daemon:start
 ```
 
-The first step of testing is to make sure that the Service is valid by running:
-
-```bash
-mesg-cli service:validate
-```
-
-Don't worry, the first time you do this, it will take a bit of time because MESG Engine is building your Service, but the subsequent times will be faster.
-
-You should have a message with `Service is valid`, if not, check the previous steps again; you probably missed something 🤔
-
-Now that your Service is valid, let's create a test file to test the `send` task. Create a `test.json` file with all the inputs needed for the task.
+Let's create a test file to test the `send` task. Create a `test.json` file with all the inputs needed for the task.
 
 <<< @/tutorials/erc20-transfer-notifications/send-email-with-sendgrid/test.json
 
@@ -232,17 +222,9 @@ The `send` task will be executed and you should have the result with status `202
 
 Stop the service by pressing `ctrl + c` in the terminal.
 
-## Usage
-
-To be able to use your Service from an application, you will need to deploy it first. To do this, just run the command:
-
-```bash
-mesg-cli service:deploy
-```
-
-This will return an ID for the Service that you'll be able to use to start the Service, stop it, show the logs etc... or connect different events to the tasks of this Service, but that's for the next tutorial.
-
+::: tip Congratulation!  🎉
 Get some rest now, you've done a good job creating your first Service with MESG. Of course you can always create more complicated Services. Make sure to check out the [documentation](/) for more details.
+:::
 
 ## Final version of the source code
 

@@ -69,44 +69,7 @@ events:
 
 ## Emit an Event
 
-To emit events from the Service to the Engine, the Service has to follow the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and use [gRPC](https://grpc.io/).
-
-::: tip
-Consider emitting event when the service is ready. If the service needs to synchronize data first, it should wait for the synchronization to complete before emitting events.
-:::
-
-<vue-tabs>
-<v-tab title="Request" vp-markdown>
-
-### `Service.EmitEvent`
-
-| **Name** | **Type** | **Required** | **Description** |
-| --- | --- | --- | --- |
-| **token** | `String` | Required | The token given by the Engine as environment variable `MESG_TOKEN` |
-| **eventKey** | `String` | Required | The event's key defined in the [service file](/guide/service/service-file.md) |
-| **eventData** | `String` | Required | The event's data in JSON format |
-
-```json
-{
-    "token": "TOKEN_FROM_ENV",
-    "eventKey": "eventX",
-    "eventData": "{\"foo\":\"hello\",\"bar\":false}"
-}
-```
-
-</v-tab>
-
-<v-tab title="Reply" vp-markdown>
-
-Reply of EmitEvent API doesn't contain any data.
-
-</v-tab>
-</vue-tabs>
-
-### Examples
-
-<vue-tabs>
-<v-tab title="Node" vp-markdown>
+To emit an event, the service should call the mesg.emitEvent function with the event's key and event's data as parameters. This function returns a Promise.
 
 ```javascript
 const mesg = require('mesg-js').service()
@@ -114,43 +77,14 @@ const mesg = require('mesg-js').service()
 mesg.emitEvent("eventX", {
   foo: "hello",
   bar: false,
-}).catch((err) => {
-  console.error(err)
 })
 ```
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#event)
 
-</v-tab>
-
-<v-tab title="Go" vp-markdown>
-
-```go
-package main
-
-import (
-	"github.com/mesg-foundation/core/client/service"
-)
-
-type EventX struct {
-	Foo string `json:"foo"`
-	Bar bool   `json:"bar"`
-}
-
-func main() {
-	s, _ := service.New()
-
-	s.Emit("eventX", EventX{
-		Foo: "hello",
-		Bar: false,
-	})
-}
-```
-
-[See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
-
-</v-tab>
-</vue-tabs>
+::: tip API definition
+To see the API definition, check the [Event API definition](../../api/event.md).
+:::
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.

@@ -106,8 +106,9 @@ themeConfig:
         children:
           - /guide/application/
           - /guide/application/listen-for-events
+          - /guide/application/listen-for-results
           - /guide/application/execute-a-task
-          - /guide/application/full-example
+          - /guide/application/resolve-sid
       - title: Service
         children:
           - /guide/service/
@@ -115,7 +116,6 @@ themeConfig:
           - /guide/service/emit-an-event
           - /guide/service/listen-for-tasks
           - /guide/service/dockerize-the-service
-          - /guide/service/validate
           - /guide/service/test
           - /guide/service/deploy-a-service
           - /guide/service/run-the-service

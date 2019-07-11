@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="with-description">
     <tr v-if="!noHeaders">
       <th>Name</th>
       <th>Type</th>
@@ -71,14 +71,8 @@ export default {
 };
 </script>
 
-<style>
-table {
-  width: 100%;
-}
-tr td:nth-child(3) {
+<style scopped>
+table.with-description tr td:nth-child(3) {
   min-width: 300px;
-}
-tr:nth-child(2n) {
-  background: rgba(73, 30, 140, 0.05);
 }
 </style>

@@ -41,13 +41,13 @@ We'll start by deploying the two services. If you haven't already, make sure to 
 Deploy the [ERC20 Service](https://marketplace.mesg.com/services/ethereum-erc20):
 
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/Fh7LN5g2ECvqcEEZLP9h6AJ4fphbsDKVrmLVLyP4pkb6 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/FZk4bpkmofTsmDrj31ptB1emdNNN8C1ckfLzYwNgEyqX)"
 ```
 
 Deploy the [SendGrid Service](https://marketplace.mesg.com/services/email-sendgrid):
 
 ```bash
-mesg-cli service:deploy mesg://marketplace/service/6YXz84SaPapfnFd9FkR4DJbcZhBY1FjfAjDwDXaXkBod --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
+mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/5igXMrx1joucPxxGHDhZNzoCH24RxrAimYofwvq8NBSY)"
 ```
 
 Replace `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` by the SendGrid API Key.
@@ -57,13 +57,13 @@ Replace `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` by the SendGrid API Key.
 Start the ERC20 Service:
 
 ```bash
-mesg-cli service:start ethereum-erc20
+mesg-cli service:start ethereum-erc20 --env PROVIDER_ENDPOINT=https://mainnet.infura.io/v3/d75ab9cb284f4536b1da2ce9f8201bdb
 ```
 
 Start the SendGrid Service:
 
 ```bash
-mesg-cli service:start email-sendgrid
+mesg-cli service:start email-sendgrid --env SENDGRID_API_KEY=__CHANGE_WITH_YOUR_SENDGRID_API_KEY__
 ```
 
 ### Init the application
@@ -99,24 +99,32 @@ In this tutorial, we will limit the application to listen transfers from the 0x 
 Let's listen for events, filter them and display them:
 
 ```javascript
-// Listen for the event.
-mesg.listenEvent({
-  serviceID: 'ethereum-erc20', // The serviceID of the ERC20 service deployed
-  eventFilter: 'transfer' // The event we want to listen
-})
-  .on('data', (event) => {
-    const transfer = JSON.parse(event.eventData)
+const mesg = require('mesg-js').application()
 
-    if (transfer.contractAddress.toLowerCase() !== '0xe41d2489571d322189246dafa5ebde1f4699f498') {
-      return
+async function main() {
+  // Listen for the event.
+  mesg.listenEvent({
+    filter: {
+      instanceHash: await mesg.resolve('ethereum-erc20'), // The serviceID of the ERC20 service deployed
+      key: 'transfer' // The event we want to listen
     }
-    console.log('New ERC20 transfer received. Transaction hash:', transfer.transactionHash)
   })
-  .on('error', (err) => {
-    console.error(err.message)
-  })
+    .on('data', async (event) => {
+      const transfer = JSON.parse(event.data)
 
-console.log('Listening ERC20 transfer...')
+      if (transfer.contractAddress.toLowerCase() !== '0xe41d2489571d322189246dafa5ebde1f4699f498') {
+        return
+      }
+      console.log('New ERC20 transfer received. Transaction hash:', transfer.transactionHash)
+    })
+    .on('error', (err) => {
+      console.error(err.message)
+    })
+
+  console.log('Listening ERC20 transfer...')
+}
+
+main()
 ```
 
 ### Execute task
@@ -133,9 +141,9 @@ This:
 console.log('Will send email...')
 try {
   const result = await mesg.executeTaskAndWaitResult({
-    serviceID: 'email-sendgrid', // The serviceID of the service to send emails
+    instanceHash: await mesg.resolve('email-sendgrid'), // The serviceID of the service to send emails
     taskKey: 'send', // The task we want to execute
-    inputData: JSON.stringify({ // The input data that task needs
+    inputs: JSON.stringify({ // The input data that task needs
       from: 'test@erc20notification.com',
       to: '__REPLACE_WITH_YOUR_EMAIL__',
       subject: 'New ERC20 transfer',
@@ -146,8 +154,8 @@ try {
     console.error('error during email sent', result.error)
     return
   }
-  console.log('task send return status', JSON.parse(result.outputData).status)
-} catch(err) {
+  console.log('task send return status', JSON.parse(result.outputs).status)
+} catch (err) {
   console.error(err.message)
 }
 ```

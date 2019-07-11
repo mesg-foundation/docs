@@ -9,8 +9,7 @@ Services need to receive a command from the Engine in order to execute any desir
 To implement tasks in your Service, you'll need to :
 
 * [Add the task definition](#task-definitions) in the Service's [`mesg.yml`](service-file.md) file
-* [Listen for task's execution](#listen-for-task-executions) from the Engine
-* [Submit the outputs](#submit-outputs-of-task-executions) of the task
+* [Handle execution](#handle-executions) from the Engine
 
 ## Task definitions
 
@@ -78,154 +77,40 @@ tasks:
 ...
 ```
 
-## Listen for task executions
+## Handle executions
 
-To listen for task to execute, the Service needs to open a stream with the Engine using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Every task received on the stream needs to be executed by the Service and the output [submitted](#submit-outputs-of-task-executions) back to the Engine.
+The service have to call mesg.listenTask to start listening for task to execute by passing an object containing the tasks' key and function.
 
-::: tip
-Consider listening for tasks when your service is ready. If your service needs to synchronize some data first, it should wait for the synchronization to finish before listening for tasks.
-:::
+The task functions accept inputs as parameter and returns the outputs as object or Promise of object. The task function can throw an Error in case of error. The lib will catch it and send it to the MESG Engine.
 
-<vue-tabs>
-<v-tab title="Request" vp-markdown>
-
-### `Service.ListenTask`
-
-| **Name** | **Type** | **Required** | **Description** |
-| --- | --- | --- | --- |
-| **token** | `String` | Required | The token given by the Engine as environment variable `MESG_TOKEN` |
-
-```json
-{
-    "token": "TOKEN_FROM_ENV"
-}
-```
-
-</v-tab>
-
-<v-tab title="Stream Reply" vp-markdown>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- | --- | --- |
-| **executionHash** | `String` | The hash of the execution that allows you to track the result in an asynchronous way |
-| **taskKey** | `String` | Key of the task to execute \(as in your `mesg.yml` file\) |
-| **inputData** | `String` | Inputs of the task serialized in JSON |
-
-```json
-{
-    "executionHash": "xxxxxx",
-    "taskKey": "taskX",
-    "inputData": "{\"inputX\":\"Hello world!\",\"inputY\":true}"
-}
-```
-
-</v-tab>
-</vue-tabs>
-
-## Submit outputs of task executions
-
-Once the task execution is finished, the Service has to send the outputs of the execution back to the Engine using the [Protocol Buffers definition](https://github.com/mesg-foundation/core/blob/master/protobuf/serviceapi/api.proto) and [gRPC](https://grpc.io/). Only one output can be submitted per execution even if the task has declared multiple outputs.
-
-<vue-tabs>
-<v-tab title="Request" vp-markdown>
-
-### `Service.SubmitResult`
-
-| **Name** | **Type** | **Required** | **Description** |
-| --- | --- | --- | --- |
-| **executionHash** | `String` | required | The `executionHash` received from the [listen](listen-for-tasks.md#listen-for-task-executions) stream. |
-| **outputData** | `String` | required | The output's data encoded in JSON. The data should match the one defined in the [output's declaration](#task-definitions). |
-
-```json
-{
-    "executionHash": "xxxxxx",
-    "outputData": "{\"foo\":\"super result\",\"bar\":true}"
-}
-```
-
-</v-tab>
-
-<v-tab title="Reply" vp-markdown>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| **executionHash** | `String` | The hash of the execution. |
-
-```json
-{
-    "executionHash": "xxxxxx"
-}
-```
-
-</v-tab>
-</vue-tabs>
-
-## Examples
-
-<vue-tabs>
-<v-tab title="Node" vp-markdown>
 
 ```javascript
 const mesg = require('mesg-js').service()
 
 mesg.listenTask({
-  // handler function of taskX
-  taskX: (inputs) => {
+  taskX: async (inputs) => {
+    // Function of the task 1
+    // Can directly throw error
+    if (inputs.inputX === undefined) {
+      throw new Error('inputX is undefined')
+    }
+    // Return an object
+    const response = await fetch('...')
     return {
-      foo: inputs.inputX,
+      foo: response.foo,
       bar: true
     }
-  },
+    return { foo: inputs.a + 'bar' }
+  }
 })
-  .on('error', (error) => {
-    console.error(error)
-  })
 ```
 
 [See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#service)
 
-</v-tab>
-
-<v-tab title="Go" vp-markdown>
-
-```go
-package main
-
-import (
-	"github.com/mesg-foundation/core/client/service"
-)
-
-type taskXInputs struct {
-	InputX string `json:"inputX"`
-	InputY []bool `json:"inputY"`
-}
-
-type taskXOutputs struct {
-	Foo string `json:"foo"`
-	Bar bool   `json:"bar"`
-}
-
-func main() {
-	s, _ := service.New()
-
-	s.Listen(
-		service.Task("taskX", func(execution *service.Execution) (interface{}, error) {
-			var inputs taskXInputs
-			execution.Data(&inputs)
-
-			return taskXOutputs{
-				Foo: inputs.InputX,
-				Bar: true,
-			}, nil
-		}),
-	)
-}
-```
-
-[See the Go Service package for additional documentation](https://godoc.org/github.com/mesg-foundation/core/client/service)
-
-</v-tab>
-</vue-tabs>
+::: tip API definition
+To see the API definition, check the [Execution API definition](../../api/execution.md).
+:::
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+:::
