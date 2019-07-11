@@ -6,7 +6,9 @@
       <th>Description</th>
     </tr>
     <tr v-for="field in parameter.fields" :key="field.name">
-      <td><em>{{field.name}}</em></td>
+      <td>
+        <em>{{field.name}}</em>
+      </td>
       <td
         colspan="2"
         v-if="types[field.fullType] && field.fullType !== parameter.fullName"
@@ -32,8 +34,10 @@
       </td>
       <template v-else>
         <td>
-          <strong v-if="field.label === 'repeated'">{{field.fullType}}[]</strong>
-          <strong v-else>{{field.fullType}}</strong>
+          <strong
+            v-if="field.label === 'repeated'"
+          >{{field.fullType === parameter.fullName ? "self" : field.fullType}}[]</strong>
+          <strong v-else>{{field.fullType === parameter.fullName ? "self" : field.fullType}}</strong>
         </td>
         <td v-html="field.description" />
       </template>
@@ -75,6 +79,6 @@ tr td:nth-child(3) {
   min-width: 300px;
 }
 tr:nth-child(2n) {
-  background: rgba(73, 30, 140, .05);
+  background: rgba(73, 30, 140, 0.05);
 }
 </style>
