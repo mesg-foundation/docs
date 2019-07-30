@@ -138,7 +138,7 @@ try {
   const balanceResult = await mesg.executeTaskAndWaitResult({
     instanceHash: ethereumErc20,
     taskKey: 'balanceOf',
-    inputs: JSON.stringify({
+    inputs: mesg.encodeData({
       contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
       address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
     })
@@ -147,7 +147,7 @@ try {
     console.error('an error occurred while getting the balance', balanceResult.error)
     return
   }
-  const balanceData = JSON.parse(balanceResult.outputs)
+  const balanceData = mesg.decodeData(balanceResult.outputs)
   console.log('balance is', balanceData.balance)
 } catch (error) {
   console.error('an error occurred', error.message)
@@ -169,7 +169,7 @@ console.log('balance is', balanceData.balance)
 const requestResult = await mesg.executeTaskAndWaitResult({
   instanceHash: webhook,
   taskKey: 'call',
-  inputs: JSON.stringify({
+  inputs: mesg.encodeData({
     url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
     data: balanceData,
   })
@@ -178,7 +178,7 @@ if (requestResult.error) {
   console.error('an error occurred while calling the webhook', requestResult.error)
   return
 }
-const requestData = JSON.parse(requestResult.outputs)
+const requestData = mesg.decodeData(requestResult.outputs)
 console.log('request status is', requestData.status)
 ```
 
@@ -223,7 +223,7 @@ const main = async () => {
         const balanceResult = await mesg.executeTaskAndWaitResult({
           instanceHash: ethereumErc20,
           taskKey: 'balanceOf',
-          inputs: JSON.stringify({
+          inputs: mesg.encodeData({
             contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
             address: '0xe17ee7b3c676701c66b395a35f0df4c2276a344e',
           })
@@ -232,14 +232,14 @@ const main = async () => {
           console.error('an error occurred while getting the balance', balanceResult.error)
           return
         }
-        const balanceData = JSON.parse(balanceResult.outputs)
+        const balanceData = mesg.decodeData(balanceResult.outputs)
         console.log('balance is', balanceData.balance)
 
         // Call the webhook
         const requestResult = await mesg.executeTaskAndWaitResult({
           instanceHash: webhook,
           taskKey: 'call',
-          inputs: JSON.stringify({
+          inputs: mesg.encodeData({
             url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
             data: balanceData,
           })
@@ -248,7 +248,7 @@ const main = async () => {
           console.error('an error occurred while calling the webhook', requestResult.error)
           return
         }
-        const requestData = JSON.parse(requestResult.outputs)
+        const requestData = mesg.decodeData(requestResult.outputs)
         console.log('request status is', requestData.status)
       } catch (error) {
         console.error('an error occurred', error.message)

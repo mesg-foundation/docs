@@ -27,7 +27,7 @@ mesg.listenResult({
     console.error('an error has occurred:', result.error)
     return
   }
-  console.log('a result received:', JSON.parse(result.outputs))
+  console.log('a result received:', mesg.decodeData(result.outputs))
 })
 ```
 
