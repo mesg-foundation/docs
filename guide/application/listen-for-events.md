@@ -16,7 +16,7 @@ mesg.listenEvent({
   }
 })
 .on('data', (event) => {
-  console.log('an event received:', event.key, JSON.parse(event.data))
+  console.log('an event received:', event.key, mesg.decodeData(event.data))
 })
 ```
 

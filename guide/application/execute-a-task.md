@@ -12,7 +12,7 @@ const mesg = application()
 const execution = await mesg.executeTask({
   instanceHash: 'TASK_INSTANCE_HASH',
   taskKey: 'TASK_KEY',
-  inputs: JSON.stringify('INPUT_DATA'),
+  inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional
 })
 console.log('task in progress with execution:', execution.hash)
@@ -25,14 +25,14 @@ The Application can also call the function `executeTaskAndWaitResult` that autom
 const result = await mesg.executeTaskAndWaitResult({
   instanceHash: 'TASK_INSTANCE_HASH',
   taskKey: 'TASK_KEY',
-  inputs: JSON.stringify('INPUT_DATA'),
+  inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional
 })
 if (result.error) {
   console.error('an error has occurred:', result.error)
   throw new Error(result.error)
 }
-console.log('a result received:', JSON.parse(result.outputs))
+console.log('a result received:', mesg.decodeData(result.outputs))
 ```
 
 ::: tip API definition
