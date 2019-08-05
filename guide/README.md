@@ -1,6 +1,6 @@
 # Introduction
 
-MESG is a framework for developers to build application efficiently. It relies on two specific tools:
+MESG is a framework for developers to build applications efficiently. It relies on two specific tools:
 
 - The **MESG SDK** that connects services together
 - The **MESG Marketplace** to bootstrap applications faster
@@ -20,7 +20,7 @@ The tools within the SDK:
 - Manage the security and isolation of services
 - Route the various tasks and events to listen to the appropriate service
 
-Applications are only responsible for communicating with the MESG Engine, and use only one API to access any service. 
+Applications are only responsible for communicating with the MESG Engine and use only one API to access any service. 
 
 ### Architecture of applications with MESG
 
