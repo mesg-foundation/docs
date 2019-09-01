@@ -4,7 +4,7 @@ One of the functionalities of the Marketplace is to deploy Services from the Mar
 
 ## Browse Services
 
-To browse available Services, go to the Marketpace website: [marketplace.mesg.com](https://marketplace.mesg.com).
+To browse available Services, go to the Marketplace website: [marketplace.mesg.com](https://marketplace.mesg.com).
 
 You can directly find Services' documentation, API, offers and versions to easily decide which one your application should use.
 
