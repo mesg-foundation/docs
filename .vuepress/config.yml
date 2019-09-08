@@ -109,6 +109,10 @@ themeConfig:
           - /guide/application/listen-for-results
           - /guide/application/execute-a-task
           - /guide/application/resolve-sid
+      - title: Orchestration
+        children:
+          - /guide/orchestrator/
+          - /guide/orchestrator/process-file
       - title: Service
         children:
           - /guide/service/

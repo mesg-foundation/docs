@@ -17,20 +17,21 @@
         <div style="padding: .75em .5em" v-if="field.label === 'repeated'">
           <strong>Type: Array</strong>
         </div>
-        <table v-if="types[field.fullType].values" style="margin: 0px">
+        <table v-if="types[field.fullType].values" style="margin: 0px; border: none;">
           <tr v-for="(value, i) in types[field.fullType].values">
             <td>{{value.name}}</td>
             <td>{{value.number}}</td>
             <td>{{value.description}}</td>
           </tr>
         </table>
-        <param-table
-          v-else
-          no-headers
-          :parameter="types[field.fullType]"
-          :types="types"
-          style="margin: 0px"
-        />
+        <template v-else>
+          <p v-if="field.description">{{field.description}}</p>
+          <param-table
+            :parameter="types[field.fullType]"
+            :types="types"
+            style="margin: -1px;"
+          />
+        </template>
       </td>
       <template v-else>
         <td>
@@ -74,5 +75,11 @@ export default {
 <style scopped>
 table.with-description tr td:nth-child(3) {
   min-width: 300px;
+}
+td {
+  vertical-align: top;
+}
+p {
+  margin: .4em 1em;
 }
 </style>
