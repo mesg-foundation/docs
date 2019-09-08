@@ -137,6 +137,7 @@ themeConfig:
       - /cli/commands/account.md
       - /cli/commands/daemon.md
       - /cli/commands/marketplace.md
+      - /cli/commands/process.md
       - /cli/commands/service.md
     /api/:
       - /api/service

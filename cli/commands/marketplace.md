@@ -22,12 +22,14 @@ OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
   -p, --passphrase=passphrase  Passphrase to unlock the account
+  -p, --port=port              [default: 50052] Port to access the MESG engine
   -q, --quiet                  Display only essential information
   --duration=duration          (required) Duration (in seconds)
+  --host=host                  [default: localhost] Host to access the MESG engine
   --price=price                (required) Price (in MESG tokens)
 ```
 
-_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/create-offer.ts)_
+_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/marketplace/create-offer.ts)_
 
 ## `mesg-cli marketplace:publish SERVICE_PATH`
 
@@ -44,10 +46,12 @@ OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
   -p, --passphrase=passphrase  Passphrase to unlock the account
+  -p, --port=port              [default: 50052] Port to access the MESG engine
   -q, --quiet                  Display only essential information
+  --host=host                  [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/publish.ts)_
+_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/marketplace/publish.ts)_
 
 ## `mesg-cli marketplace:purchase SID OFFER_ID`
 
@@ -65,7 +69,9 @@ OPTIONS
   -a, --account=account        Account to use
   -h, --help                   show CLI help
   -p, --passphrase=passphrase  Passphrase to unlock the account
+  -p, --port=port              [default: 50052] Port to access the MESG engine
   -q, --quiet                  Display only essential information
+  --host=host                  [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/marketplace/purchase.ts)_
+_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/marketplace/purchase.ts)_
