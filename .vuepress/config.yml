@@ -143,5 +143,6 @@ themeConfig:
       - /api/instance
       - /api/event
       - /api/execution
+      - /api/process
     /:
       - ''
