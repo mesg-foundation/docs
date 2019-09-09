@@ -12,7 +12,7 @@ fi
 echo "Generate API documentation"
 
 DEF_REPO="mesg-foundation/engine"
-DEF_BRANCH="dev"
+DEF_BRANCH="${1:-dev}"
 PROTO_PATH="https://raw.githubusercontent.com/$DEF_REPO/$DEF_BRANCH/protobuf"
 PROJECT="/project"
 GRPC_CACHE=$PROJECT/protobuf
@@ -23,12 +23,22 @@ mkdir -p $EXPORT_PATH
 mkdir -p $GRPC_CACHE/api
 mkdir -p $GRPC_CACHE/types
 
-ressources="event execution instance service"
+ressources="event execution instance service process"
 for ressource in $ressources; do
   curl -o "$GRPC_CACHE/api/$ressource.proto" "$PROTO_PATH/api/$ressource.proto"
   curl -o "$GRPC_CACHE/types/$ressource.proto" "$PROTO_PATH/types/$ressource.proto"
-  protoc --doc_out="$EXPORT_PATH" --doc_opt="json","$ressource-api.json" --proto_path="$PROJECT" "$GRPC_CACHE/api/${ressource}.proto"
-  protoc --doc_out="$EXPORT_PATH" --doc_opt="json","$ressource-type.json" --proto_path="$PROJECT" "$GRPC_CACHE/types/$ressource.proto"
+  protoc \
+    --doc_out="$EXPORT_PATH" \
+    --doc_opt="json","$ressource-api.json" \
+    --proto_path="$PROJECT" \
+    --gogo_out=Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,plugins=grpc,paths=source_relative:. \
+    "$GRPC_CACHE/api/${ressource}.proto"
+  protoc \
+    --doc_out="$EXPORT_PATH" \
+    --doc_opt="json","$ressource-type.json" \
+    --proto_path="$PROJECT" \
+    --gogo_out=Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,plugins=grpc,paths=source_relative:. \
+    "$GRPC_CACHE/types/$ressource.proto"
   echo "# $ressource
   <api-doc 
     :apifiles='$(cat $EXPORT_PATH/$ressource-api.json | jq -c . | sed "s/'/\&rsquo;/g" )'
