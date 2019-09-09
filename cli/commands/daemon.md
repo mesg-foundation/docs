@@ -17,14 +17,16 @@ USAGE
   $ mesg-cli daemon:logs
 
 OPTIONS
-  -h, --help     show CLI help
-  -q, --quiet    Display only essential information
-  --[no-]follow  Follow logs
-  --name=name    (required) [default: engine] Name of the docker service running the engine
-  --tail=tail    [default: -1] Display the last N lines
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --[no-]follow    Follow logs
+  --host=host      [default: localhost] Host to access the MESG engine
+  --name=name      (required) [default: engine] Name of the docker service running the engine
+  --tail=tail      [default: -1] Display the last N lines
 ```
 
-_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/logs.ts)_
+_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/daemon/logs.ts)_
 
 ## `mesg-cli daemon:start`
 
@@ -36,7 +38,9 @@ USAGE
 
 OPTIONS
   -h, --help                                       show CLI help
+  -p, --port=port                                  [default: 50052] Port to access the MESG engine
   -q, --quiet                                      Display only essential information
+  --host=host                                      [default: localhost] Host to access the MESG engine
   --log-force-colors                               Log force colors
   --log-format=(text|json)                         [default: text] Log format
   --log-level=(debug|info|warn|error|fatal|panic)  [default: info] Log level
@@ -44,10 +48,10 @@ OPTIONS
   --name=name                                      (required) [default: engine] Name of the docker service running the
                                                    engine
 
-  --version=version                                (required) [default: v0.11.0] Version of the Engine to run
+  --version=version                                (required) [default: v0.12.1] Version of the Engine to run
 ```
 
-_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/start.ts)_
+_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/daemon/start.ts)_
 
 ## `mesg-cli daemon:status`
 
@@ -58,12 +62,14 @@ USAGE
   $ mesg-cli daemon:status
 
 OPTIONS
-  -h, --help   show CLI help
-  -q, --quiet  Display only essential information
-  --name=name  (required) [default: engine] Name of the docker service running the engine
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --host=host      [default: localhost] Host to access the MESG engine
+  --name=name      (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/status.ts)_
+_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/daemon/status.ts)_
 
 ## `mesg-cli daemon:stop`
 
@@ -74,9 +80,11 @@ USAGE
   $ mesg-cli daemon:stop
 
 OPTIONS
-  -h, --help   show CLI help
-  -q, --quiet  Display only essential information
-  --name=name  (required) [default: engine] Name of the docker service running the engine
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --host=host      [default: localhost] Host to access the MESG engine
+  --name=name      (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/daemon/stop.ts)_
+_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/daemon/stop.ts)_

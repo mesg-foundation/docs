@@ -20,11 +20,13 @@ USAGE
 
 OPTIONS
   -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
   -q, --quiet              Display only essential information
+  --host=host              [default: localhost] Host to access the MESG engine
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/create.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/create.ts)_
+_See code: [src/commands/account/create.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/create.ts)_
 
 ## `mesg-cli account:delete ADDRESS`
 
@@ -36,11 +38,13 @@ USAGE
 
 OPTIONS
   -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
   -q, --quiet              Display only essential information
+  --host=host              [default: localhost] Host to access the MESG engine
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/delete.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/delete.ts)_
+_See code: [src/commands/account/delete.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/delete.ts)_
 
 ## `mesg-cli account:export ADDRESS`
 
@@ -52,11 +56,13 @@ USAGE
 
 OPTIONS
   -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
   -q, --quiet              Display only essential information
+  --host=host              [default: localhost] Host to access the MESG engine
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/export.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/export.ts)_
+_See code: [src/commands/account/export.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/export.ts)_
 
 ## `mesg-cli account:import ACCOUNT`
 
@@ -71,11 +77,13 @@ ARGUMENTS
 
 OPTIONS
   -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
   -q, --quiet              Display only essential information
+  --host=host              [default: localhost] Host to access the MESG engine
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/import.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/import.ts)_
+_See code: [src/commands/account/import.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/import.ts)_
 
 ## `mesg-cli account:import-private-key PRIVATE_KEY`
 
@@ -90,11 +98,13 @@ ARGUMENTS
 
 OPTIONS
   -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
   -q, --quiet              Display only essential information
+  --host=host              [default: localhost] Host to access the MESG engine
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/import-private-key.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/import-private-key.ts)_
+_See code: [src/commands/account/import-private-key.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/import-private-key.ts)_
 
 ## `mesg-cli account:list`
 
@@ -106,14 +116,16 @@ USAGE
 
 OPTIONS
   -h, --help         show CLI help
+  -p, --port=port    [default: 50052] Port to access the MESG engine
   -q, --quiet        Display only essential information
   -x, --extended     show extra columns
   --columns=columns  only show provided columns (comma-separated)
   --csv              output is csv format
   --filter=filter    filter property by partial string matching, ex: name=foo
+  --host=host        [default: localhost] Host to access the MESG engine
   --no-header        hide table header from output
   --no-truncate      do not truncate output to fit screen
   --sort=sort        property to sort by (prepend '-' for descending)
 ```
 
-_See code: [src/commands/account/list.ts](https://github.com/mesg-foundation/cli/blob/v1.1.0/src/commands/account/list.ts)_
+_See code: [src/commands/account/list.ts](https://github.com/mesg-foundation/cli/blob/v1.2.0/src/commands/account/list.ts)_
