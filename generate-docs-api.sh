@@ -23,6 +23,8 @@ mkdir -p $EXPORT_PATH
 mkdir -p $GRPC_CACHE/api
 mkdir -p $GRPC_CACHE/types
 
+curl -o "$GRPC_CACHE/types/struct.proto" "$PROTO_PATH/types/struct.proto"
+
 ressources="event execution instance service process"
 for ressource in $ressources; do
   curl -o "$GRPC_CACHE/api/$ressource.proto" "$PROTO_PATH/api/$ressource.proto"
@@ -31,13 +33,13 @@ for ressource in $ressources; do
     --doc_out="$EXPORT_PATH" \
     --doc_opt="json","$ressource-api.json" \
     --proto_path="$PROJECT" \
-    --gogo_out=Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,plugins=grpc,paths=source_relative:. \
+    --gogo_out=plugins=grpc,paths=source_relative:. \
     "$GRPC_CACHE/api/${ressource}.proto"
   protoc \
     --doc_out="$EXPORT_PATH" \
     --doc_opt="json","$ressource-type.json" \
     --proto_path="$PROJECT" \
-    --gogo_out=Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,plugins=grpc,paths=source_relative:. \
+    --gogo_out=plugins=grpc,paths=source_relative:. \
     "$GRPC_CACHE/types/$ressource.proto"
   echo "# $ressource
   <api-doc 
