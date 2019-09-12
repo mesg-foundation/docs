@@ -113,6 +113,7 @@ themeConfig:
         children:
           - /guide/orchestrator/
           - /guide/orchestrator/process-file
+          - /guide/orchestrator/deployment
       - title: Service
         children:
           - /guide/service/
