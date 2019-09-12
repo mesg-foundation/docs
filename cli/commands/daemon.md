@@ -26,7 +26,7 @@ OPTIONS
   --tail=tail      [default: -1] Display the last N lines
 ```
 
-_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/daemon/logs.ts)_
+_See code: [src/commands/daemon/logs.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/daemon/logs.ts)_
 
 ## `mesg-cli daemon:start`
 
@@ -48,10 +48,10 @@ OPTIONS
   --name=name                                      (required) [default: engine] Name of the docker service running the
                                                    engine
 
-  --version=version                                (required) [default: v0.14.0] Version of the Engine to run
+  --version=version                                (required) [default: v0.14.1] Version of the Engine to run
 ```
 
-_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/daemon/start.ts)_
+_See code: [src/commands/daemon/start.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/daemon/start.ts)_
 
 ## `mesg-cli daemon:status`
 
@@ -69,7 +69,7 @@ OPTIONS
   --name=name      (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/daemon/status.ts)_
+_See code: [src/commands/daemon/status.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/daemon/status.ts)_
 
 ## `mesg-cli daemon:stop`
 
@@ -87,4 +87,4 @@ OPTIONS
   --name=name      (required) [default: engine] Name of the docker service running the engine
 ```
 
-_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/daemon/stop.ts)_
+_See code: [src/commands/daemon/stop.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/daemon/stop.ts)_

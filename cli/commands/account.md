@@ -26,7 +26,7 @@ OPTIONS
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/create.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/create.ts)_
+_See code: [src/commands/account/create.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/create.ts)_
 
 ## `mesg-cli account:delete ADDRESS`
 
@@ -44,7 +44,7 @@ OPTIONS
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/delete.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/delete.ts)_
+_See code: [src/commands/account/delete.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/delete.ts)_
 
 ## `mesg-cli account:export ADDRESS`
 
@@ -62,7 +62,7 @@ OPTIONS
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/export.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/export.ts)_
+_See code: [src/commands/account/export.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/export.ts)_
 
 ## `mesg-cli account:import ACCOUNT`
 
@@ -83,7 +83,7 @@ OPTIONS
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/import.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/import.ts)_
+_See code: [src/commands/account/import.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/import.ts)_
 
 ## `mesg-cli account:import-private-key PRIVATE_KEY`
 
@@ -104,7 +104,7 @@ OPTIONS
   --passphrase=passphrase  Passphrase of the account
 ```
 
-_See code: [src/commands/account/import-private-key.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/import-private-key.ts)_
+_See code: [src/commands/account/import-private-key.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/import-private-key.ts)_
 
 ## `mesg-cli account:list`
 
@@ -128,4 +128,4 @@ OPTIONS
   --sort=sort        property to sort by (prepend '-' for descending)
 ```
 
-_See code: [src/commands/account/list.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/account/list.ts)_
+_See code: [src/commands/account/list.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/account/list.ts)_

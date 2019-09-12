@@ -29,7 +29,7 @@ OPTIONS
   --price=price                (required) Price (in MESG tokens)
 ```
 
-_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/marketplace/create-offer.ts)_
+_See code: [src/commands/marketplace/create-offer.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/marketplace/create-offer.ts)_
 
 ## `mesg-cli marketplace:publish SERVICE_PATH`
 
@@ -51,7 +51,7 @@ OPTIONS
   --host=host                  [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/marketplace/publish.ts)_
+_See code: [src/commands/marketplace/publish.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/marketplace/publish.ts)_
 
 ## `mesg-cli marketplace:purchase SID OFFER_ID`
 
@@ -74,4 +74,4 @@ OPTIONS
   --host=host                  [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.3.0/src/commands/marketplace/purchase.ts)_
+_See code: [src/commands/marketplace/purchase.ts](https://github.com/mesg-foundation/cli/blob/v1.3.1/src/commands/marketplace/purchase.ts)_
