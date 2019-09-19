@@ -31,7 +31,7 @@ mesg-cli service:create "$(mesg-cli service:compile PATH_OF_THE_SERVICE)"
 ```
 :::
 
-### List deployed services
+## List deployed services
 
 If you want to see the list of services already deployed you can run the command:
 
@@ -39,7 +39,7 @@ If you want to see the list of services already deployed you can run the command
 mesg-cli service:list
 ```
 
-### Delete a deployed service
+## Delete a deployed service
 
 If for any reason you want to delete a service that you previously deployed you can do it using the command:
 
@@ -47,6 +47,9 @@ If for any reason you want to delete a service that you previously deployed you 
 mesg-cli service:delete SERVICE_ID
 ```
 
+::: tip Command line doc
+Check out [the command line doc](/cli/commands/service.md).
+:::
 
 ::: tip Get Help
 You need help ? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
