@@ -7,7 +7,7 @@ It lets you build and run complex applications by describing their business logi
 Processes are an evolution of [Applications](../application/) as they are managed by the Engine and will be distributed on the upcoming decentralized network.
 
 
-__TODO: rename App by Process on the following image:__
+<!-- TODO: Add schema on process -->
 
 ![Application](/application.svg)
 
@@ -23,15 +23,11 @@ Step can be one of the following:
 
 Only the first step of a process is and must be an event or a task's result trigger.
 
-### State machine
-
 Processes are [nondeterministic finite](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) [state machines](https://en.wikipedia.org/wiki/Finite-state_machine) that perform state transition when matching events or task's results occur but don't support cycle.
-
-### Activity diagram
 
 Process can be graphically represented as [UML activity diagram](https://en.wikipedia.org/wiki/Activity_diagram) with actions and conditions, but without cycle and concurrency. Graphic representation is a very good first step to conceptualized an application before implementing it.
 
-__TODO: add schema of a process__
+<!-- TODO: add schema of a process -->
 
 ## More
 
