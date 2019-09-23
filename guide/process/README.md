@@ -2,7 +2,7 @@
 
 MESG Orchestrator is an event-driven task-orchestration system that manages the connections between the events and tasks of services by following the steps described by processes.
 
-It lets you build and run complex applications by describing their business logic, then has the Engine execute them for you.
+It lets you build and run complex applications by describing their business logic, then the Engine executes them for you.
 
 Processes are an evolution of [Applications](../application/) as they are managed by the Engine and will be distributed on the upcoming decentralized network.
 
