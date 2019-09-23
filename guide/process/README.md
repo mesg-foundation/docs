@@ -6,10 +6,7 @@ It lets you build and run complex applications by describing their business logi
 
 Processes are an evolution of [Applications](../application/) as they are managed by the Engine and will be distributed on the upcoming decentralized network.
 
-
 <!-- TODO: Add schema on process -->
-
-![Application](/application.svg)
 
 ## What is a process
 
@@ -26,8 +23,6 @@ Step can be one of the following:
 - Condition on the data
 
 Only the first step of a process is and must be an event or a task's result trigger.
-
-<!-- TODO: add schema of a process -->
 
 ## More
 
