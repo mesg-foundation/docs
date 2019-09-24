@@ -10,7 +10,7 @@ features:
     details: MESG mixes a gRPC API and a container based module approach to offer the most flexibility to developers.
   - title: Event-driven architecture
     details: Event-driven architecture allows any services to produce events and react to other with loosely coupled dependencies.
-  - title: Autonomous workflows
+  - title: Autonomous processes
     details: MESG features flow-based programming to create reactive applications with endless possibility. 
   - title: Hybrid decentralized applications
     details: MESG’s decentralized network will enable you to run centralized services in decentralized trustless environments.
