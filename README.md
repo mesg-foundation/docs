@@ -14,6 +14,6 @@ features:
     details: Choose exactly how and where your services run, whether on trustless networks, trusted cloud providers, or private servers in any combination. 
   - title: Scalable applications
     details: The mix of an Event-driven architecture and a decentralized network offers an high scalability and redundancy infrastructure
-  - title: Decentralized executions
+  - title: Decentralized processes
     details: The upcoming decentralized network will enable applications and services to run and execute from entirely within a decentralized cloud.
 ---
