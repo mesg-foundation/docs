@@ -4,16 +4,16 @@ heroImage: ./logo.png
 actionText: Get Started →
 actionLink: /guide/index
 features:
-  - title: Rapid feature integration
-    details: Plug features into any application - we are even using MESG to build MESG itself.
+  - title: Open development economy 
+    details: Exchange services, processes and validations with the community to support every stage of your product lifecycle, no middlemen required.
   - title: Multi-language applications
     details: MESG mixes a gRPC API and a container based module approach to offer the most flexibility to developers.
-  - title: Event-driven architecture
-    details: Event-driven architecture allows any services to produce events and react to other with loosely coupled dependencies.
-  - title: Autonomous processes
-    details: MESG features flow-based programming to create reactive applications with endless possibility. 
-  - title: Hybrid decentralized applications
-    details: MESG’s decentralized network will enable you to run centralized services in decentralized trustless environments.
+  - title: Don’t repeat yourself
+    details: Any features, whether centralized or decentralized, can be reused within any application. No heavy reconfigurations required.
+  - title: Stay in control
+    details: Choose exactly how and where your services run, whether on trustless networks, trusted cloud providers, or private servers in any combination. 
   - title: Scalable applications
     details: The mix of an Event-driven architecture and a decentralized network offers an high scalability and redundancy infrastructure
+  - title: Decentralized processes
+    details: The upcoming decentralized network will enable applications and services to run and execute from entirely within a decentralized cloud.
 ---
