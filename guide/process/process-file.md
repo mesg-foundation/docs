@@ -1,6 +1,6 @@
 # Process file
 
-The process file describes the connections between events and tasks of services by a step-by-step system.
+The process file describes the connections between events and tasks of services with a step-by-step system.
 
 Its structure is the following:
 
@@ -19,7 +19,7 @@ Its structure is the following:
 
 ## Steps
 
-Each step is one the following type:
+Each step is one the following types:
 
 - [Trigger](#trigger): listen to an event or a task's result
 - [Task](#task): execute a task
@@ -27,7 +27,7 @@ Each step is one the following type:
 
 ### Trigger
 
-The first step must be a trigger that listens for a specific event or task's result to start the process.
+The first step must be a trigger that listens for a specific event or result of a task to start the process.
 
 #### Event
 <param-table :parameter="{
@@ -64,14 +64,14 @@ The first step must be a trigger that listens for a specific event or task's res
 }" :types="{}" />
 
 ::: warning
-A process has only one trigger and must be the first step.
+A process has only one trigger and it must be in the first step.
 :::
 
 ### Task
 
-This type defines which service task to execute.
+This type defines which service's task to execute.
 
-By default, the task's inputs are the previous step's outputs. Can be customized by mapping any previous steps outputs.
+By default, the task's inputs are the previous step's outputs. Can be customized by mapping the outputs of any previous steps.
 
 <param-table :parameter="{
   fields: [{
@@ -97,7 +97,7 @@ By default, the task's inputs are the previous step's outputs. Can be customized
 
 Each input can be:
 - A constant.
-- A reference to the outputs of a previous step of the process.
+- A reference to the outputs of a previous step in the process.
 
 ##### Constant
 
@@ -137,7 +137,7 @@ All conditions should match to continue to the next step.
 
 ## Instance resolution
 
-[Triggers](#trigger) and [tasks](#task) must have a specific `instanceHash` but it can be resolved automatically by the compiler if it replaced by an object `instance` containing the following:
+[Triggers](#trigger) and [tasks](#task) must have a specific `instanceHash` but this can be resolved automatically by the compiler if it replaced by an object `instance` containing the following:
 
 <param-table :parameter="{
   fields: [{
