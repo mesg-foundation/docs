@@ -1,8 +1,8 @@
 # Process file
 
-The process file describes the connections between events and tasks of services with a step-by-step system.
+A process file describes the connections between events and tasks of services with a step-by-step system.
 
-Its structure is the following:
+It is structured in the following way:
 
 <param-table :parameter="{
   fields: [{
@@ -64,7 +64,7 @@ The first step must be a trigger that listens for a specific event or result of 
 }" :types="{}" />
 
 ::: warning
-A process has only one trigger and it must be in the first step.
+A process has only one trigger and it must be within the first step.
 :::
 
 ### Task
