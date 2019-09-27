@@ -26,6 +26,6 @@ Only the first step of a process is and must be an event or a task's result trig
 
 ## More
 
-Processes are both internally and on [the gRPC API](../../api/process.md) graphs where each step is actually one or more node. This graph structure is adaptable to any business logic.
+Processes are both internal and on the [the gRPC API](../../api/process.md) graphs where each step is actually one or more node. This graph structure is adaptable to any business logic.
 
-The current implementation of the Orchestration system is currently only compatible with directed tree graph. We plan to improve it and also create new ways to compile process with more complex yaml files, [domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) and a GUI.
+The current implementation of the Orchestration system is only compatible with directed tree graph. We plan to improve it and also create new ways to compile processes with more complex yaml files, [domain-specific languages](https://en.wikipedia.org/wiki/Domain-specific_language) and a GUI.
