@@ -41,13 +41,13 @@ We'll start by deploying the two services. If you haven't already, make sure to 
 Deploy the [ERC20 Service](https://marketplace.mesg.com/services/ethereum-erc20):
 
 ```bash
-mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/FZk4bpkmofTsmDrj31ptB1emdNNN8C1ckfLzYwNgEyqX)"
+mesg-cli service:create "$(mesg-cli service:compile https://github.com/mesg-foundation/service-ethereum-erc20)"
 ```
 
 Deploy the [SendGrid Service](https://marketplace.mesg.com/services/email-sendgrid):
 
 ```bash
-mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/5igXMrx1joucPxxGHDhZNzoCH24RxrAimYofwvq8NBSY)"
+mesg-cli service:create "$(mesg-cli service:compile https://github.com/mesg-foundation/service-email-sendgrid)"
 ```
 
 Replace `__CHANGE_WITH_YOUR_SENDGRID_API_KEY__` by the SendGrid API Key.
