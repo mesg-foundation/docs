@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../override.styl';
+@import '../styles/override.styl';
 a {
   border: solid 1px $borderColor;
   display: flex;
