@@ -5,6 +5,9 @@ ga: UA-117583862-3
 markdown:
   toc:
     includeLevel: [2]
+plugins:
+  dehydrate:
+    noSSR: '(404.html|api/*.html)'
 head:
   - - link
     - rel: apple-touch-icon
