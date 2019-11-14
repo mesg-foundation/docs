@@ -1,10 +1,14 @@
 title: MESG Docs
 description: The builders' open economy
-ga: UA-117583862-3
 # serviceWorker: true
 markdown:
   toc:
     includeLevel: [2]
+plugins:
+  dehydrate:
+    noSSR: '(404.html|api/*.html)'
+  '@vuepress/google-analytics':
+    ga: UA-117583862-3
 head:
   - - link
     - rel: apple-touch-icon
