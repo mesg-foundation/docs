@@ -160,6 +160,38 @@ All conditions should match to continue to the next step.
 To support this feature, you need to compile the process with the [`--dev` flag](deployment.md#development-mode).
 :::
 
+## Example
+
+This is an example of process-file.
+
+```yaml
+key: erc20-notification
+steps:
+  - type: trigger
+    instance:
+      src: https://github.com/mesg-foundation/service-ethereum-erc20
+      env:
+        - PROVIDER_ENDPOINT=$(env:PROVIDER_ENDPOINT)
+    eventKey: transfer
+  - type: task
+    instance:
+      src: ./convert
+    taskKey: address
+  - type: filter
+    conditions:
+      contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
+  - type: task
+    instance:
+      src: ./convert
+    taskKey: email
+  - type: task
+    instance:
+      src: https://github.com/mesg-foundation/service-email-sendgrid
+      env:
+        - SENDGRID_API_KEY=$(env:SENDGRID_API_KEY)
+    taskKey: send
+```
+
 ## Environmental variable
 
 You can override any value in the process file during the compilation by using the following syntax:
