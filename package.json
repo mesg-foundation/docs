@@ -8,6 +8,7 @@
   "author": "Anthony Estebe <anthony@mesg.com>",
   "license": "ISC",
   "dependencies": {
+    "@vuepress/plugin-google-analytics": "^1.2.0",
     "vue-nav-tabs": "^0.5.7",
     "vuepress": "^1.2.0",
     "vuepress-plugin-dehydrate": "^1.0.3",
