@@ -152,3 +152,6 @@ themeConfig:
       - /api/process
     /:
       - ''
+plugins:
+  sitemap:
+    hostname: https://docs.mesg.com
