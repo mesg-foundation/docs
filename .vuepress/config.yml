@@ -9,6 +9,8 @@ plugins:
     noSSR: '(404.html|api/*.html)'
   '@vuepress/google-analytics':
     ga: UA-117583862-3
+  sitemap:
+    hostname: https://docs.mesg.com
 head:
   - - link
     - rel: apple-touch-icon
