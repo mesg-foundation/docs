@@ -144,8 +144,9 @@ steps:
     inputs:
       inputA: "Input1 to the task"
       # or
-      stepKey: taskX
-      key: taskZ
+      inputB:
+        stepKey: taskX
+        key: taskZ
   ...
 ```
 
@@ -212,6 +213,9 @@ steps:
       env:
           - SENDGRID_API_KEY=$(env:SENDGRID_API_KEY)
     taskKey: send
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: task1
   ...
 ```
 
@@ -238,8 +242,9 @@ steps:
     inputs:
       inputA: "Input1 to the task"
       # or
-      stepKey: taskX
-      key: taskZ
+      inputB:
+        stepKey: taskX
+        key: taskZ
   - type: filter
     conditions:
       contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
