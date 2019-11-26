@@ -1,4 +1,5 @@
-const mesg = require('mesg-js').service()
+const Service = require('@mesg/service')
+const mesg = new Service()
 const Web3 = require('web3')
 const web3 = new Web3(process.env.PROVIDER_ENDPOINT)
 const contract = new web3.eth.Contract(require('./erc20-abi.json'), '0xe41d2489571d322189246dafa5ebde1f4699f498')

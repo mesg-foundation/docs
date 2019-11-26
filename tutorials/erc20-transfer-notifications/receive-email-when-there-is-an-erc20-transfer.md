@@ -74,22 +74,23 @@ Let's init the application:
 npm init -y
 ```
 
-Then, install `mesg-js` library:
+Then, install `@mesg/application` library:
 
 ```bash
-npm install --save mesg-js
+npm install --save @mesg/application
 ```
 
 ## Code the application
 
 The setup for our application has finished. Now, let's code it. Create and open a `index.js` file.
 
-### Init mesg-js
+### Init @mesg/application
 
-Require the `mesg-js` library on top of your code with the following code:
+Require the `@mesg/application` library on top of your code with the following code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 ```
 
 ### Listen events
@@ -99,7 +100,8 @@ In this tutorial, we will limit the application to listen transfers from the 0x 
 Let's listen for events, filter them and display them:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 async function main() {
   // Listen for the event.

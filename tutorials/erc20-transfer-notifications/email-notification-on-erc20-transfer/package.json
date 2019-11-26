@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mesg-js": "^4.1.0"
+    "@mesg/application": "0.1.0-alpha-2"
   }
 }

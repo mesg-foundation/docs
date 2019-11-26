@@ -1,4 +1,5 @@
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 async function main() {
   // Listen for the event.

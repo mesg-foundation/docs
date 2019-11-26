@@ -113,7 +113,8 @@ Open `index.js` and replace `taskX` words to `send` and remove `emitEvent` line 
 Your `index.js` should look similar to this:
 
 ```javascript
-const mesg = require('mesg-js').service()
+const Service = require('@mesg/service')
+const mesg = new Service()
 
 mesg.listenTask({
   send: require('./tasks/send')
