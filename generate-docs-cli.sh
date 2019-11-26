@@ -5,9 +5,12 @@ echo "Generate CLI documentation"
 rm -rf cli-source
 rm -rf cli
 mkdir cli
-git clone https://github.com/mesg-foundation/cli cli-source
+git clone https://github.com/mesg-foundation/js-sdk cli-source
 
 pushd cli-source
+pushd packages
+pushd cli
+
 npm install
 npm run oclif-dev -- readme --multi --dir=commands
 for l in commands/*; do
@@ -16,8 +19,11 @@ for l in commands/*; do
 done
 echo "# $(cat README.md)" > README.md
 echo "move files"
-mv README.md ../cli
-mv commands ../cli
+mv README.md ../../../cli
+mv commands ../../../cli
+
+popd
+popd
 popd
 
 rm -rf cli-source
