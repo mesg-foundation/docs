@@ -72,7 +72,8 @@ events:
 To emit an event, the service should call the mesg.emitEvent function with the event's key and event's data as parameters. This function returns a Promise.
 
 ```javascript
-const mesg = require('mesg-js').service()
+const Service = require('@mesg/service')
+const mesg = new Service()
 
 mesg.emitEvent("eventX", {
   foo: "hello",
@@ -80,7 +81,7 @@ mesg.emitEvent("eventX", {
 })
 ```
 
-[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#event)
+[See the @mesg/service library for additional documentation](https://github.com/mesg-foundation/js-sdk/blob/master/packages/service/README.md)
 
 ::: tip API definition
 To see the API definition, check the [Event API definition](../../api/event.md).

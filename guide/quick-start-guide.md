@@ -9,7 +9,7 @@ This step-by-step guide will show you how to create an application that gets the
 Run the following command in a console to install the MESG CLI:
 
 ```bash
-npm install -g mesg-cli
+npm install -g @mesg/cli
 ```
 
 More details on [the installation guide](/guide/installation.md).
@@ -76,18 +76,19 @@ Now the services are deployed and started, let's create the application.
 
 The application will be developed with Javascript and [NodeJS](https://nodejs.org).
 
-Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/mesg-js).
+Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/js-sdk).
 
 Create and move your terminal to a folder that will contain the application. Then run:
 
 ```bash
-npm init && npm install --save mesg-js
+npm init && npm install --save @mesg/application
 ```
 
 Now, create an `index.js` file and with the following code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
@@ -201,7 +202,8 @@ Wait a few seconds for the `every_10_seconds` event to be triggered.
 Here is the final version of the source code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')

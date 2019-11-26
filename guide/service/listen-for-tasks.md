@@ -85,7 +85,8 @@ The task functions accept inputs as parameter and returns the outputs as object 
 
 
 ```javascript
-const mesg = require('mesg-js').service()
+const Service = require('@mesg/service')
+const mesg = new Service()
 
 mesg.listenTask({
   taskX: async (inputs) => {
@@ -105,7 +106,7 @@ mesg.listenTask({
 })
 ```
 
-[See the MESG.js library for additional documentation](https://github.com/mesg-foundation/mesg-js/tree/master#service)
+[See the @mesg/service library for additional documentation](https://github.com/mesg-foundation/js-sdk/blob/master/packages/service/README.md)
 
 ::: tip API definition
 To see the API definition, check the [Execution API definition](../../api/execution.md).

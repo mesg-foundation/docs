@@ -1,13 +1,12 @@
 # Listen for events
 
-To listen for events, the applications needs to call `listenEvent` of the [mesg-js](https://github.com/mesg-foundation/mesg-js) library.
+To listen for events, the applications needs to call `listenEvent` of the [@mesg/application](https://github.com/mesg-foundation/js-sdk) library.
 
 Applications can listen to many Services at the same time by calling multiple time `listenEvent`.
 
 ```javascript
-const { application } = require('mesg-js')
-
-const mesg = application()
+const Application = require('@mesg/application')
+const mesg = Application()
 
 mesg.listenEvent({
   filter: {

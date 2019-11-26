@@ -9,7 +9,7 @@ MESG is using Docker so you need to make sure to have Docker installed on your m
 - In order to access to the Engine, you can use the MESG CLI and install it with
 
 ```bash
-npm install -g mesg-cli
+npm install -g @mesg/cli
 ```
 
 You can now run the MESG Engine with `mesg-cli daemon:start`
