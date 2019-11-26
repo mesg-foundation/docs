@@ -25,7 +25,7 @@ mkdir -p $GRPC_CACHE/types
 
 curl -o "$GRPC_CACHE/types/struct.proto" "$PROTO_PATH/types/struct.proto"
 
-ressources="event execution instance service process"
+ressources="event execution instance runner service process"
 for ressource in $ressources; do
   curl -o "$GRPC_CACHE/api/$ressource.proto" "$PROTO_PATH/api/$ressource.proto"
   curl -o "$GRPC_CACHE/types/$ressource.proto" "$PROTO_PATH/types/$ressource.proto"
