@@ -1,16 +1,15 @@
 # Execute a task
 
-To execute a task, Applications needs to call `executeTask` of the [mesg-js](https://github.com/mesg-foundation/mesg-js) library.
+To execute a task, Applications needs to call `executeTask` of the [@mesg/application](https://github.com/mesg-foundation/js-sdk) library.
 
 The Engine will reply with a response containing the `executionHash` that identifies the task's execution. To get the output of the task's execution, the Application has to listen for an [execution result.](./listen-for-results.md).
 
 ```javascript
-const { application } = require('mesg-js')
-
-const mesg = application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const execution = await mesg.executeTask({
-  instanceHash: 'TASK_INSTANCE_HASH',
+  executorHash: 'TASK_RUNNER_HASH',
   taskKey: 'TASK_KEY',
   inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional
@@ -23,7 +22,7 @@ The Application can also call the function `executeTaskAndWaitResult` that autom
 
 ```javascript
 const result = await mesg.executeTaskAndWaitResult({
-  instanceHash: 'TASK_INSTANCE_HASH',
+  executorHash: 'TASK_RUNNER_HASH',
   taskKey: 'TASK_KEY',
   inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional

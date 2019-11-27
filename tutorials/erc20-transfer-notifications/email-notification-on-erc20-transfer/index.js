@@ -1,4 +1,5 @@
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 async function main() {
   // Listen for the event.
@@ -19,7 +20,7 @@ async function main() {
       console.log('Will send email...')
       try {
         const result = await mesg.executeTaskAndWaitResult({
-          instanceHash: await mesg.resolve('email-sendgrid'), // The serviceID of the service to send emails
+          executorHash: await mesg.resolveRunner('email-sendgrid'), // The serviceID of the service to send emails
           taskKey: 'send', // The task we want to execute
           inputs: mesg.encodeData({ // The input data that task needs
             from: 'test@erc20notification.com',

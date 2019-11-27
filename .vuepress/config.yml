@@ -78,7 +78,7 @@ themeConfig:
         - text: Libraries
           items:
             - text: NodeJS
-              link: https://github.com/mesg-foundation/mesg-js
+              link: https://github.com/mesg-foundation/js-sdk
             - text: Golang (Service)
               link: https://godoc.org/github.com/mesg-foundation/engine/client/service
             - text: C# (Not official)
@@ -145,9 +145,7 @@ themeConfig:
           - /tutorials/erc20-transfer-notifications/receive-email-when-there-is-an-erc20-transfer
     /cli/:
       - /cli/
-      - /cli/commands/account.md
       - /cli/commands/daemon.md
-      - /cli/commands/marketplace.md
       - /cli/commands/process.md
       - /cli/commands/service.md
     /api/:

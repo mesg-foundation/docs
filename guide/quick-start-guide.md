@@ -9,7 +9,7 @@ This step-by-step guide will show you how to create an application that gets the
 Run the following command in a console to install the MESG CLI:
 
 ```bash
-npm install -g mesg-cli
+npm install -g @mesg/cli
 ```
 
 More details on [the installation guide](/guide/installation.md).
@@ -76,23 +76,24 @@ Now the services are deployed and started, let's create the application.
 
 The application will be developed with Javascript and [NodeJS](https://nodejs.org).
 
-Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/mesg-js).
+Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/js-sdk).
 
 Create and move your terminal to a folder that will contain the application. Then run:
 
 ```bash
-npm init && npm install --save mesg-js
+npm init && npm install --save @mesg/application
 ```
 
 Now, create an `index.js` file and with the following code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
-  const ethereumErc20 = await mesg.resolve('ethereum-erc20')
-  const webhook = await mesg.resolve('webhook')
+  const ethereumErc20 = await mesg.resolveRunner('ethereum-erc20')
+  const webhook = await mesg.resolveRunner('webhook')
 }
 
 main()
@@ -136,7 +137,7 @@ console.log('event received')
 try {
   // Get the balance
   const balanceResult = await mesg.executeTaskAndWaitResult({
-    instanceHash: ethereumErc20,
+    executorHash: ethereumErc20,
     taskKey: 'balanceOf',
     inputs: mesg.encodeData({
       contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -167,7 +168,7 @@ console.log('balance is', balanceData.balance)
 
  // Call the webhook
 const requestResult = await mesg.executeTaskAndWaitResult({
-  instanceHash: webhook,
+  executorHash: webhook,
   taskKey: 'call',
   inputs: mesg.encodeData({
     url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
@@ -201,7 +202,8 @@ Wait a few seconds for the `every_10_seconds` event to be triggered.
 Here is the final version of the source code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
@@ -221,7 +223,7 @@ const main = async () => {
       try {
         // Get the balance
         const balanceResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: ethereumErc20,
+          executorHash: ethereumErc20,
           taskKey: 'balanceOf',
           inputs: mesg.encodeData({
             contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -237,7 +239,7 @@ const main = async () => {
 
         // Call the webhook
         const requestResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: webhook,
+          executorHash: webhook,
           taskKey: 'call',
           inputs: mesg.encodeData({
             url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',

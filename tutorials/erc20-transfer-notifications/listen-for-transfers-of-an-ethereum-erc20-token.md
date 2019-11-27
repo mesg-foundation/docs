@@ -226,7 +226,8 @@ The content of `mesg.yml` should look like:
 Add the following code to the top of `index.js` :
 
 ```javascript
-const mesg = require('mesg-js').service()
+const Service = require('@mesg/service')
+const mesg = new Service()
 ```
 
 ### Emit `transfer` service event to MESG Engine
