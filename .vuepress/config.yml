@@ -145,9 +145,7 @@ themeConfig:
           - /tutorials/erc20-transfer-notifications/receive-email-when-there-is-an-erc20-transfer
     /cli/:
       - /cli/
-      - /cli/commands/account.md
       - /cli/commands/daemon.md
-      - /cli/commands/marketplace.md
       - /cli/commands/process.md
       - /cli/commands/service.md
     /api/:
