@@ -63,6 +63,18 @@ The first step must be a trigger that listens for a specific event or result of 
   }]
 }" :types="{}" />
 
+#### Example
+```yaml
+key: erc20-notification
+steps:
+  - type: trigger
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    eventKey: eventX # listen to the event with the key `eventX`
+    # or
+    taskKey: taskX # listen to the result of the task with the key `taskX`
+  ...
+```
+
 ::: warning
 A process has only one trigger and it must be within the first step.
 :::
@@ -121,6 +133,23 @@ Reference the outputs of a previous step.
   }]
 }" :types="{}" />
 
+#### Example
+```yaml
+key: erc20-notification
+steps:
+  ...
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: taskY
+    inputs:
+      inputA: "Input1 to the task"
+      # or
+      inputB:
+        stepKey: taskX
+        key: taskZ
+  ...
+```
+
 ### Filter
 
 Apply one or multiple conditions on the previous step's outputs.
@@ -134,6 +163,18 @@ All conditions should match to continue to the next step.
     fullType: 'map&lt;key, string&gt;'
   }]
 }" :types="{}" />
+
+#### Example
+```yaml
+key: erc20-notification
+steps:
+  ...
+  - type: filter
+    conditions:
+      recipientID: "XXX"
+      contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
+  ...
+```
 
 ## Instance resolution
 
@@ -156,9 +197,68 @@ All conditions should match to continue to the next step.
   }]
 }" :types="{}" />
 
+#### Example
+```yaml
+key: erc20-notification
+steps:
+  - type: trigger
+    instance:
+      src: https://github.com/mesg-foundation/service-ethereum-erc20
+      env:
+        - PROVIDER_ENDPOINT=$(env:PROVIDER_ENDPOINT)
+    eventKey: transfer
+  - type: task
+    instance:
+      service: "serviceX" # Start the service with sid or hash value `serviceX`
+      env:
+          - SENDGRID_API_KEY=$(env:SENDGRID_API_KEY)
+    taskKey: send
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: task1
+  ...
+```
+
 ::: warning
 To support this feature, you need to compile the process with the [`--dev` flag](deployment.md#development-mode).
 :::
+
+## Example
+
+This is an example of process-file.
+
+```yaml
+key: erc20-notification
+steps:
+  - type: trigger
+    instance:
+      src: https://github.com/mesg-foundation/service-ethereum-erc20
+      env:
+        - PROVIDER_ENDPOINT=$(env:PROVIDER_ENDPOINT)
+    eventKey: transfer
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: taskY
+    inputs:
+      inputA: "Input1 to the task"
+      # or
+      inputB:
+        stepKey: taskX
+        key: taskZ
+  - type: filter
+    conditions:
+      contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
+  - type: task
+    instance:
+      src: ./convert
+    taskKey: email
+  - type: task
+    instance:
+      src: https://github.com/mesg-foundation/service-email-sendgrid
+      env:
+        - SENDGRID_API_KEY=$(env:SENDGRID_API_KEY)
+    taskKey: send
+```
 
 ## Environmental variable
 
