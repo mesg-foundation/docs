@@ -16,7 +16,7 @@ const mesg = new Application()
 
 mesg.listenResult({
   filter: {
-    instanceHash: 'RESULT_INSTANCE_HASH',
+    executorHash: 'RESULT_RUNNER_HASH',
     taskKey: 'TASK_KEY_FILTER', // optional
     tags: ['TAG_FILTER'] // optional
   }

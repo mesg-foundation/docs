@@ -92,8 +92,8 @@ const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
-  const ethereumErc20 = await mesg.resolve('ethereum-erc20')
-  const webhook = await mesg.resolve('webhook')
+  const ethereumErc20 = await mesg.resolveRunner('ethereum-erc20')
+  const webhook = await mesg.resolveRunner('webhook')
 }
 
 main()
@@ -137,7 +137,7 @@ console.log('event received')
 try {
   // Get the balance
   const balanceResult = await mesg.executeTaskAndWaitResult({
-    instanceHash: ethereumErc20,
+    executorHash: ethereumErc20,
     taskKey: 'balanceOf',
     inputs: mesg.encodeData({
       contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -168,7 +168,7 @@ console.log('balance is', balanceData.balance)
 
  // Call the webhook
 const requestResult = await mesg.executeTaskAndWaitResult({
-  instanceHash: webhook,
+  executorHash: webhook,
   taskKey: 'call',
   inputs: mesg.encodeData({
     url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
@@ -223,7 +223,7 @@ const main = async () => {
       try {
         // Get the balance
         const balanceResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: ethereumErc20,
+          executorHash: ethereumErc20,
           taskKey: 'balanceOf',
           inputs: mesg.encodeData({
             contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -239,7 +239,7 @@ const main = async () => {
 
         // Call the webhook
         const requestResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: webhook,
+          executorHash: webhook,
           taskKey: 'call',
           inputs: mesg.encodeData({
             url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',

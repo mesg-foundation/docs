@@ -9,7 +9,7 @@ const Application = require('@mesg/application')
 const mesg = new Application()
 
 const execution = await mesg.executeTask({
-  instanceHash: 'TASK_INSTANCE_HASH',
+  executorHash: 'TASK_RUNNER_HASH',
   taskKey: 'TASK_KEY',
   inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional
@@ -22,7 +22,7 @@ The Application can also call the function `executeTaskAndWaitResult` that autom
 
 ```javascript
 const result = await mesg.executeTaskAndWaitResult({
-  instanceHash: 'TASK_INSTANCE_HASH',
+  executorHash: 'TASK_RUNNER_HASH',
   taskKey: 'TASK_KEY',
   inputs: mesg.encodeData({ key: 'INPUT_DATA' }),
   tags: ['ASSOCIATE_TAG'] // optional
