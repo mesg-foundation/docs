@@ -153,6 +153,7 @@ themeConfig:
     /api/:
       - /api/service
       - /api/instance
+      - /api/runner
       - /api/event
       - /api/execution
       - /api/process
