@@ -1,9 +1,0 @@
-{
-  "name": "your-package-name",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "mesg-js": "^3.0.0",
-    "web3": "^1.0.0-beta.37"
-  }
-}
