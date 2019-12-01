@@ -72,7 +72,7 @@ steps:
     eventKey: eventX # listen to the event with the key `eventX`
     # or
     taskKey: taskX # listen to the result of the task with the key `taskX`
-  ...
+  # ...
 ```
 
 ::: warning
@@ -137,7 +137,7 @@ Reference the outputs of a previous step.
 ```yaml
 key: erc20-notification
 steps:
-  ...
+  # ...
   - type: task
     instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
     taskKey: taskY
@@ -147,7 +147,7 @@ steps:
       inputB:
         stepKey: taskX
         key: taskZ
-  ...
+  # ...
 ```
 
 ### Filter
@@ -216,7 +216,7 @@ steps:
   - type: task
     instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
     taskKey: task1
-  ...
+  # ...
 ```
 
 ::: warning
