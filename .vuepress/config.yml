@@ -60,7 +60,7 @@ themeConfig:
     - text: Guide
       link: /guide/
     - text: Tutorials
-      link: https://blog.mesg.com/tag/getting-started/
+      link: https://blog.mesg.com/tag/tutorials/
     - text: Ecosystem
       items:
         - text: Help
