@@ -1,9 +1,0 @@
-{
-  "name": "sendgrid-email",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "@mesg/service": "0.1.0-alpha.2",
-    "@sendgrid/mail": "^6.4.0"
-  }
-}
