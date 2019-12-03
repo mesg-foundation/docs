@@ -168,12 +168,12 @@ All conditions should match to continue to the next step.
 ```yaml
 key: erc20-notification
 steps:
-  ...
+  # ...
   - type: filter
     conditions:
       recipientID: "XXX"
       contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
-  ...
+  # ...
 ```
 
 ## Instance resolution
