@@ -3,3 +3,4 @@ https://mesg-docs.netlify.com/* https://docs.mesg.com/:splat 301!
 
 /guide/start-here/* /guide/:splat
 /cli/mesg-* /cli
+/tutorials https://blog.mesg.com/tag/tutorials/ 301!
