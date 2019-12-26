@@ -9,6 +9,9 @@ This trigger can be either:
 ## Definition
 <param-table :parameter="{
   fields: [{
+    name: 'type',
+    fullType: '&quot;trigger&quot;'
+  }, {
     name: 'key',
     description: '(optional) Key to identify this step.',
     fullType: 'string'

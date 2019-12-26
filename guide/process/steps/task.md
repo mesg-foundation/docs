@@ -8,6 +8,9 @@ By default, the task's inputs are the previous step's outputs. Can be customized
 
 <param-table :parameter="{
   fields: [{
+    name: 'type',
+    fullType: '&quot;task&quot;'
+  }, {
     name: 'key',
     description: '(optional) Key to identify this step.',
     fullType: 'string'
