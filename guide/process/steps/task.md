@@ -4,6 +4,8 @@ This type defines which service's task to execute.
 
 By default, the task's inputs are the previous step's outputs. Can be customized by mapping the outputs of any previous steps.
 
+## Definition
+
 <param-table :parameter="{
   fields: [{
     name: 'key',
@@ -14,6 +16,10 @@ By default, the task's inputs are the previous step's outputs. Can be customized
     description: 'Hash of the service\'s instance.',
     fullType: 'string'
   }, {
+    name: 'instance',
+    description: 'Information about the instance to run. (Ignored if instanceHash is present)',
+    fullType: 'Instance'
+  }, {
     name: 'taskKey',
     description: 'Task key to execute.',
     fullType: 'string'
@@ -22,9 +28,26 @@ By default, the task's inputs are the previous step's outputs. Can be customized
     description: '(optional) Task\'s inputs. If not defined, inputs are the previous step\'s outputs.',
     fullType: 'map&lt;string, Input&gt;'
   }]
-}" :types="{}" />
+}" :types="{
+  Instance: {
+    fields: [{
+      name: 'src',
+      description: 'Source of the service to deploy (only when service not set)',
+      fullType: 'string'
+    }, {
+      name: 'service',
+      description: 'Service hash of the service to deploy (only when src not set)',
+      fullType: 'string'
+    }, {
+      name: 'env',
+      description: 'Environment variable to use while deploying the service',
+      label: 'repeated',
+      fullType: 'string'
+    }]
+  }
+}" />
 
-#### Input
+## Input
 
 Each input can be:
 - A constant.
@@ -53,18 +76,4 @@ Reference the outputs of a previous step.
 }" :types="{}" />
 
 ## Example
-```yaml
-key: erc20-notification
-steps:
-  # ...
-  - type: task
-    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
-    taskKey: taskY
-    inputs:
-      inputA: "Input1 to the task"
-      # or
-      inputB:
-        stepKey: taskX
-        key: taskZ
-  # ...
-```
+<<< @/guide/process/steps/task.yml

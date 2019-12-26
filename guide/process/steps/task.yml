@@ -1,0 +1,13 @@
+key: erc20-notification
+steps:
+  # ...
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: taskY
+    inputs:
+      inputA: "Input1 to the task"
+      # or
+      inputB:
+        stepKey: taskX
+        key: taskZ
+  # ...

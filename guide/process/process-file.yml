@@ -1,0 +1,30 @@
+key: erc20-notification
+steps:
+  - type: trigger
+    instance:
+      src: https://github.com/mesg-foundation/service-ethereum-erc20
+      env:
+        - PROVIDER_ENDPOINT=$(env:PROVIDER_ENDPOINT)
+    eventKey: transfer
+  - type: task
+    instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
+    taskKey: taskY
+    inputs:
+      inputA: "Input1 to the task"
+      # or
+      inputB:
+        stepKey: taskX
+        key: taskZ
+  - type: filter
+    conditions:
+      contractAddress: "0x420167d87d35c3a249b32ef6225872fbd9ab85d2"
+  - type: task
+    instance:
+      src: ./convert
+    taskKey: email
+  - type: task
+    instance:
+      src: https://github.com/mesg-foundation/service-email-sendgrid
+      env:
+        - SENDGRID_API_KEY=$(env:SENDGRID_API_KEY)
+    taskKey: send
