@@ -20,29 +20,29 @@ It is structured in the following way:
 ## Steps
 
 A process has multiple steps, and each step indicates a specific action to do.
-- [**Trigger**](./step/trigger): that listen for a specific event or result.
+- [**Trigger**](./steps/trigger): that listen for a specific event or result.
   - Should be the first step in the process.
   - Only one trigger is possible per process.
-- [**Task**](./step/task): executes a specific task from a given instance of a service.
+- [**Task**](./steps/task): executes a specific task from a given instance of a service.
   - You can create as many tasks as you want.
   - A process should have at least one task.
-- [**Filter**](./step/filter): breaks the flow of your process if a condition doesn't match.
+- [**Filter**](./steps/filter): breaks the flow of your process if a condition doesn't match.
   - You can create as many filters as you want.
   - Filters are optional.
 
 
 <nav class="cards">
-  <a href="./step/trigger">
+  <a href="./steps/trigger">
     <img src="/trigger.svg">
     <h4>Trigger</h4>
     <p>React to a specific event</p>
   </a>
-  <a href="./step/task">
+  <a href="./steps/task">
     <img src="/task.svg">
     <h4>Task</h4>
     <p>Execute a service's task</p>
   </a>
-  <a href="./step/filter">
+  <a href="./steps/filter">
     <img src="/filter.svg">
     <h4>Filter</h4>
     <p>Accept only specific data</p>
