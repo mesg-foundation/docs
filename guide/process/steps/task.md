@@ -52,31 +52,48 @@ By default, the task's inputs are the previous step's outputs. Can be customized
 
 ## Input
 
-Each input can be:
-- A constant.
-- A reference to the outputs of a previous step in the process.
+Inputs can be any type of data:
+- `string`
+- `bool`
+- `number`
+- `array`
+- `object`
+- `reference`
 
-### Constant
+### Composable type (`array` or `object`)
 
-A constant lets you hardcode a value.
+`array` and `object` are composable so they can contains data of any types including other composable types.
 
-The value can be of any type: `string`, `object`, `array`, `bool`, `number`.
+For example:
+- An `array` of `array` of `string` (eg: `[["foo", "bar"], [""]]`)
+- An `object` with another `object` that contains an `array` of `object` data (eg: `{ a: { b: [{ c: "" }] } }`)...
 
-### Reference
+### Reference type
 
-Reference the outputs of a previous step.
+A reference let you access the data of a previous result or the previous step of your process.
+The reference is a special object that contains the attribute `key` and optionally `stepKey`.
 
 <param-table :parameter="{
   fields: [{
     name: 'stepKey',
-    description: '(optional) Key of the previous step (defined with the attribute &lt;code&gt;key&lt;/code&gt; of the step). If not defined, the previous step is used.',
+    description: '(optional) Key of the step to reference (defined with the attribute &lt;code&gt;key&lt;/code&gt; of the step). If not defined, the previous step is used.',
     fullType: 'string'
   }, {
     name: 'key',
-    description: 'Key of the step\'s outputs to reference.',
+    description: 'Path to the value of the output needed.',
     fullType: 'string'
   }]
 }" :types="{}" />
+
+They `key` is the path of data we want to access. To write the path, you need to follow a simplified json path format:
+- `.` to access a data in an object
+- `[INDEX]` to access an element in an array at the index `INDEX`. (You might get runtime error if your index is out of bounds)
+
+#### Examples:
+  - `foo.bar`: Access the variable `bar` in the object `foo`.
+  - `foo[0]`: Access the first element of the array `foo`.
+  - `foo[0].bar[1]`: Access the second element of the array `bar` contained in the first element of the array `foo`.
+  - `foo[0][1]`: Access the second element in the first element of the array `foo`.
 
 ## Example
 <<< @/guide/process/steps/task.yml

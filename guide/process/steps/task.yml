@@ -5,9 +5,17 @@ steps:
     instanceHash: "H74Qqq8nT5JZ9GSJmuSWLN5benWZPkUb5pYcvQLsoZX"
     taskKey: taskY
     inputs:
-      inputA: "Input1 to the task"
-      # or
-      inputB:
-        stepKey: taskX
-        key: taskZ
+      stringInput: "Input1 to the task"
+      objectInput:
+        numberInput: 10
+        booleanInput: true
+      arrayInput:
+        - foo
+        - bar
+      referenceInput:
+        key: outputA
+        stepKey: my-previous-step-x
+      referenceWithPathInput:
+        key: outputB.attrX[0]
+        stepKey: my-previous-step-x
   # ...
