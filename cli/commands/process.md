@@ -31,7 +31,7 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/compile.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/compile.ts)_
+_See code: [src/commands/process/compile.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/compile.ts)_
 
 ## `mesg-cli process:create DEFINITION`
 
@@ -51,7 +51,7 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/create.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/create.ts)_
+_See code: [src/commands/process/create.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/create.ts)_
 
 ## `mesg-cli process:delete PROCESS_HASH...`
 
@@ -69,7 +69,7 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/delete.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/delete.ts)_
+_See code: [src/commands/process/delete.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/delete.ts)_
 
 ## `mesg-cli process:detail PROCESS_HASH`
 
@@ -86,7 +86,7 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/detail.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/detail.ts)_
+_See code: [src/commands/process/detail.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/detail.ts)_
 
 ## `mesg-cli process:dev [PROCESS]`
 
@@ -108,7 +108,7 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/dev.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/dev.ts)_
+_See code: [src/commands/process/dev.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/dev.ts)_
 
 ## `mesg-cli process:list`
 
@@ -132,7 +132,7 @@ OPTIONS
   --sort=sort        property to sort by (prepend '-' for descending)
 ```
 
-_See code: [src/commands/process/list.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/list.ts)_
+_See code: [src/commands/process/list.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/list.ts)_
 
 ## `mesg-cli process:logs PROCESS_HASH`
 
@@ -149,4 +149,4 @@ OPTIONS
   --host=host      [default: localhost] Host to access the MESG engine
 ```
 
-_See code: [src/commands/process/logs.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.0-alpha.5/src/commands/process/logs.ts)_
+_See code: [src/commands/process/logs.ts](https://github.com/mesg-foundation/js-sdk/blob/v0.1.2/src/commands/process/logs.ts)_

@@ -2,6 +2,8 @@
 
 echo "Generate CLI documentation"
 
+BRANCH="${1:-master}"
+
 rm -rf cli-source
 rm -rf cli
 mkdir cli
@@ -11,6 +13,7 @@ pushd cli-source
 pushd packages
 pushd cli
 
+git checkout $BRANCH
 npm install
 npm run oclif-dev -- readme --multi --dir=commands
 for l in commands/*; do

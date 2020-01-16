@@ -20,7 +20,7 @@ $ npm install -g @mesg/cli
 $ mesg-cli COMMAND
 running command...
 $ mesg-cli (-v|--version|version)
-@mesg/cli/0.1.0-alpha.5 darwin-x64 node-v12.13.0
+@mesg/cli/0.1.2 darwin-x64 node-v12.13.0
 $ mesg-cli --help [COMMAND]
 USAGE
   $ mesg-cli COMMAND
