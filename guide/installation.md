@@ -14,6 +14,17 @@ npm install -g @mesg/cli
 
 You can now run the MESG Engine with `mesg-cli daemon:start`
 
+## Connect to a MESG Network
+
+By default the MESG Engine will start and create it's own local development network called `mesg-dev-chain`.
+This is a **private network** that contains only your data.
+
+If you want to connect to a **public network** you can start the daemon with the command `mesg-cli daemon:start --network NAME_OF_THE_NETWORK`.
+
+In order to connect to the **public testnet network**, you can run `mesg-cli daemon:start --network mesg-testnet-01`.
+
+You can find the list of all available **public networks** [here](https://github.com/mesg-foundation/networks/tree/master/networks).
+
 <div class="page-nav">
   <p class="inner">
     <span class="next">
