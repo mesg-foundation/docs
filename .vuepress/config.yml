@@ -90,7 +90,7 @@ themeConfig:
             - text: Awesome list
               link: https://github.com/mesg-foundation/awesome
             - text: Release Notes
-              link: https://forum.mesg.com/tags/release
+              link: https://blog.mesg.com/tag/product/
         - text: News
           items:
             - text: Website
