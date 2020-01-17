@@ -85,8 +85,8 @@ themeConfig:
               link: https://github.com/neville-nazerane/mesg-apis
         - text: Resources
           items:
-            - text: Marketplace
-              link: https://marketplace.mesg.com
+            - text: Testnet Explorer
+              link: http://explorer.testnet.mesg.com
             - text: Awesome list
               link: https://github.com/mesg-foundation/awesome
             - text: Release Notes

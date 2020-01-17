@@ -3,9 +3,9 @@
 MESG is a framework for developers to build applications efficiently. It relies on two specific tools:
 
 - The **MESG SDK** that connects services together
-- The **MESG Marketplace** to bootstrap applications faster
+- The **MESG Network of services** to bootstrap applications faster
 
-MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
+MESG is centered around the concept of services made to be reusable within other applications and shared on a network for others to use them.
 MESG Services have two responsibilities:
 - [Executing **tasks**](/guide/service/listen-for-tasks.md) that an application triggers
 - [Sending **events**](/guide/service/emit-an-event.md) to an application
