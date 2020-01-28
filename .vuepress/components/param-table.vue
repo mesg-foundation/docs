@@ -11,7 +11,7 @@
       </td>
       <td
         colspan="2"
-        v-if="types[field.fullType] && field.fullType !== parameter.fullName"
+        v-if="(types[field.fullType] && field.fullType !== parameter.fullName) && !alreadyDefined(field.fullType)"
         style="padding: 0"
       >
         <div style="padding: .75em .5em" v-if="field.label === 'repeated'">
@@ -29,6 +29,7 @@
           <param-table
             :parameter="types[field.fullType]"
             :types="types"
+            :parents="[...parents, field.fullType]"
             style="margin: -1px;"
           />
         </template>
@@ -62,11 +63,18 @@ export default {
     "no-headers": {
       type: Boolean,
       default: false
+    },
+    parents: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
     fromMD(text) {
       return md.render(text);
+    },
+    alreadyDefined(type) {
+      return this.parents.indexOf(type) >= 0
     }
   }
 };
