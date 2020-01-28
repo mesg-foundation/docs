@@ -19,23 +19,25 @@ It is structured in the following way:
 
 ## Steps
 
-A process has multiple steps, and each step indicates a specific action to do.
-- [**type: trigger**](./steps/trigger): that listen for a specific event or result.
-  - Should be the first step in the process.
-  - Only one trigger is possible per process.
-- [**type: task**](./steps/task): executes a specific task from a given instance of a service.
-  - You can create as many tasks as you want.
-  - A process should have at least one task.
-- [**type: filter**](./steps/filter): breaks the flow of your process if a condition doesn't match.
-  - You can create as many filters as you want.
-  - Filters are optional.
+A process has a list of steps.
+Each step indicates a specific action to do.
+There is currently three types of steps:
 
+- [Trigger](./steps/trigger): an event or a task's result	that will trigger the process.
+  - Should be the first step of the process.
+  - Only one trigger is possible per process.
+  - It triggers the process when a matching event or a task's result is emitted.
+- [Task](./steps/task): defines the task to execute of a given instance of a service.
+  - A process should have at least one task and can have as many as you want.
+- [Filter](./steps/filter): stop the execution of the process if a condition doesn't match.
+  - A process can have as many filters as you want.
+  - Filters are optional.
 
 <nav class="cards">
   <a href="./steps/trigger">
     <img src="/trigger.svg">
     <h4>Trigger</h4>
-    <p>React to a specific event</p>
+    <p>React to an event or a task's result</p>
   </a>
   <a href="./steps/task">
     <img src="/task.svg">
@@ -45,13 +47,13 @@ A process has multiple steps, and each step indicates a specific action to do.
   <a href="./steps/filter">
     <img src="/filter.svg">
     <h4>Filter</h4>
-    <p>Accept only specific data</p>
+    <p>Add condition on data</p>
   </a>
 </nav>
 
 ## Example
 
-This is an example of process-file.
+Here is an example of typical process.
 
 <<< @/guide/process/process-file.yml
 

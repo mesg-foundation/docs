@@ -1,8 +1,9 @@
 # Task
 
-This type defines which service's task to execute.
+This type defines the task to execute of a given instance of a service.
 
-By default, the task's inputs are the previous step's outputs. Can be customized by mapping the outputs of any previous steps.
+By default, the task's inputs are the previous step's outputs.
+It can be customized by defining the `inputs` parameter to reference the outputs of any previous steps.
 
 ## Definition
 
@@ -12,34 +13,34 @@ By default, the task's inputs are the previous step's outputs. Can be customized
     fullType: '&quot;task&quot;'
   }, {
     name: 'key',
-    description: '(optional) Key to identify this step.',
+    description: '(optional) Key to identify this step',
     fullType: 'string'
   }, {
     name: 'instanceHash',
-    description: 'Hash of the service\'s instance.',
+    description: 'Hash of the service\'s instance',
     fullType: 'string'
   }, {
     name: 'instance',
-    description: 'Information about the instance to run. (Ignored if instanceHash is present)',
+    description: 'Information about the instance to run. (Ignored if `instanceHash` is set)',
     fullType: 'Instance'
   }, {
     name: 'taskKey',
-    description: 'Task key to execute.',
+    description: 'Key of the task to execute',
     fullType: 'string'
   }, {
     name: 'inputs',
-    description: '(optional) Task\'s inputs. If not defined, inputs are the previous step\'s outputs.',
+    description: '(optional) Task\'s inputs. If not defined, inputs are the previous step\'s outputs',
     fullType: 'map&lt;string, Input&gt;'
   }]
 }" :types="{
   Instance: {
     fields: [{
       name: 'src',
-      description: 'Source of the service to deploy (only when service not set)',
+      description: 'Source of the service to deploy (only when `service` is not set)',
       fullType: 'string'
     }, {
       name: 'service',
-      description: 'Service hash of the service to deploy (only when src not set)',
+      description: 'Service hash of the service to deploy (only when `src` is not set)',
       fullType: 'string'
     }, {
       name: 'env',
@@ -52,7 +53,7 @@ By default, the task's inputs are the previous step's outputs. Can be customized
 
 ## Input
 
-Inputs can be any type of data:
+Inputs can be any of the following type:
 - `string`
 - `bool`
 - `number`
@@ -60,36 +61,59 @@ Inputs can be any type of data:
 - `object`
 - `reference`
 
-### Composable type (`array` or `object`)
+### Constant
 
-`array` and `object` are composable so they can contains data of any types including other composable types.
+The types `string`, `bool` and `number` are constant and lets you hardcode a value.
 
-For example:
-- An `array` of `array` of `string` (eg: `[["foo", "bar"], [""]]`)
-- An `object` with another `object` that contains an `array` of `object` data (eg: `{ a: { b: [{ c: "" }] } }`)...
+#### Example
+```yaml
+inputs:
+  stringInput: "Input1 to the task"
+  numberInput: 10
+  booleanInput: true
+```
 
-### Reference type
+### Composable
 
-A reference let you access the data of a previous result or the previous step of your process.
-The reference is a special object that contains the attribute `key` and optionally `stepKey`.
+The types `array` and `object` are composable. They can contain data of any types including other composable types.
+- An `array` of `array` of `string`. Eg: `[["foo", "bar"], [""]]`
+- An `object` with another `object` that contains an `array` of `object` data. Eg: `{ a: { b: [{ c: "" }] } }`
+
+#### Examples
+```yaml
+objectInput:
+  numberInput: 10
+  booleanInput: true
+```
+```yaml
+arrayInput:
+  - foo
+  - bar
+```
+
+### Reference
+
+The reference type allows access to the data of a previous result or the previous step of a process.
+The reference is a special object that must contain the attribute `key` and, optionally, the parameter `stepKey`.
 
 <param-table :parameter="{
   fields: [{
     name: 'stepKey',
-    description: '(optional) Key of the step to reference (defined with the attribute &lt;code&gt;key&lt;/code&gt; of the step). If not defined, the previous step is used.',
+    description: '(optional) Key of the step to reference (defined with the attribute &lt;code&gt;key&lt;/code&gt; of the step). If not defined, the previous step is used',
     fullType: 'string'
   }, {
     name: 'key',
-    description: 'Path to the value of the output needed.',
+    description: 'Path to the value of the to reference',
     fullType: 'string'
   }]
 }" :types="{}" />
 
-They `key` is the path of data we want to access. To write the path, you need to follow a simplified json path format:
-- `.` to access a data in an object
-- `[INDEX]` to access an element in an array at the index `INDEX`. (You might get runtime error if your index is out of bounds)
+The parameter `key` is the path of data to access.
+To write a path, you need to follow a simplified json path format:
+- `.` to access a data in an object.
+- `[INDEX]` to access an element in an array at the index `INDEX`. (You might get runtime error if your index is out of bounds).
 
-#### Examples:
+#### Examples
   - `foo.bar`: Access the variable `bar` in the object `foo`.
   - `foo[0]`: Access the first element of the array `foo`.
   - `foo[0].bar[1]`: Access the second element of the array `bar` contained in the first element of the array `foo`.

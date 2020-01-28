@@ -1,10 +1,13 @@
 # Trigger
 
-A trigger let you listen for a specific event or result from a service. This trigger should be the first step of your process and should be unique per process.
+A trigger listens for a specific event or result from a service and will start the process when a matching event or a task's result is emitted.
+This trigger should be the first step of the process and only one trigger is possible per process.
 
-This trigger can be either:
-- A service's event: Using the `eventKey`, your process will be triggered every time the service emits the event defined by `eventKey`.
-- A task's result: Using the `taskKey`, your process will be triggered every time the service finishes to process the task `taskKey`.
+A trigger can be:
+### Service's event
+By setting the parameter `eventKey`, the process will be triggered every time the service emits the event defined by `eventKey`.
+### Task's result
+By setting the parameter `taskKey`, the process will be triggered every time the service finishes to execute the task `taskKey`.
 
 ## Definition
 <param-table :parameter="{
@@ -13,34 +16,34 @@ This trigger can be either:
     fullType: '&quot;trigger&quot;'
   }, {
     name: 'key',
-    description: '(optional) Key to identify this step.',
+    description: '(optional) Key to identify this step',
     fullType: 'string'
   }, {
     name: 'instanceHash',
-    description: 'Hash of the service\'s instance.',
+    description: 'Hash of the service\'s instance',
     fullType: 'string'
   }, {
     name: 'instance',
-    description: 'Information about the instance to run. (Ignored if instanceHash is present)',
+    description: 'Information about the instance to run. (Ignored if `instanceHash` is set)',
     fullType: 'Instance'
   }, {
     name: 'eventKey',
-    description: 'Event key to listen to. (only if taskKey is not present)',
+    description: 'Event\'s key to listen to. (only if `taskKey` is not set)',
     fullType: 'string'
   }, {
     name: 'taskKey',
-    description: 'Task\'s key of the result to listen to. (only if eventKey is not present)',
+    description: 'Task\'s key of the result to listen to. (only if `eventKey` is not set)',
     fullType: 'string'
   }]
 }" :types="{
   Instance: {
     fields: [{
       name: 'src',
-      description: 'Source of the service to deploy (only when service not set)',
+      description: 'Source of the service to deploy (only when `service` is not set)',
       fullType: 'string'
     }, {
       name: 'service',
-      description: 'Service hash of the service to deploy (only when src not set)',
+      description: 'Service hash of the service to deploy (only when `src` is not set)',
       fullType: 'string'
     }, {
       name: 'env',
