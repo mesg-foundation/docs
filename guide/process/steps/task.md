@@ -21,7 +21,7 @@ It can be customized by defining the `inputs` parameter to reference the outputs
     fullType: 'string'
   }, {
     name: 'instance',
-    description: 'Information about the instance to run. (Ignored if `instanceHash` is set)',
+    description: 'Information about the instance to run. (Ignored if &lt;code&gt;instanceHash&lt;/code&gt; is set)',
     fullType: 'Instance'
   }, {
     name: 'taskKey',
@@ -36,11 +36,11 @@ It can be customized by defining the `inputs` parameter to reference the outputs
   Instance: {
     fields: [{
       name: 'src',
-      description: 'Source of the service to deploy (only when `service` is not set)',
+      description: 'Source of the service to deploy (only when &lt;code&gt;service&lt;/code&gt; is not set)',
       fullType: 'string'
     }, {
       name: 'service',
-      description: 'Service hash of the service to deploy (only when `src` is not set)',
+      description: 'Service hash of the service to deploy (only when &lt;code&gt;src&lt;/code&gt; is not set)',
       fullType: 'string'
     }, {
       name: 'env',

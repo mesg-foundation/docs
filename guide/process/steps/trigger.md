@@ -24,26 +24,26 @@ By setting the parameter `taskKey`, the process will be triggered every time the
     fullType: 'string'
   }, {
     name: 'instance',
-    description: 'Information about the instance to run. (Ignored if `instanceHash` is set)',
+    description: 'Information about the instance to run. (Ignored if &lt;code&gt;instanceHash&lt;/code&gt; is set)',
     fullType: 'Instance'
   }, {
     name: 'eventKey',
-    description: 'Event\'s key to listen to. (only if `taskKey` is not set)',
+    description: 'Event\'s key to listen to. (only if &lt;code&gt;taskKey&lt;/code&gt; is not set)',
     fullType: 'string'
   }, {
     name: 'taskKey',
-    description: 'Task\'s key of the result to listen to. (only if `eventKey` is not set)',
+    description: 'Task\'s key of the result to listen to. (only if &lt;code&gt;eventKey&lt;/code&gt; is not set)',
     fullType: 'string'
   }]
 }" :types="{
   Instance: {
     fields: [{
       name: 'src',
-      description: 'Source of the service to deploy (only when `service` is not set)',
+      description: 'Source of the service to deploy (only when &lt;code&gt;service&lt;/code&gt; is not set)',
       fullType: 'string'
     }, {
       name: 'service',
-      description: 'Service hash of the service to deploy (only when `src` is not set)',
+      description: 'Service hash of the service to deploy (only when &lt;code&gt;src&lt;/code&gt; is not set)',
       fullType: 'string'
     }, {
       name: 'env',

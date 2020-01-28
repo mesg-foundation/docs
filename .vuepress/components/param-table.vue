@@ -21,11 +21,11 @@
           <tr v-for="(value, i) in types[field.fullType].values">
             <td>{{value.name}}</td>
             <td>{{value.number}}</td>
-            <td>{{value.description}}</td>
+            <td v-html="value.description"></td>
           </tr>
         </table>
         <template v-else>
-          <p v-if="field.description">{{field.description}}</p>
+          <p v-if="field.description" v-html="field.description"></p>
           <param-table
             :parameter="types[field.fullType]"
             :types="types"
