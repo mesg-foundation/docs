@@ -23,7 +23,7 @@ A process has a list of steps.
 Each step indicates a specific action to do.
 There is currently three types of steps:
 
-- [Trigger](./steps/trigger): an event or a task's result	that will trigger the process.
+- [Trigger](./steps/trigger): an event or a task's result that will trigger the process.
   - Should be the first step of the process.
   - Only one trigger is possible per process.
   - It triggers the process when a matching event or a task's result is emitted.
