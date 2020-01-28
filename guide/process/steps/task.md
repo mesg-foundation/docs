@@ -73,24 +73,6 @@ inputs:
   booleanInput: true
 ```
 
-### Composable
-
-The types `array` and `object` are composable. They can contain data of any types including other composable types.
-- An `array` of `array` of `string`. Eg: `[["foo", "bar"], [""]]`
-- An `object` with another `object` that contains an `array` of `object` data. Eg: `{ a: { b: [{ c: "" }] } }`
-
-#### Examples
-```yaml
-objectInput:
-  numberInput: 10
-  booleanInput: true
-```
-```yaml
-arrayInput:
-  - foo
-  - bar
-```
-
 ### Reference
 
 The reference type allows access to the data of a previous result or the previous step of a process.
@@ -118,6 +100,30 @@ To write a path, you need to follow a simplified json path format:
   - `foo[0]`: Access the first element of the array `foo`.
   - `foo[0].bar[1]`: Access the second element of the array `bar` contained in the first element of the array `foo`.
   - `foo[0][1]`: Access the second element in the first element of the array `foo`.
+
+### Composable
+
+The types `array` and `object` are composable. They can contain data of any types including other composable and reference types.
+- An `array` of `array` of `string`. Eg: `[["foo", "bar"], [""]]`
+- An `object` with another `object` that contains an `array` of `object` data. Eg: `{ a: { b: [{ c: "" }] } }`
+
+#### Examples
+```yaml
+objectInput:
+  numberInput: 10
+  booleanInput: true
+```
+```yaml
+arrayInput:
+  - foo
+  - bar
+```
+```yaml
+objectInput:
+  referenceInputInObject:
+    key: outputA
+    stepKey: my-previous-step-x
+```
 
 ## Example
 <<< @/guide/process/steps/task.yml
