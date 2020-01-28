@@ -35,17 +35,17 @@ There is currently three types of steps:
 
 <nav class="cards">
   <a href="./steps/trigger">
-    <img src="/trigger.svg">
+    <img src="/trigger.svg" class="icon-card">
     <h4>Trigger</h4>
     <p>React to an event or a task's result</p>
   </a>
   <a href="./steps/task">
-    <img src="/task.svg">
+    <img src="/task.svg" class="icon-card">
     <h4>Task</h4>
     <p>Execute a service's task</p>
   </a>
   <a href="./steps/filter">
-    <img src="/filter.svg">
+    <img src="/filter.svg" class="icon-card">
     <h4>Filter</h4>
     <p>Add condition on data</p>
   </a>
