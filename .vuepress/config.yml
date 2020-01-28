@@ -119,6 +119,11 @@ themeConfig:
         children:
           - /guide/process/
           - /guide/process/process-file
+          - title: Steps
+            children:
+              - /guide/process/steps/trigger
+              - /guide/process/steps/task
+              - /guide/process/steps/filter
           - /guide/process/deployment
       - title: Service
         children:

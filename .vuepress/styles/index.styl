@@ -27,59 +27,84 @@ header.navbar
   h1
     display none
 
-@media (max-width: $MQMobileNarrow)
+@media (max-width $MQMobileNarrow)
   .content div[class*="language-"]
     margin auto
 
-span.type {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  color: #4b2881;
-  padding: 0.25rem 0.5rem;
-  margin: 0;
-  font-size: 0.85em;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px;
-  display: flex;
-  display: inline-flex;
-}
+span.type
+  font-family source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
+  color #4b2881
+  padding 0.25rem 0.5rem
+  margin 0
+  font-size 0.85em
+  background-color rgba(27,31,35,0.05)
+  border-radius 3px
+  display flex
+  display inline-flex
 
-.vue-tabs {
-  margin-top: 1em;
-}
+.vue-tabs
+  margin-top 1em
 
-.tab-content {
-  border: solid 1px $borderColor;
-  padding: 1em;
-  border-radius: 0 3px 3px 3px;
-  margin-top: 3px;
-}
+.tab-content
+  border solid 1px $borderColor
+  padding 1em
+  border-radius 0 3px 3px 3px
+  margin-top 3px
 
-.nav.nav-tabs {
-  margin: 0;
-  padding: 0;
+.nav.nav-tabs
+  margin 0
+  padding 0
 
-  li {
-    border: solid 1px $borderColor;
-    z-index: 2;
-    border-radius: 3px 3px 0 0;
-    list-style: none;
-    margin-right: -1px;
-    background: rgba(0, 0, 0, 0.015);
-    cursor: pointer;
-    padding: 0.5em 1em;
-    display: inline;
+  li
+    border solid 1px $borderColor
+    z-index 2
+    border-radius 3px 3px 0 0
+    list-style none
+    margin-right -1px
+    background rgba(0, 0, 0, 0.015)
+    cursor pointer
+    padding 0.5em 1em
+    display inline
 
-    &.active {
-      z-index: 2;
-      border-bottom-color: white;
-      background: white;
-    }
-    a:hover {
-      text-decoration: none;
-    }
-  }
-}
+    &.active
+      z-index 2
+      border-bottom-color white
+      background white
+    a:hover
+      text-decoration none
 
-tr:nth-child(2n) {
-  background: rgba(73, 30, 140, 0.05);
-}
+tr:nth-child(2n)
+  background rgba(73, 30, 140, 0.05)
+
+nav.cards
+  display flex
+  justify-content space-between
+  a
+    color $textColor
+    flex 1
+    text-align center
+    padding 2em 1em
+    margin 1em
+    border solid 1px $borderColor
+    border-radius 3px
+    box-shadow 0 0 4px 0 $borderColor
+    display flex
+    flex-direction column
+    &:first-child
+      margin-left 0
+    &:last-child
+      margin-right 0
+    &:hover
+      text-decoration none!important
+      border-color $accentColor
+      box-shadow 0 0 10px 0 $borderColor
+
+    h4
+      margin-bottom .5em
+    
+    p
+    //   margin-top 1em
+      font-size 75%
+
+    .icon-card
+      height 60px
