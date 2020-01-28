@@ -11,7 +11,7 @@ All conditions should match to continue to the next step.
     fullType: '&quot;filter&quot;'
   }, {
     name: 'conditions',
-    description: 'Key-value map where the key references a data of the previous steps outputs and the value is the expected matching value.',
+    description: 'Key-value map where the key references a data of the previous step\'s outputs and the value is the expected matching value',
     fullType: 'map&lt;key, string&gt;'
   }]
 }" :types="{}" />
