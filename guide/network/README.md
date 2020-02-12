@@ -2,17 +2,17 @@
 
 The Engine is using [Cosmos SDK](https://cosmos.network/sdk) and [Tendermint](https://tendermint.com/) for building the decentralized network.
 
-Tendermint is a tool to create blockchain with a byzantine-fault tolerance consensus mechanism. It provides all the underlying P2P functionalities to replicate deterministic state machines across a large number of computers.
+Tendermint is a tool to create blockchains with a byzantine-fault tolerance consensus mechanism. It provides all the underlying P2P functionalities to replicate deterministic state machines across a large number of computers.
 
-Cosmos SDK is a framework to build secure blockchain applications on top of Tendermint. It provides composable modules as well as the necessary tools to interact with Tendermint.
+Cosmos SDK is a framework for building secure blockchain applications on top of Tendermint. It provides composable modules as well as the necessary tools to interact with Tendermint.
 
 ## Public networks
 
-The list of all available public networks on the [networks repository](https://github.com/mesg-foundation/networks).
+The list of all available public networks on the [network repository](https://github.com/mesg-foundation/networks).
 
 ### Testnet 01
 
-The currently only public MESG Network is a testnet called `mesg-testnet-01`.
+Currently, the only public MESG Network is a testnet called `mesg-testnet-01`.
 
 It uses the token `atto` and any address are prefixed with `mesgtest`.
 
@@ -39,6 +39,6 @@ This is a **private network** that contains only your data and is validated by y
 
 To start the Engine on this network, simply run the `daemon:start` command without specifying a network.
 
-Checkout the tutorial on the blog to create your own MESG Network and connect multiple Engines together:
+Check out the tutorial on the blog to create your own MESG Network and connect multiple Engines together:
 [blog.mesg.com/tutorial-create-a-network-with-multiple-engines](https://blog.mesg.com/tutorial-create-a-network-with-multiple-engines/).
 
