@@ -8,6 +8,8 @@ Cosmos SDK is a framework to build secure blockchain applications on top of Tend
 
 ## Public networks
 
+The list of all available public networks on the [networks repository](https://github.com/mesg-foundation/networks).
+
 ### Testnet 01
 
 The currently only public MESG Network is a testnet called `mesg-testnet-01`.
