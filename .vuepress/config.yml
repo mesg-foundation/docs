@@ -135,6 +135,7 @@ themeConfig:
           - /guide/service/test
           - /guide/service/deploy-a-service
           - /guide/service/run-the-service
+      - /guide/network/
     /cli/:
       - /cli/
       - /cli/commands/daemon.md
