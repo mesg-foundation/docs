@@ -44,13 +44,13 @@ To start the engine with the public testnet network `mesg-testnet-01`, run:
 mesg-cli daemon:start --network mesg-testnet-01 --path $HOME/.mesg-testnet-01
 ```
 
-We advise you to also set a different path for each network to avoid to override an existing network's data.
+We advise you to also set a different path for each network to avoid overriding an existing network's data.
 
 ::: tip
-You can find the list of all available public networks on the [networks repository](https://github.com/mesg-foundation/networks).
+You can find the list of all available public networks on the [network repository](https://github.com/mesg-foundation/networks).
 :::
 
-## Engine's logs
+## Engine logs
 
 To access the Engine's logs, run the following command:
 ```bash
@@ -66,7 +66,7 @@ mesg-cli daemon:stop
 
 ## Manual installation
 
-If you don't want to use the CLI or have more control on the Engine's container, you can start the Engine using the Docker CLI.
+If you don't want to use the CLI or want more control on the Engine's container, you can start the Engine using the Docker CLI.
 
 ```bash
 # Create local `.mesg` dir
@@ -89,5 +89,5 @@ docker service create \
 ```
 
 ::: tip Get Help
-You need help? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
+Need help? Check out the <a href="https://forum.mesg.com" target="_blank">MESG Forum</a>.
 :::
