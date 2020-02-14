@@ -1,33 +1,43 @@
-# Introduction
+# Overview
 
-MESG is a framework for developers to build applications efficiently. It relies on two specific tools:
+MESG is an open-source development framework that combines Service-Oriented and Event-Driven Architectures to enable decentralized application processing and hosting.
 
-- The **MESG SDK** that connects services together
-- The **MESG Marketplace** to bootstrap applications faster
+It consists of a network of services made interoperable via the Engine, a technology-agnostic message broker that can be used in a decentralized way. Services featuring any language can be rented at a price per execution in the open Marketplace and used within any application to accelerate efficiency. 
 
-MESG is centered around the concept of services made to be reusable within other applications and shared on a marketplace for others to use them.
-MESG Services have two responsibilities:
-- [Executing **tasks**](/guide/service/listen-for-tasks.md) that an application triggers
-- [Sending **events**](/guide/service/emit-an-event.md) to an application
+### Converging new and traditional tech
 
-[Applications](/guide/application/) rely only on [services](/guide/service/) managed by the MESG Engine, so developers can focus on applications' business logic and nothing more.
+Today, the web has evolved to a point where traditional web technologies coexist alongside newer, secure and interactive technologies like blockchains or machine learning engines. 
 
-### Why use the MESG SDK?
+These emerging technologies have vast improvements over the traditional web but serve different purposes. Blockchains can be excellent for creating secure, trustless environments, but are notorious for UX challenges. Centralized systems, on the other hand, are often great for enabling the UX features the public now expect, but can leave user data vulnerable to attack or exploitation. 
 
-The tools within the SDK:
-- Create and manage services 
-- Manage communication between all services with a standardized bi-directional API
-- Manage the security and isolation of services
-- Route the various tasks and events to listen to the appropriate service
+To be able to use technologies for their strengths when and where it makes sense, we need a way to run separate technologies in parallel to one another. The available tools that migrate traditional web services towards trustless, interactive services are currently costly, difficult to use and have many inherent limitations. Web service ecosystems help, but they are difficult to connect to each other because there is no standard for web service communication. 
 
-Applications are only responsible for communicating with the MESG Engine and use only one API to access any service. 
+The goal of MESG is to connect traditional web service ecosystems to other systems like blockchains while maintaining the spirit of the newer trustless, decentralized solutions. Both old and new can exist harmoniously through applications built atop a decentralized infrastructure designed to support the bridging of traditional and emerging ecosystems.
 
-### Architecture of applications with MESG
+### A decentralized network of services 
 
-![Architecture](/schema.svg)
+Some concepts in software and web development have proven to be more efficient than others. Service-Oriented Architectures (SOA) and Event-Driven Architecture (EDA) have become widely adopted because they are powerful and easy to scale. This inherent ease of scalability also makes these architectures easy to decentralize. 
 
-From left to right:
-- An [application](/guide/application/) that sends tasks and receives events from the MESG Engine
-- The MESG Engine that routes tasks and events and manages services
-- [MESG Services](/guide/service/), executing tasks and emitting events based on their prescribed purpose
+MESG combines SOA and EDA to form a decentralized network consisting of the following: 
+					
+						
+- **Engine** - The use and functionality of MESG’s decentralized network is primarily made possible via the Engine, a software that connects the actors in the network and manages the deployment of, and interaction between, services. 
 
+- **Services** - Services are discrete application components that make it possible to connect to specific business logic, a feature, or technology. Their bi-directional communication allows for the receiving of tasks to execute (like most classic Service-Oriented Frameworks) and the ability to proactively send events related to their business logic.
+
+- **Processes** - Processes are used to direct services, so applications can remain lightweight with sharable components. They consist of a list of tasks to be executed once a specific event occurs. A completed task can trigger one or more additional tasks depending on its result. 
+
+
+### Running MESG on the Network
+
+To enable autonomous, highly-scalable or incentivized applications, the decentralized Network must be used. The MESG Network, slated for a Q2 2020 completion, has the following features: 
+
+- **Trustless services** - In order to have a fully-reliable trustless system, services’ tasks and events are validated on a network by many different actors. Blockchain technology enables this concept by allowing anyone on the network to run the execution themselves to verify the result.
+
+- **Verification consensus** - Each service is different (services can be connected to blockchains, IoT devices, machine learning, centralized databases, etc.) so each requires a different level of verification depending on the requirements of applications. This network allows a flexible level of trust, so as long as services are verifiable, users can direct services to run in an adjustably trustless and decentralized way.
+
+- **Network stability** - To make sure that the network is reliable and has enough actors validating and executing process, every node needs to commit to good behavior and to continue running a service for a minimum period of time. To fill the contract, nodes need to stake tokens to attest to their good intentions.
+
+- **Custom distribution** - The network features three kinds of actors (emitters, executors, validators) that need to be selected wisely. Users have the opportunity to manually select a set of nodes, giving users the possibility of creating sub-networks that can be used for running trusted executions.
+
+- **Data security** - Because all actors are known and selected, data can be encrypted specifically for them. This ensures that confidential data can’t be revealed to entities that shouldn’t have access to it. It can be combined with a custom node selection, allowing for full privacy on the data used.
