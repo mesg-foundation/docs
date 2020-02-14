@@ -1,13 +1,13 @@
 # Process file
 
-A process file describes the connections between events and tasks of services with a step-by-step system.
+A process file is a YAML definition that describes the connections between events and tasks of services with a step-by-step system.
 
 It is structured in the following way:
 
 <param-table :parameter="{
   fields: [{
-    name: 'key',
-    description: 'Key to identify the process.',
+    name: 'name',
+    description: 'Name of the process.',
     fullType: 'string'
   }, {
     name: 'steps',
@@ -19,146 +19,43 @@ It is structured in the following way:
 
 ## Steps
 
-Each step is one the following types:
+A process has a list of steps.
+Each step indicates a specific action to do.
+There is currently three types of steps:
 
-- [Trigger](#trigger): listen to an event or a task's result
-- [Task](#task): execute a task
-- [Filter](#filter): condition on the data
+- [Trigger](./steps/trigger): an event or a task's result that will trigger the process.
+  - Should be the first step of the process.
+  - Only one trigger is possible per process.
+  - It triggers the process when a matching event or a task's result is emitted.
+- [Task](./steps/task): defines the task to execute of a given instance of a service.
+  - A process should have at least one task and can have as many as you want.
+- [Filter](./steps/filter): stop the execution of the process if a condition doesn't match.
+  - A process can have as many filters as you want.
+  - Filters are optional.
 
-### Trigger
+<nav class="cards">
+  <a href="./steps/trigger">
+    <img src="/trigger.svg" class="icon-card">
+    <h4>Trigger</h4>
+    <p>React to an event or a task's result</p>
+  </a>
+  <a href="./steps/task">
+    <img src="/task.svg" class="icon-card">
+    <h4>Task</h4>
+    <p>Execute a service's task</p>
+  </a>
+  <a href="./steps/filter">
+    <img src="/filter.svg" class="icon-card">
+    <h4>Filter</h4>
+    <p>Add condition on data</p>
+  </a>
+</nav>
 
-The first step must be a trigger that listens for a specific event or result of a task to start the process.
+## Example
 
-#### Event
-<param-table :parameter="{
-  fields: [{
-    name: 'key',
-    description: '(optional) Key to identify this step.',
-    fullType: 'string'
-  }, {
-    name: 'instanceHash',
-    description: 'Hash of the service\'s instance.',
-    fullType: 'string'
-  }, {
-    name: 'eventKey',
-    description: 'Event key to listen to.',
-    fullType: 'string'
-  }]
-}" :types="{}" />
+Here is an example of typical process.
 
-#### Result
-<param-table :parameter="{
-  fields: [{
-    name: 'key',
-    description: '(optional) Key to identify this step.',
-    fullType: 'string'
-  }, {
-    name: 'instanceHash',
-    description: 'Hash of the service\'s instance.',
-    fullType: 'string'
-  }, {
-    name: 'taskKey',
-    description: 'Task\'s key of the result to listen to.',
-    fullType: 'string'
-  }]
-}" :types="{}" />
-
-::: warning
-A process has only one trigger and it must be within the first step.
-:::
-
-### Task
-
-This type defines which service's task to execute.
-
-By default, the task's inputs are the previous step's outputs. Can be customized by mapping the outputs of any previous steps.
-
-<param-table :parameter="{
-  fields: [{
-    name: 'key',
-    description: '(optional) Key to identify this step.',
-    fullType: 'string'
-  }, {
-    name: 'instanceHash',
-    description: 'Hash of the service\'s instance.',
-    fullType: 'string'
-  }, {
-    name: 'taskKey',
-    description: 'Task key to execute.',
-    fullType: 'string'
-  }, {
-    name: 'inputs',
-    description: '(optional) Task\'s inputs. If not defined, inputs are the previous step\'s outputs.',
-    fullType: 'map&lt;string, Input&gt;'
-  }]
-}" :types="{}" />
-
-#### Input
-
-Each input can be:
-- A constant.
-- A reference to the outputs of a previous step in the process.
-
-##### Constant
-
-A constant lets you hardcode a value.
-
-The value can be of any type: `string`, `object`, `array`, `bool`, `number`.
-
-##### Reference
-
-Reference the outputs of a previous step.
-
-<param-table :parameter="{
-  fields: [{
-    name: 'stepKey',
-    description: '(optional) Key of the previous step (defined with the attribute &lt;code&gt;key&lt;/code&gt; of the step). If not defined, the previous step is used.',
-    fullType: 'string'
-  }, {
-    name: 'key',
-    description: 'Key of the step\'s outputs to reference.',
-    fullType: 'string'
-  }]
-}" :types="{}" />
-
-### Filter
-
-Apply one or multiple conditions on the previous step's outputs.
-
-All conditions should match to continue to the next step.
-
-<param-table :parameter="{
-  fields: [{
-    name: 'conditions',
-    description: 'Key-value map where the key references a data of the previous steps outputs and the value is the expected matching value.',
-    fullType: 'map&lt;key, string&gt;'
-  }]
-}" :types="{}" />
-
-## Instance resolution
-
-[Triggers](#trigger) and [tasks](#task) must have a specific `instanceHash` but this can be resolved automatically by the compiler if it replaced by an object `instance` containing the following:
-
-<param-table :parameter="{
-  fields: [{
-    name: 'service',
-    description: 'Service\'s sid or hash to start. Cannot be used with &lt;code&gt;src&lt;/code&gt;.',
-    fullType: 'string'
-  }, {
-    name: 'src',
-    description: 'Path of the service to deploy and start. Local and remote path are supported. Cannot be used with &lt;code&gt;service&lt;/code&gt;.',
-    fullType: 'string'
-  }, {
-    name: 'env',
-    label: 'repeated',
-    description: 'List of environment variables to inject in the instance. Should respect the format: &lt;code&gt;VARIABLE=value&lt;/code&gt;.',
-    fullType: 'string'
-  }]
-}" :types="{}" />
-
-::: warning
-To support this feature, you need to compile the process with the [`--dev` flag](deployment.md#development-mode).
-:::
+<<< @/guide/process/process-file.yml
 
 ## Environmental variable
 

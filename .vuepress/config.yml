@@ -1,10 +1,16 @@
 title: MESG Docs
 description: The builders' open economy
-ga: UA-117583862-3
 # serviceWorker: true
 markdown:
   toc:
     includeLevel: [2]
+plugins:
+  dehydrate:
+    noSSR: '(404.html|api/*.html)'
+  '@vuepress/google-analytics':
+    ga: UA-117583862-3
+  sitemap:
+    hostname: https://docs.mesg.com
 head:
   - - link
     - rel: apple-touch-icon
@@ -54,7 +60,7 @@ themeConfig:
     - text: Guide
       link: /guide/
     - text: Tutorials
-      link: /tutorials/
+      link: https://blog.mesg.com/tag/tutorials/
     - text: Ecosystem
       items:
         - text: Help
@@ -72,25 +78,25 @@ themeConfig:
         - text: Libraries
           items:
             - text: NodeJS
-              link: https://github.com/mesg-foundation/mesg-js
+              link: https://github.com/mesg-foundation/js-sdk
             - text: Golang (Service)
               link: https://godoc.org/github.com/mesg-foundation/engine/client/service
             - text: C# (Not official)
               link: https://github.com/neville-nazerane/mesg-apis
         - text: Resources
           items:
-            - text: Marketplace
-              link: https://marketplace.mesg.com
+            - text: Testnet Explorer
+              link: http://explorer.testnet.mesg.com
             - text: Awesome list
               link: https://github.com/mesg-foundation/awesome
             - text: Release Notes
-              link: https://forum.mesg.com/tags/release
+              link: https://blog.mesg.com/tag/product/
         - text: News
           items:
             - text: Website
               link: https://mesg.com/
             - text: Blog
-              link: https://medium.com/mesg
+              link: https://blog.mesg.com/
             - text: Twitter
               link: https://twitter.com/mesgfoundation
             - text: Linkedin
@@ -113,6 +119,11 @@ themeConfig:
         children:
           - /guide/process/
           - /guide/process/process-file
+          - title: Steps
+            children:
+              - /guide/process/steps/trigger
+              - /guide/process/steps/task
+              - /guide/process/steps/filter
           - /guide/process/deployment
       - title: Service
         children:
@@ -124,29 +135,16 @@ themeConfig:
           - /guide/service/test
           - /guide/service/deploy-a-service
           - /guide/service/run-the-service
-      - title: Marketplace
-        children:
-          - /guide/marketplace/
-          - /guide/marketplace/account
-          - /guide/marketplace/deploy
-          - /guide/marketplace/publish
-    /tutorials/:
-      - /tutorials/
-      - title: ERC20 transfer notifications
-        children:
-          - /tutorials/erc20-transfer-notifications/listen-for-transfers-of-an-ethereum-erc20-token
-          - /tutorials/erc20-transfer-notifications/send-emails-with-sendgrid
-          - /tutorials/erc20-transfer-notifications/receive-email-when-there-is-an-erc20-transfer
+      - /guide/network/
     /cli/:
       - /cli/
-      - /cli/commands/account.md
       - /cli/commands/daemon.md
-      - /cli/commands/marketplace.md
       - /cli/commands/process.md
       - /cli/commands/service.md
     /api/:
       - /api/service
       - /api/instance
+      - /api/runner
       - /api/event
       - /api/execution
       - /api/process

@@ -9,7 +9,7 @@ This step-by-step guide will show you how to create an application that gets the
 Run the following command in a console to install the MESG CLI:
 
 ```bash
-npm install -g mesg-cli
+npm install -g @mesg/cli
 ```
 
 More details on [the installation guide](/guide/installation.md).
@@ -33,22 +33,22 @@ Wait until you see `server listens on [::]:50052`.
 
 You first need to deploy the 3 services your application will use.
 
-First, deploy the [Webhook service](https://marketplace.mesg.com/services/webhook):
+First, deploy the [Webhook service](https://github.com/mesg-foundation/service-webhook):
 
 ```bash
-mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/9KnooKaxKjjoXF3d9jSCLZNVXoFmNmpC2dwpSi7bkRBd)"
+mesg-cli service:create "$(mesg-cli service:compile https://github.com/mesg-foundation/service-webhook)"
 ```
 
-Then, deploy the [emit event interval service](https://marketplace.mesg.com/services/emit-event-interval):
+Then, deploy the [emit event interval service](https://github.com/mesg-foundation/service-emit-event-interval):
 
 ```bash
-mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/3jQFCECh9ovnWZgfib8VjV35VBjoRFW62b1PpmgLvxpc)"
+mesg-cli service:create "$(mesg-cli service:compile https://github.com/mesg-foundation/service-emit-event-interval)"
 ```
 
-Lastly, deploy the [ethereum erc20 service](https://marketplace.mesg.com/services/ethereum-erc20):
+Lastly, deploy the [ethereum erc20 service](https://github.com/mesg-foundation/service-ethereum-erc20):
 
 ```bash
-mesg-cli service:create "$(mesg-cli service:compile mesg://marketplace/service/FZk4bpkmofTsmDrj31ptB1emdNNN8C1ckfLzYwNgEyqX)"
+mesg-cli service:create "$(mesg-cli service:compile https://github.com/mesg-foundation/service-ethereum-erc20)"
 ```
 
 Every time a service is deployed, the console displays its id. This id is a unique way for the application to connect to the right service through the MESG Engine.
@@ -76,23 +76,24 @@ Now the services are deployed and started, let's create the application.
 
 The application will be developed with Javascript and [NodeJS](https://nodejs.org).
 
-Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/mesg-js).
+Let's init the app and install the [MESG JS library](https://github.com/mesg-foundation/js-sdk).
 
 Create and move your terminal to a folder that will contain the application. Then run:
 
 ```bash
-npm init && npm install --save mesg-js
+npm init && npm install --save @mesg/application
 ```
 
 Now, create an `index.js` file and with the following code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
-  const ethereumErc20 = await mesg.resolve('ethereum-erc20')
-  const webhook = await mesg.resolve('webhook')
+  const ethereumErc20 = await mesg.resolveRunner('ethereum-erc20')
+  const webhook = await mesg.resolveRunner('webhook')
 }
 
 main()
@@ -100,7 +101,7 @@ main()
 
 ## 6. Listen for events
 
-Let's listen for events `every_10_seconds` of the service [`emit-event-interval`](https://marketplace.mesg.com/services/emit-event-interval#api). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds.
+Let's listen for events `every_10_seconds` of the service [`emit-event-interval`](https://github.com/mesg-foundation/service-emit-event-interval). This service emit multiple events on a regular interval. We will make the application to listen only to the events that are emitted every 10 seconds.
 
 Add the following code after `const webhook = await mesg.resolve('webhook')`:
 
@@ -126,7 +127,7 @@ console.log('application is running and listening for events')
 
 Let's get the balance of an Ethereum account of the MESG Token.
 
-To do so, let's execute the task `balanceOf` of service [`ethereum-erc20`](https://marketplace.mesg.com/services/ethereum-erc20#api).
+To do so, let's execute the task `balanceOf` of service [`ethereum-erc20`](https://github.com/mesg-foundation/service-ethereum-erc20).
 
 Add the following code after `console.log('event received')`:
 
@@ -136,7 +137,7 @@ console.log('event received')
 try {
   // Get the balance
   const balanceResult = await mesg.executeTaskAndWaitResult({
-    instanceHash: ethereumErc20,
+    executorHash: ethereumErc20,
     taskKey: 'balanceOf',
     inputs: mesg.encodeData({
       contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -158,7 +159,7 @@ try {
 
 Let's send the balance to a Webhook.
 
-Let's call the task `call` of the service [`webhook`](https://marketplace.mesg.com/services/webhook#api).
+Let's call the task `call` of the service [`webhook`](https://github.com/mesg-foundation/service-webhook).
 
 Add the following code after `console.log('balance is', balanceData.balance)`:
 
@@ -167,7 +168,7 @@ console.log('balance is', balanceData.balance)
 
  // Call the webhook
 const requestResult = await mesg.executeTaskAndWaitResult({
-  instanceHash: webhook,
+  executorHash: webhook,
   taskKey: 'call',
   inputs: mesg.encodeData({
     url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',
@@ -201,7 +202,8 @@ Wait a few seconds for the `every_10_seconds` event to be triggered.
 Here is the final version of the source code:
 
 ```javascript
-const mesg = require('mesg-js').application()
+const Application = require('@mesg/application')
+const mesg = new Application()
 
 const main = async () => {
   const emitEventInterval = await mesg.resolve('emit-event-interval')
@@ -221,7 +223,7 @@ const main = async () => {
       try {
         // Get the balance
         const balanceResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: ethereumErc20,
+          executorHash: ethereumErc20,
           taskKey: 'balanceOf',
           inputs: mesg.encodeData({
             contractAddress: '0x420167d87d35c3a249b32ef6225872fbd9ab85d2',
@@ -237,7 +239,7 @@ const main = async () => {
 
         // Call the webhook
         const requestResult = await mesg.executeTaskAndWaitResult({
-          instanceHash: webhook,
+          executorHash: webhook,
           taskKey: 'call',
           inputs: mesg.encodeData({
             url: 'https://webhook.site/60e515e8-f8c0-47c8-8de9-898e5832395a',

@@ -2,7 +2,7 @@
 
 A Service is a component of an application that can be reused. 
 
-They can be created through [The MESG Engine](/guide/installation.md) and can be **shared**, **purchased** or **sold** on the MESG Marketplace.
+They can be created through [The MESG Engine](/guide/installation.md) and can be **shared** on the MESG Network.
 
 A service has at least one of these purposes:
 - Execute tasks

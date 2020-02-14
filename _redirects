@@ -3,3 +3,7 @@ https://mesg-docs.netlify.com/* https://docs.mesg.com/:splat 301!
 
 /guide/start-here/* /guide/:splat
 /cli/mesg-* /cli
+/tutorials https://blog.mesg.com/tag/tutorials/ 301!
+/tutorials/erc20-transfer-notifications/listen-for-transfers-of-an-ethereum-erc20-token.html https://blog.mesg.com/listen-for-transfers-of-an-ethereum-erc20-token/ 301!
+/tutorials/erc20-transfer-notifications/send-emails-with-sendgrid.html https://blog.mesg.com/send-emails-with-sendgrid/ 301!
+/tutorials/erc20-transfer-notifications/receive-email-when-there-is-an-erc20-transfer.html https://blog.mesg.com/receive-email-when-there-is-an-erc20-transfer/ 301!

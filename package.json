@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vuepress dev",
-    "build": "vuepress build && vuepress-sitemap -h https://docs.mesg.com -d .vuepress/dist && cp _redirects .vuepress/dist"
+    "build": "vuepress build && cp _redirects .vuepress/dist"
   },
   "author": "Anthony Estebe <anthony@mesg.com>",
   "license": "ISC",
   "dependencies": {
+    "@vuepress/plugin-google-analytics": "^1.3.0",
     "vue-nav-tabs": "^0.5.7",
-    "vuepress": "^0.14.11",
-    "vuepress-plugin-sitemap": "0.0.1"
+    "vuepress": "^1.3.0",
+    "vuepress-plugin-dehydrate": "^1.1.3",
+    "vuepress-plugin-sitemap": "^2.3.1"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25"
   }
 }

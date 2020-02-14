@@ -16,11 +16,11 @@ MESG Engine CLI
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g mesg-cli
+$ npm install -g @mesg/cli
 $ mesg-cli COMMAND
 running command...
 $ mesg-cli (-v|--version|version)
-mesg-cli/1.3.1 darwin-x64 node-v10.16.3
+@mesg/cli/0.1.3 darwin-x64 node-v12.13.0
 $ mesg-cli --help [COMMAND]
 USAGE
   $ mesg-cli COMMAND
@@ -31,10 +31,8 @@ USAGE
 <!-- commands -->
 # Command Topics
 
-* [`mesg-cli account`](commands/account.md) - Manage accounts
 * [`mesg-cli daemon`](commands/daemon.md) - Manage the Engine
 * [`mesg-cli help`](commands/help.md) - display help for mesg-cli
-* [`mesg-cli marketplace`](commands/marketplace.md) - Interact with the Marketplace
 * [`mesg-cli process`](commands/process.md) - Manage processes
 * [`mesg-cli service`](commands/service.md) - Manage services
 
