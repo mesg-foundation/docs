@@ -74,7 +74,7 @@ export default {
       return md.render(text);
     },
     alreadyDefined(type) {
-      return this.parents.indexOf(type) >= 0
+      return this.parents.indexOf(type) >= 0;
     }
   }
 };
@@ -87,7 +87,7 @@ table.with-description tr td:nth-child(3) {
 td {
   vertical-align: top;
 }
-p {
-  margin: .4em 1em;
+td p {
+  margin: 0.4em 1em;
 }
 </style>
