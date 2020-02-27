@@ -1,6 +1,6 @@
 # Quick Start
 
-This step-by-step guide will show you how to create an application that gets the ERC20 token balance of an Ethereum account every 10 seconds and send it to a Webhook.
+This step-by-step guide will show you how to create an application that gets the ERC-20 token balance of an Ethereum account every 10 seconds and send it to a Webhook.
 
 [[toc]]
 
@@ -24,10 +24,10 @@ mesg-cli daemon:start
 
 ## 3. Create your process
 
-We will create a [MESG Process](/guide/process) for that that will rely on 3 specific services:
-- [Service emit event interval](https://github.com/mesg-foundation/service-emit-event-interval): to get an event every 10 seconds
-- [Service Ethereum ERC20](https://github.com/mesg-foundation/service-ethereum-erc20): to query the balance
-- [Service webhook](https://github.com/mesg-foundation/service-webhook): to send the result on a webhook
+We will create a [MESG Process](/guide/process) which will rely on 3 specific services:
+- [Emit event interval service](https://github.com/mesg-foundation/service-emit-event-interval): to get an event every 10 seconds
+- [Ethereum ERC20 service](https://github.com/mesg-foundation/service-ethereum-erc20): to query the balance
+- [Webhook service](https://github.com/mesg-foundation/service-webhook): to send the result on a webhook
 
 Let's create our first MESG Process by creating a new YAML file (called `process.yml`) with the following structure:
 ```yml
@@ -38,7 +38,7 @@ steps:
 
 ### First step: Trigger the process every 10 seconds
 
-To trigger this process every 10 seconds we will use the [service emit event interval](https://github.com/mesg-foundation/service-emit-event-interval) and listen for the event `every_10_seconds`.
+To trigger this process every 10 seconds we will use the service [emit event interval](https://github.com/mesg-foundation/service-emit-event-interval) and listen for the event `every_10_seconds`.
 
 ```yml
 steps:
@@ -93,7 +93,7 @@ steps:
 mesg-cli process:dev ./process.yml
 ```
 
-This command will automatically deploy all the services, run them and create the process to connect them based on the steps we defined previously. Give it a few seconds and...
+This command will automatically deploy all of the services, run them and create a process to connect them based on the steps we previously defined. Give it a few seconds and...
 
 :tada: The webhook is called with the MESG Token balance every 10 seconds. Go to back to https://webhook.site and check the request's data!
 
