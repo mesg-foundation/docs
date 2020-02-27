@@ -10,7 +10,7 @@ MESG Services have two responsibilities:
 - [Executing **tasks**](/guide/service/listen-for-tasks.md) that an application triggers
 - [Sending **events**](/guide/service/emit-an-event.md) to an application
 
-Application built with MESG are called processes.
+Applications built with MESG are called processes.
 
 [Processes](/guide/process/) rely only on [services](/guide/service/) managed by the MESG Engine, so developers can focus on applications' business logic and nothing more.
 
