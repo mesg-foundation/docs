@@ -1,4 +1,4 @@
-key: erc20-notification
+name: erc20-notification
 steps:
   - type: trigger
     instance:
