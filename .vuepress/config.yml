@@ -108,13 +108,6 @@ themeConfig:
       - /guide/
       - /guide/installation
       - /guide/quick-start-guide
-      - title: Application
-        children:
-          - /guide/application/
-          - /guide/application/listen-for-events
-          - /guide/application/listen-for-results
-          - /guide/application/execute-a-task
-          - /guide/application/resolve-sid
       - title: Process
         children:
           - /guide/process/
