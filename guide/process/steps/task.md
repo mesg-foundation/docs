@@ -53,7 +53,7 @@ It can be customized by defining the `inputs` parameter to reference the outputs
 
 ## Input
 
-Inputs can be any of the following types:
+Inputs can be any of the following type:
 - `string`
 - `bool`
 - `number`
@@ -91,27 +91,15 @@ The reference is a special object that must contain the attribute `key` and, opt
 }" :types="{}" />
 
 The parameter `key` is the path of data to access.
-To write a path, you need to follow a simplified JSON path format:
-- `KEY_NAME` to access a key.
-- `.` to access data in an object.
-- `[INDEX]` to access an element in an array at the index `INDEX`. (You might get a runtime error if your index is out of bounds).
+To write a path, you need to follow a simplified json path format:
+- `.` to access a data in an object.
+- `[INDEX]` to access an element in an array at the index `INDEX`. (You might get runtime error if your index is out of bounds).
 
 #### Examples
-  - `foo`: Access the variable `foo`.
   - `foo.bar`: Access the variable `bar` in the object `foo`.
   - `foo[0]`: Access the first element of the array `foo`.
   - `foo[0].bar[1]`: Access the second element of the array `bar` contained in the first element of the array `foo`.
   - `foo[0][1]`: Access the second element in the first element of the array `foo`.
-
-```yaml
-inputs:
-  referenceInput:
-    key: outputA
-    stepKey: my-previous-step-x
-  referenceWithPathInput:
-    key: outputB.attrX[0]
-    stepKey: my-previous-step-x
-```
 
 ### Composable
 
