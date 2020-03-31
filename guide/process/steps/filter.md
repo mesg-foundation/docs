@@ -82,7 +82,7 @@ The following predicates are available:
 - `GTE`: The value must be greater than or equal to the data. Works only with types `number`.
 - `LT`: The value must be lesser than the data. Works only with types `number`.
 - `LTE`: The value must be lesser than or equal to the data. Works only with types `number`.
-- `CONTAINS`: The value must be contained in the data. Works with any type of value be only with **repeated** data.
+- `CONTAINS`: The value must be contained in the data. Works only with `string` or  **repeated** data.
 
 #### Examples
 ```yaml
@@ -103,6 +103,9 @@ The following predicates are available:
     - key: logs # logs is an array of string
       predicate: CONTAINS
       value: error
+    - key: message # message is a string
+      predicate: CONTAINS
+      value: hello
 ```
 
 ## Example
