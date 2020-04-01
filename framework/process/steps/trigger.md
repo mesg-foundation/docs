@@ -55,7 +55,7 @@ By setting the parameter `taskKey`, the process will be triggered every time the
 }" />
 
 ## Example
-<<< @/guide/process/steps/trigger.yml
+<<< @/framework/process/steps/trigger.yml
 
 ::: warning
 A process has only one trigger and it must be within the first step.

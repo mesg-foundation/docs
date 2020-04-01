@@ -55,7 +55,7 @@ There is currently three types of steps:
 
 Here is an example of typical process.
 
-<<< @/guide/process/process-file.yml
+<<< @/framework/process/definition.yml
 
 ## Environmental variable
 

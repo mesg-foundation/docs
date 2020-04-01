@@ -2,8 +2,8 @@
   "name": "docs",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vuepress dev",
-    "build": "vuepress build && cp _redirects .vuepress/dist"
+    "dev": "vuepress dev --no-clear-screen",
+    "build": "vuepress build"
   },
   "author": "Anthony Estebe <anthony@mesg.com>",
   "license": "ISC",

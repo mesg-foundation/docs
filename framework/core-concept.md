@@ -1,3 +1,20 @@
+# Create a service
+
+A Service is a component of an application that can be reused. 
+
+A service has at least one of these purposes:
+- Execute tasks
+- Emit events
+- Embed technologies
+
+![Application](/service.svg)
+
+Any logic can be created with services, regardless of its complexity. 
+
+They communicate directly with the MESG Engine and expose their tasks and events through a [service definition file](/framework/service/service-file.md).
+
+Each service runs in its own [Docker](/framework/service/dockerize-the-service.md) with its own network between the service and its dependencies.
+
 # Orchestration system
 
 MESG Orchestrator is an event-driven task-orchestration system that manages the connections between the events and tasks of services by following the steps described by processes.

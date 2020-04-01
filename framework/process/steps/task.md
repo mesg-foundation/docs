@@ -138,4 +138,4 @@ objectInput:
 ```
 
 ## Example
-<<< @/guide/process/steps/task.yml
+<<< @/framework/process/steps/task.yml

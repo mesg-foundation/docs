@@ -109,4 +109,4 @@ The following predicates are available:
 ```
 
 ## Example
-<<< @/guide/process/steps/filter.yml
+<<< @/framework/process/steps/filter.yml
