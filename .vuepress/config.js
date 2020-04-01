@@ -40,14 +40,6 @@ const configs = {
             ]
           },
           {
-            text: 'Libraries',
-            items: [
-              { text: 'NodeJS', link: 'https://github.com/mesg-foundation/js-sdk' },
-              { text: 'Golang (Service)', link: 'https://godoc.org/github.com/mesg-foundation/engine/client/service' },
-              { text: 'C# (Not official)', link: 'https://github.com/neville-nazerane/mesg-apis' }
-            ]
-          },
-          {
             text: 'Resources',
             items: [
               { text: 'Testnet Explorer', link: 'http://explorer.testnet.mesg.com' },
@@ -69,7 +61,7 @@ const configs = {
       }
     ],
     sidebar: [
-      ['/', 'Introduction'],
+      ['/', 'Get started'],
       {
         title: 'MESG Framework',
         collapsable: false,
