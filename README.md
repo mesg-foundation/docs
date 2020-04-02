@@ -6,27 +6,27 @@ MESG is a framework for developers to build applications efficiently. It relies 
 - The **MESG Network of services** to bootstrap applications faster
 
 MESG is centered around the concept of services made to be reusable within other applications and shared on a network for others to use them.
-MESG Services have two responsibilities:
+All MESG Services have two responsibilities:
 - [Executing **tasks**](/framework/service/listen-for-tasks.md) that an application triggers
 - [Sending **events**](/framework/service/emit-an-event.md) to an application
 
 Applications built with MESG are called processes.
 
-[Processes](/framework/process/) rely only on [services](/framework/service/) managed by the MESG Engine, so developers can focus on applications' business logic and nothing more.
+[Processes](/framework/process/) rely only on [services](/framework/service/) which are managed by the MESG Engine, freeing up time to focus on your applications' business logic.
 
 ## Why use the MESG Framework?
 
 The tools within the Framework:
 - Create and manage services 
-- Manage communication between all services with a standardized bi-directional API
+- Manage communications between any services 
 - Manage the security and isolation of services
-- Route the various tasks and events to listen to the appropriate service
+- Route the various tasks and events between services 
 
-Processes are only responsible for communicating with the MESG Engine and use only one API to access any service. 
+Processes are only responsible for communicating with the MESG Engine, and only use a single standardized bi-directional API to access any service. 
 
 # Get started
 
-This step-by-step guide will show you how to create an application that gets the ERC-20 token balance of an Ethereum account every 10 seconds and send it to a Webhook.
+This step-by-step guide will show you how to create an Process that gets an ERC-20 token balance from an Ethereum address every 10 seconds and sends it to a Webhook.
 
 [[toc]]
 
@@ -46,10 +46,10 @@ MESG Engine runs as a daemon. To start it, execute:
 mesg-cli daemon:start
 ```
 
-## 3. Create your process
+## 3. Create a process
 
-We will create a [MESG Process](/framework/process) which will rely on 3 specific services:
-- [Emit event interval service](https://github.com/mesg-foundation/service-emit-event-interval): to get an event every 10 seconds
+We will create a [MESG Process](/framework/process) which will rely on three services:
+- [Emit event interval service](https://github.com/mesg-foundation/service-emit-event-interval): to create an event every 10 seconds
 - [Ethereum ERC20 service](https://github.com/mesg-foundation/service-ethereum-erc20): to query the balance
 - [Webhook service](https://github.com/mesg-foundation/service-webhook): to send the result on a webhook
 
@@ -92,7 +92,7 @@ steps:
       address: "0x2b1892e181cc749b530e6acc0aecfa4cc9c13ac2"
 ```
 
-### Third step: Send the balance to the webhook
+### Third step: Send the balance to a webhook
 
 To send the balance to a webhook we will use the service [webhook](https://github.com/mesg-foundation/service-webhook) and call the task `call` with the following inputs
 - _url_: [https://webhook.site/abe438ba-0c54-4594-bdfd-251375006283](https://webhook.site/abe438ba-0c54-4594-bdfd-251375006283) (generate your own [here](https://webhook.site/))
@@ -117,7 +117,7 @@ steps:
 mesg-cli process:dev ./process.yml
 ```
 
-This command will automatically deploy all of the services, run them and create a process to connect them based on the steps we previously defined. Give it a few seconds and...
+This command will automatically deploy all of the services, run them, and create a process to connect them together based on the steps we previously defined. Just give it a few seconds and...
 
 :tada: The webhook is called with the MESG Token balance every 10 seconds. Go to back to https://webhook.site and check the request's data!
 
