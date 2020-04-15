@@ -26,10 +26,6 @@ const configs = {
     nav: [
       { text: 'Home', link: '/' },
       {
-        text: 'Tutorials',
-        link: 'https://blog.mesg.com/tag/tutorials/'
-      },
-      {
         text: 'Ecosystem',
         items: [
           {
@@ -77,7 +73,8 @@ const configs = {
         ]
       },
       ['/deployment', 'Deployment'],
-      ['https://github.com/mesg-platform/js-sdk/blob/master/packages/cli/README.md', 'MESG CLI']
+      ['https://blog.mesg.com/tag/tutorials/', 'Tutorials'],
+      ['https://github.com/mesg-platform/js-sdk/blob/master/packages/cli/README.md', 'CLI Documentation']
     ]
   }
 }
