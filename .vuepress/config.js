@@ -15,9 +15,9 @@ const configs = {
     logo: '/logo-light.png',
     searchMaxSuggestions: 15,
     lastUpdated: true,
-    repo: 'mesg-foundation/',
+    repo: 'mesg-platform/',
     repoLabel: 'GitHub',
-    docsRepo: 'mesg-foundation/docs',
+    docsRepo: 'mesg-platform/docs',
     docsBranch: 'master',
     docsDir: '.',
     editLinks: true,
@@ -63,7 +63,7 @@ const configs = {
     sidebar: [
       ['/', 'Get started'],
       {
-        title: 'MESG Framework',
+        title: 'Framework',
         collapsable: false,
         path: '/framework/',
         children: [
@@ -77,8 +77,7 @@ const configs = {
         ]
       },
       ['/deployment', 'Deployment'],
-      ['https://github.com/mesg-foundation/js-sdk/blob/master/packages/cli/README.md', 'MESG CLI'],
-      ['/api/service', 'API']
+      ['https://github.com/mesg-platform/js-sdk/blob/master/packages/cli/README.md', 'MESG CLI']
     ]
   }
 }
