@@ -12,7 +12,7 @@ const configs = {
     ['meta', { hid: 'og:image', property: 'og:image', content: 'https://docs.mesg.com/og-image.jpg' }]
   ],
   themeConfig: {
-    logo: '/logo-light.png',
+    logo: 'https://handbook.mesg.com/brandmark/MESG-brandmark-purple.svg',
     searchMaxSuggestions: 15,
     lastUpdated: true,
     repo: 'mesg-platform/',
