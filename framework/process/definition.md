@@ -66,3 +66,38 @@ $(env:XXXX)
 ```
 
 Where `XXXX` is the name of the variable that you can override while running the compile command with the flag `--env XXXX=value`.
+
+<style>
+nav.cards	{
+  display: flex;
+  justify-content: space-between;
+}
+nav.cards > a {
+  color: #2c3e50;
+  flex: 1;
+  text-align: center;	
+  padding: 2em 1em;
+  margin: 1em	;
+  border: solid 1px #dfe2e5;
+  border-radius: 3px;
+  box-shadow: 0 0 4px 0 #dfe2e5;
+  display: flex;
+  flex-direction: column;
+}
+nav.cards > a:first-child	{ margin-left: 0; }
+nav.cards > a:last-child	{ margin-right: 0; }	
+nav.cards > a:hover	{
+  text-decoration: none!important;
+  border-color: #3eaf7c;
+  box-shadow: 0 0 10px 0 #dfe2e5;
+}
+nav.cards > a > h4 {
+  margin-bottom: .5em;
+}
+nav.cards > a > p {
+  font-size: 75%;
+}
+nav.cards > a > img {
+  height: 60px;
+}
+</style>
