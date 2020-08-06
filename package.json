@@ -10,7 +10,7 @@
   "dependencies": {
     "@vuepress/plugin-google-analytics": "^1.4.1",
     "vue-nav-tabs": "^0.5.7",
-    "vuepress": "^1.4.1",
+    "vuepress": "^1.5.3",
     "vuepress-plugin-dehydrate": "^1.1.4",
     "vuepress-plugin-google-tag-manager": "0.0.4",
     "vuepress-plugin-sitemap": "^2.3.1"
