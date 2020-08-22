@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vuepress dev",
-    "build": "vuepress build && cp _redirects .vuepress/dist"
+    "build": "vuepress build && cp _redirects .vuepress/dist",
+    "build-github": "vuepress build -d ./docs"
   },
   "author": "Anthony Estebe <anthony@mesg.com>",
   "license": "ISC",

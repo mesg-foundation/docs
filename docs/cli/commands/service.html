@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mesg-cli service | MESG Docs</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="The builders' open economy">
+    <meta hid="og:image:height" property="og:image:height" content="1257">
+    <meta hid="og:image:width" property="og:image:width" content="2400">
+    <meta hid="og:image" property="og:image" content="https://docs.mesg.com/og-image.jpg">
+    <link rel="preload" href="/assets/css/0.styles.733c3a68.css" as="style"><link rel="preload" href="/assets/js/app.0461a0b1.js" as="script"><link rel="preload" href="/assets/js/3.c68cbc53.js" as="script"><link rel="preload" href="/assets/js/22.7a9a8023.js" as="script"><link rel="prefetch" href="/assets/js/1.a534d825.js"><link rel="prefetch" href="/assets/js/10.aeb87715.js"><link rel="prefetch" href="/assets/js/11.3bdf1e19.js"><link rel="prefetch" href="/assets/js/12.3cc62a71.js"><link rel="prefetch" href="/assets/js/13.23968f08.js"><link rel="prefetch" href="/assets/js/14.12102d04.js"><link rel="prefetch" href="/assets/js/15.108a4d9c.js"><link rel="prefetch" href="/assets/js/16.4439f39c.js"><link rel="prefetch" href="/assets/js/17.582f6ec8.js"><link rel="prefetch" href="/assets/js/18.076f6072.js"><link rel="prefetch" href="/assets/js/19.ad56faa1.js"><link rel="prefetch" href="/assets/js/20.addc2ad6.js"><link rel="prefetch" href="/assets/js/21.a2a206db.js"><link rel="prefetch" href="/assets/js/23.1bde2ab8.js"><link rel="prefetch" href="/assets/js/24.8d0d13e0.js"><link rel="prefetch" href="/assets/js/25.f4f5b89c.js"><link rel="prefetch" href="/assets/js/26.d70d36d7.js"><link rel="prefetch" href="/assets/js/27.65acea1f.js"><link rel="prefetch" href="/assets/js/28.8d62a836.js"><link rel="prefetch" href="/assets/js/29.0225f22b.js"><link rel="prefetch" href="/assets/js/30.f9c04767.js"><link rel="prefetch" href="/assets/js/31.a4ec1372.js"><link rel="prefetch" href="/assets/js/32.7d3ef96e.js"><link rel="prefetch" href="/assets/js/33.843845a3.js"><link rel="prefetch" href="/assets/js/34.026bea50.js"><link rel="prefetch" href="/assets/js/35.7da70240.js"><link rel="prefetch" href="/assets/js/36.c30a0bdb.js"><link rel="prefetch" href="/assets/js/37.3b47795e.js"><link rel="prefetch" href="/assets/js/38.5a57c9ca.js"><link rel="prefetch" href="/assets/js/39.414ffd52.js"><link rel="prefetch" href="/assets/js/4.981518b6.js"><link rel="prefetch" href="/assets/js/40.43f38694.js"><link rel="prefetch" href="/assets/js/41.7bb3ca40.js"><link rel="prefetch" href="/assets/js/5.8e51ada9.js"><link rel="prefetch" href="/assets/js/6.b6480c83.js"><link rel="prefetch" href="/assets/js/7.f9226f4d.js"><link rel="prefetch" href="/assets/js/8.fcf4dc93.js"><link rel="prefetch" href="/assets/js/9.00bf8b79.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.733c3a68.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo-light.png" alt="MESG Docs" class="logo"> <span class="site-name can-hide">MESG Docs</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://blog.mesg.com/tag/tutorials/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Tutorials
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Ecosystem" class="dropdown-title"><span class="title">Ecosystem</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Help
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://forum.mesg.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Forum
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://discord.gg/5tVTHJC" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Discord
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          References
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/cli/" class="nav-link router-link-active">
+  CLI
+</a></li><li class="dropdown-subitem"><a href="/api/service.html" class="nav-link">
+  Engine API
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Libraries
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/mesg-foundation/js-sdk" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  NodeJS
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://godoc.org/github.com/mesg-foundation/engine/client/service" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Golang (Service)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/neville-nazerane/mesg-apis" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  C# (Not official)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          Resources
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://explorer.testnet.mesg.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Testnet Explorer
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/mesg-foundation/awesome" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Awesome list
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://blog.mesg.com/tag/product/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          News
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://mesg.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Website
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://blog.mesg.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://twitter.com/mesgfoundation" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Twitter
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://www.linkedin.com/company/mesg/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Linkedin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://www.facebook.com/mesgfoundation/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Facebook
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div> <a href="https://github.com/mesg-foundation/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://blog.mesg.com/tag/tutorials/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Tutorials
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Ecosystem" class="dropdown-title"><span class="title">Ecosystem</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Help
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://forum.mesg.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Forum
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://discord.gg/5tVTHJC" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Discord
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          References
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/cli/" class="nav-link router-link-active">
+  CLI
+</a></li><li class="dropdown-subitem"><a href="/api/service.html" class="nav-link">
+  Engine API
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Libraries
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/mesg-foundation/js-sdk" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  NodeJS
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://godoc.org/github.com/mesg-foundation/engine/client/service" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Golang (Service)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/neville-nazerane/mesg-apis" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  C# (Not official)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          Resources
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://explorer.testnet.mesg.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Testnet Explorer
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/mesg-foundation/awesome" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Awesome list
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://blog.mesg.com/tag/product/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>
+          News
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://mesg.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Website
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://blog.mesg.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://twitter.com/mesgfoundation" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Twitter
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://www.linkedin.com/company/mesg/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Linkedin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://www.facebook.com/mesgfoundation/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Facebook
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div> <a href="https://github.com/mesg-foundation/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/cli/" class="sidebar-link">mesg-cli</a></li><li><a href="/cli/commands/daemon.html" class="sidebar-link">mesg-cli daemon</a></li><li><a href="/cli/commands/process.html" class="sidebar-link">mesg-cli process</a></li><li><a href="/cli/commands/service.html" class="active sidebar-link">mesg-cli service</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-compile-service" class="sidebar-link">mesg-cli service:compile [SERVICE]</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-create-definition" class="sidebar-link">mesg-cli service:create DEFINITION</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-detail-service-hash" class="sidebar-link">mesg-cli service:detail SERVICE_HASH</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-dev-service" class="sidebar-link">mesg-cli service:dev [SERVICE]</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-doc-service" class="sidebar-link">mesg-cli service:doc [SERVICE]</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-execute-runner-hash-task" class="sidebar-link">mesg-cli service:execute RUNNER_HASH TASK</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-init-dir" class="sidebar-link">mesg-cli service:init DIR</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-list" class="sidebar-link">mesg-cli service:list</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-logs-runner-hash" class="sidebar-link">mesg-cli service:logs RUNNER_HASH</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-start-service-hash" class="sidebar-link">mesg-cli service:start SERVICE_HASH</a></li><li class="sidebar-sub-header"><a href="/cli/commands/service.html#mesg-cli-service-stop-runner-hash" class="sidebar-link">mesg-cli service:stop RUNNER_HASH...</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mesg-cli-service"><a href="#mesg-cli-service" class="header-anchor">#</a> <code>mesg-cli service</code></h1> <p>==================</p> <p>Manage services</p> <ul><li><a href="#mesg-cli-servicecompile-service"><code>mesg-cli service:compile [SERVICE]</code></a></li> <li><a href="#mesg-cli-servicecreate-definition"><code>mesg-cli service:create DEFINITION</code></a></li> <li><a href="#mesg-cli-servicedetail-service_hash"><code>mesg-cli service:detail SERVICE_HASH</code></a></li> <li><a href="#mesg-cli-servicedev-service"><code>mesg-cli service:dev [SERVICE]</code></a></li> <li><a href="#mesg-cli-servicedoc-service"><code>mesg-cli service:doc [SERVICE]</code></a></li> <li><a href="#mesg-cli-serviceexecute-runner_hash-task"><code>mesg-cli service:execute RUNNER_HASH TASK</code></a></li> <li><a href="#mesg-cli-serviceinit-dir"><code>mesg-cli service:init DIR</code></a></li> <li><a href="#mesg-cli-servicelist"><code>mesg-cli service:list</code></a></li> <li><a href="#mesg-cli-servicelogs-runner_hash"><code>mesg-cli service:logs RUNNER_HASH</code></a></li> <li><a href="#mesg-cli-servicestart-service_hash"><code>mesg-cli service:start SERVICE_HASH</code></a></li> <li><a href="#mesg-cli-servicestop-runner_hash"><code>mesg-cli service:stop RUNNER_HASH...</code></a></li></ul> <h2 id="mesg-cli-service-compile-service"><a href="#mesg-cli-service-compile-service" class="header-anchor">#</a> <code>mesg-cli service:compile [SERVICE]</code></h2> <p>Compile a service and upload its source to IPFS server</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:compile [SERVICE]
+ARGUMENTS
+  SERVICE  [default: ./] Path or url of a service
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --host=host      [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/compile.ts" target="_blank" rel="noopener noreferrer">src/commands/service/compile.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-create-definition"><a href="#mesg-cli-service-create-definition" class="header-anchor">#</a> <code>mesg-cli service:create DEFINITION</code></h2> <p>Create a service</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:create DEFINITION
+ARGUMENTS
+  DEFINITION  Service's definition. Use service:compile first to build service definition
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --host=host      [default: localhost] Host to access the MESG engine
+  --start          Automatically start the service once created
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/create.ts" target="_blank" rel="noopener noreferrer">src/commands/service/create.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-detail-service-hash"><a href="#mesg-cli-service-detail-service-hash" class="header-anchor">#</a> <code>mesg-cli service:detail SERVICE_HASH</code></h2> <p>Display detailed information on a service</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:detail SERVICE_HASH
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --host=host      [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/detail.ts" target="_blank" rel="noopener noreferrer">src/commands/service/detail.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-dev-service"><a href="#mesg-cli-service-dev-service" class="header-anchor">#</a> <code>mesg-cli service:dev [SERVICE]</code></h2> <p>Run a service in development mode</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:dev [SERVICE]
+ARGUMENTS
+  SERVICE  [default: ./] Path or url of a service
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --env=FOO=BAR    Set environment variables
+  --host=host      [default: localhost] Host to access the MESG engine
+  --start          Automatically start the service once created
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/dev.ts" target="_blank" rel="noopener noreferrer">src/commands/service/dev.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-doc-service"><a href="#mesg-cli-service-doc-service" class="header-anchor">#</a> <code>mesg-cli service:doc [SERVICE]</code></h2> <p>Generate documentation for service and print it on stdout</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:doc [SERVICE]
+ARGUMENTS
+  SERVICE  [default: ./] Path of a service
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  -s, --save       Save to default readme file
+  --host=host      [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/doc.ts" target="_blank" rel="noopener noreferrer">src/commands/service/doc.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-execute-runner-hash-task"><a href="#mesg-cli-service-execute-runner-hash-task" class="header-anchor">#</a> <code>mesg-cli service:execute RUNNER_HASH TASK</code></h2> <p>Execute a task on a running service</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:execute RUNNER_HASH TASK
+ARGUMENTS
+  RUNNER_HASH  The hash of the runner that will execute this execution
+  TASK         Task key
+OPTIONS
+  -d, --data=key=value   Task inputs
+  -h, --help             show CLI help
+  -j, --json=json        Path to a JSON file containing the task inputs
+  -p, --port=port        [default: 50052] Port to access the MESG engine
+  -q, --quiet            Display only essential information
+  --eventHash=eventHash  Event hash to create the execution with
+  --host=host            [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/execute.ts" target="_blank" rel="noopener noreferrer">src/commands/service/execute.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-init-dir"><a href="#mesg-cli-service-init-dir" class="header-anchor">#</a> <code>mesg-cli service:init DIR</code></h2> <p>Initialize a service from a template</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:init DIR
+ARGUMENTS
+  DIR  Directory to initialize a service into
+OPTIONS
+  -h, --help               show CLI help
+  -p, --port=port          [default: 50052] Port to access the MESG engine
+  -q, --quiet              Display only essential information
+  -t, --template=template  Specify the template URL to use
+  --host=host              [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/init.ts" target="_blank" rel="noopener noreferrer">src/commands/service/init.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-list"><a href="#mesg-cli-service-list" class="header-anchor">#</a> <code>mesg-cli service:list</code></h2> <p>List running services</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:list
+OPTIONS
+  -h, --help         show CLI help
+  -p, --port=port    [default: 50052] Port to access the MESG engine
+  -q, --quiet        Display only essential information
+  -x, --extended     show extra columns
+  --columns=columns  only show provided columns (comma-separated)
+  --csv              output is csv format
+  --filter=filter    filter property by partial string matching, ex: name=foo
+  --host=host        [default: localhost] Host to access the MESG engine
+  --no-header        hide table header from output
+  --no-truncate      do not truncate output to fit screen
+  --sort=sort        property to sort by (prepend '-' for descending)
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/list.ts" target="_blank" rel="noopener noreferrer">src/commands/service/list.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-logs-runner-hash"><a href="#mesg-cli-service-logs-runner-hash" class="header-anchor">#</a> <code>mesg-cli service:logs RUNNER_HASH</code></h2> <p>Fetch the logs of a service</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:logs RUNNER_HASH
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --event=event    Display a specific event
+  --[no-]events    Display events
+  --[no-]follow    Follow log output
+  --host=host      [default: localhost] Host to access the MESG engine
+  --[no-]results   Display results
+  --tail=tail      [default: 10000] Display the last N lines
+  --task=task      Display a specific task results
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/logs.ts" target="_blank" rel="noopener noreferrer">src/commands/service/logs.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-start-service-hash"><a href="#mesg-cli-service-start-service-hash" class="header-anchor">#</a> <code>mesg-cli service:start SERVICE_HASH</code></h2> <p>Start a service by creating a new runner</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:start SERVICE_HASH
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --env=FOO=BAR    Set environment variables
+  --host=host      [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/start.ts" target="_blank" rel="noopener noreferrer">src/commands/service/start.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p> <h2 id="mesg-cli-service-stop-runner-hash"><a href="#mesg-cli-service-stop-runner-hash" class="header-anchor">#</a> <code>mesg-cli service:stop RUNNER_HASH...</code></h2> <p>Stop one or more running service</p> <div class="language- extra-class"><pre class="language-text"><code>USAGE
+  $ mesg-cli service:stop RUNNER_HASH...
+OPTIONS
+  -h, --help       show CLI help
+  -p, --port=port  [default: 50052] Port to access the MESG engine
+  -q, --quiet      Display only essential information
+  --confirm        Confirm deletion
+  --delete-data    Delete running service persistent data
+  --host=host      [default: localhost] Host to access the MESG engine
+</code></pre></div><p><em>See code: <a href="https://github.com/mesg-foundation/js-sdk/blob/v0.1.3/src/commands/service/stop.ts" target="_blank" rel="noopener noreferrer">src/commands/service/stop.ts<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></em></p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/mesg-foundation/docs/edit/master/./cli/commands/service.md" target="_blank" rel="noopener noreferrer">Help us improve this page!</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">1/28/2020, 11:12:16 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/cli/commands/process.html" class="prev">
+        mesg-cli process
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.0461a0b1.js" defer></script><script src="/assets/js/3.c68cbc53.js" defer></script><script src="/assets/js/22.7a9a8023.js" defer></script>
+  </body>
+</html>
